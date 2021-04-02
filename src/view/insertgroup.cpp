@@ -7,6 +7,7 @@ InsertGroup::InsertGroup(QWidget *parent) :
 {
     ui->setupUi(this);
     m_group.reset(new Group);
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
 }
 

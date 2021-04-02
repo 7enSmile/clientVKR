@@ -33,6 +33,8 @@ void StudentsWindow::onDeleteStudentClicked()
 {
     QModelIndexList index = ui->tableViewStudents->selectionModel()->selectedRows();
     m_modelStudents->deleteStudent(index[0].row());
+    QMessageBox::information(this,"Успех","Студент удален!");
+
 }
 
 void StudentsWindow::onInsertStudentClicked()
@@ -67,7 +69,8 @@ void StudentsWindow::onDeleteGroupClicked()
 {
     QModelIndexList index = ui->tableViewGroups->selectionModel()->selectedRows();
     m_modelGroups->deleteGroup(index[0].row());
-    QMessageBox::information(this,"Успех","Студент удален!");
+    QMessageBox::information(this,"Успех","Группа удалена!");
+    m_modelStudents->loadList();
 
 }
 
@@ -79,6 +82,7 @@ void StudentsWindow::onInsertGroupClicked()
        m_modelGroups->saveGroup(insert->getGroup());
        QMessageBox::information(this,"Успех","Группа добавлена!");
     }
+    m_modelStudents->loadList();
 
 }
 
@@ -94,6 +98,7 @@ void StudentsWindow::onTableGroupClicked()
        m_modelGroups->saveGroup(insert->getGroup());
        QMessageBox::information(this,"Успех","Изменения внесены!");
     }
+   m_modelStudents->loadList();
 
 }
 

@@ -13,6 +13,7 @@ InsertStudent::InsertStudent(QWidget *parent) :
     this->setWindowTitle("Создать студена");
     ui->pushButtonAction->setText("Добавить");
     ui->pushButton->setText("Отмена");
+    ui->comboBoxGrops->setCurrentIndex(-1);
 
 
 }
@@ -39,6 +40,7 @@ void InsertStudent::insert(Student_ptr &student)
 Student_ptr &InsertStudent::getStudent()
 {
     return m_student;
+    m_student.reset();
 }
 
 void InsertStudent::onActionClicked()
@@ -95,9 +97,9 @@ void InsertStudent::initInsert()
     ui->pushButtonAction->setText("Изменить");
     ui->pushButton->setText("Ок");
     if(m_student->getgroup()!=nullptr){
-    ui->comboBoxGrops->setCurrentText(m_student->getgroup()->getnumber());
-    }else{
+        qDebug()<<m_student->getgroup()->getnumber();
 
+    }else{
         ui->comboBoxGrops->setCurrentIndex(-1);
     }
 }
