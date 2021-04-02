@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "Student.h"
+#include "QMessageBox"
 
 namespace Ui {
 class InsertStudent;
@@ -22,8 +23,8 @@ public:
     Student_ptr& getStudent();
 
 private slots:
-    void onActionCliced();
-    void onOkCliced();
+    void onActionClicked();
+    void onOkClicked();
 
 
 private:

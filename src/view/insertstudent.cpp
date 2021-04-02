@@ -7,8 +7,8 @@ InsertStudent::InsertStudent(QWidget *parent) :
 {
     ui->setupUi(this);
     m_student.reset(new Student());
-    connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionCliced()));
-    connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(onOkCliced()));
+    connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
+    connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     this->setWindowTitle("Создать студена");
     ui->pushButtonAction->setText("Добавить");
     ui->pushButton->setText("Отмена");
@@ -51,13 +51,13 @@ Student_ptr &InsertStudent::getStudent()
     return m_student;
 }
 
-void InsertStudent::onActionCliced()
+void InsertStudent::onActionClicked()
 {
-    qDebug()<<"TEst";
+
     Person_ptr person;
     person.reset(new Person());
     if(m_student->getperson()!=nullptr){
-    person=m_student->getperson();
+        person=m_student->getperson();
     }
 
     person->setfirstname(ui->lineEditFirstname->text());
@@ -67,10 +67,18 @@ void InsertStudent::onActionCliced()
     person->setemail(ui->lineEditEmail->text());
     m_student->setperson(person);
     m_student->setgroup(m_listGroups.getByIndex(ui->comboBoxGrops->currentIndex()));
-    QDialog::accept();
+    if(!person->getfirstname().isEmpty()&&!person->getlastname().isEmpty()&&!person->getpatronymic().isEmpty()&&!person->getphone_number().isEmpty()&&!person->getemail().isEmpty()){
+
+        QDialog::accept();
+    }
+
+    else{
+
+        QMessageBox::critical(this,"Ошибка!","Введенно пустое поле!");
+    }
 }
 
-void InsertStudent::onOkCliced()
+void InsertStudent::onOkClicked()
 {
     QDialog::close();
 }

@@ -14,9 +14,9 @@ StudentsWindow::StudentsWindow(QWidget *parent) :
     m_modelGroups=new AbstactGroupsModel();
     ui->tableViewGroups->setModel(m_modelGroups);
     ui->tableViewStudents->setModel(m_modelStudents);
-    connect(ui->pushButtonDeleteStudent,SIGNAL(clicked()),this,SLOT(onDeleteStudentCliced()));
-    connect(ui->pushButtonInsertStudent,SIGNAL(clicked()),this,SLOT(onInsertStudentCliced()));
-    connect(ui->tableViewStudents,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableStudentCliced()));
+    connect(ui->pushButtonDeleteStudent,SIGNAL(clicked()),this,SLOT(onDeleteStudentClicked()));
+    connect(ui->pushButtonInsertStudent,SIGNAL(clicked()),this,SLOT(onInsertStudentClicked()));
+    connect(ui->tableViewStudents,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableStudentClicked()));
 
 
 }
@@ -26,13 +26,13 @@ StudentsWindow::~StudentsWindow()
     delete ui;
 }
 
-void StudentsWindow::onDeleteStudentCliced()
+void StudentsWindow::onDeleteStudentClicked()
 {
     QModelIndexList index = ui->tableViewStudents->selectionModel()->selectedRows();
     m_modelStudents->deleteStudent(index[0].row());
 }
 
-void StudentsWindow::onInsertStudentCliced()
+void StudentsWindow::onInsertStudentClicked()
 {
     InsertStudent *insert=new InsertStudent();
     insert->setGroups(m_modelGroups->getList());
@@ -42,7 +42,7 @@ void StudentsWindow::onInsertStudentCliced()
 
 }
 
-void StudentsWindow::onTableStudentCliced()
+void StudentsWindow::onTableStudentClicked()
 {
     Student_ptr student;
     student.reset(new Student());

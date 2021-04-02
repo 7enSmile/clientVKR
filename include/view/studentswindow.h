@@ -18,9 +18,9 @@ public:
     ~StudentsWindow();
 
 private slots:
-    void onDeleteStudentCliced();
-    void onInsertStudentCliced();
-    void onTableStudentCliced();
+    void onDeleteStudentClicked();
+    void onInsertStudentClicked();
+    void onTableStudentClicked();
 private:
     Ui::StudentsWindow *ui;
     AbstractStudentsModel *m_modelStudents;
