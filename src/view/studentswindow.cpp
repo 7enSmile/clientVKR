@@ -16,6 +16,7 @@ StudentsWindow::StudentsWindow(QWidget *parent) :
     ui->tableViewStudents->setModel(m_modelStudents);
     connect(ui->pushButtonDeleteStudent,SIGNAL(clicked()),this,SLOT(onDeleteStudentCliced()));
     connect(ui->pushButtonInsertStudent,SIGNAL(clicked()),this,SLOT(onInsertStudentCliced()));
+    connect(ui->tableViewStudents,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableStudentCliced()));
 
 
 }
@@ -38,6 +39,22 @@ void StudentsWindow::onInsertStudentCliced()
     if(insert->exec()==InsertStudent::Accepted){
        m_modelStudents->saveStudent(insert->getStudent());
     }
+
+}
+
+void StudentsWindow::onTableStudentCliced()
+{
+    Student_ptr student;
+    student.reset(new Student());
+    QModelIndexList index = ui->tableViewStudents->selectionModel()->selectedRows();
+    student=m_modelStudents->getStudent(index[0].row());
+    InsertStudent *insert=new InsertStudent();
+    insert->setGroups(m_modelGroups->getList());
+    insert->insert(student);
+    if(insert->exec()==InsertStudent::Accepted){
+       m_modelStudents->saveStudent(insert->getStudent());
+    }
+
 
 }
 

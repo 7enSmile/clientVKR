@@ -69,3 +69,13 @@ void AbstractStudentsModel::saveStudent(Student_ptr &student)
     layoutChanged();
 
 }
+
+Student_ptr AbstractStudentsModel::getStudent(int index)
+
+{
+    Student_ptr student;
+    student.reset(new Student());
+    student=m_listStudent.getByIndex(index);
+    return student;
+
+}

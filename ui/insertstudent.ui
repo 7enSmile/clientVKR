@@ -19,44 +19,16 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_6">
+        <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="label_6">
            <property name="text">
-            <string>E-mail</string>
+            <string>Имя</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEditEmail"/>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <widget class="QLabel" name="labelPhone">
-           <property name="text">
-            <string>Телефон</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditPhone"/>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>Отчество</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditPatronymic"/>
+          <widget class="QLineEdit" name="lineEditFirstname"/>
          </item>
         </layout>
        </item>
@@ -75,16 +47,44 @@
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
+        <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="label_7">
            <property name="text">
-            <string>Имя</string>
+            <string>Отчество</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEditFirstname"/>
+          <widget class="QLineEdit" name="lineEditPatronymic"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QLabel" name="labelPhone">
+           <property name="text">
+            <string>Телефон</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditPhone"/>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>E-mail</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEditEmail"/>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>
@@ -148,14 +148,27 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButtonAction">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>10</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButtonAction">
        <property name="text">
         <string/>
        </property>
@@ -166,13 +179,13 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>lineEditPatronymic</tabstop>
   <tabstop>lineEditFirstname</tabstop>
   <tabstop>lineEditLastname</tabstop>
-  <tabstop>comboBoxGrops</tabstop>
-  <tabstop>lineEditEmail</tabstop>
-  <tabstop>pushButtonAction</tabstop>
+  <tabstop>lineEditPatronymic</tabstop>
   <tabstop>lineEditPhone</tabstop>
+  <tabstop>comboBoxGrops</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>lineEditEmail</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -33,6 +33,16 @@ void InsertStudent::insert(Student_ptr &student)
 {
     m_student=student;
     ui->lineEditFirstname->setText(m_student->getperson()->getfirstname());
+    ui->lineEditLastname->setText(m_student->getperson()->getlastname());
+    ui->lineEditPatronymic->setText(m_student->getperson()->getpatronymic());
+    ui->lineEditEmail->setText(m_student->getperson()->getemail());
+    qDebug()<<m_student->getperson()->getphone_number();
+    ui->lineEditPhone->setText(m_student->getperson()->getphone_number());
+    this->setWindowTitle("Изменить студента");
+    ui->pushButtonAction->setText("Изменить");
+    ui->pushButton->setText("Ок");
+    ui->comboBoxGrops->setCurrentText(m_student->getgroup()->getnumber());
+
 
 }
 
@@ -43,8 +53,13 @@ Student_ptr &InsertStudent::getStudent()
 
 void InsertStudent::onActionCliced()
 {
+    qDebug()<<"TEst";
     Person_ptr person;
     person.reset(new Person());
+    if(m_student->getperson()!=nullptr){
+    person=m_student->getperson();
+    }
+
     person->setfirstname(ui->lineEditFirstname->text());
     person->setlastname(ui->lineEditLastname->text());
     person->setpatronymic(ui->lineEditPatronymic->text());

@@ -20,6 +20,7 @@ public:
 private slots:
     void onDeleteStudentCliced();
     void onInsertStudentCliced();
+    void onTableStudentCliced();
 private:
     Ui::StudentsWindow *ui;
     AbstractStudentsModel *m_modelStudents;

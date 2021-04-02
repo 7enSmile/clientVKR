@@ -19,6 +19,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
     void deleteStudent(int);
     void saveStudent(Student_ptr&);
+    Student_ptr getStudent(int);
 
 };
 
