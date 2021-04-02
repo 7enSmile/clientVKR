@@ -45,14 +45,14 @@ void AbstactGroupsModel::deleteGroup(int index)
 {
     Group_ptr group;
     group.reset(new Group);
-    group->setgroup_id(index);
+    group->setgroup_id(m_listGroup.getByIndex(index)->getgroup_id());
     qx::dao::delete_by_id(group);
     loadList();
     layoutChanged();
 
 }
 
-void AbstactGroupsModel::saveGroup(Group_ptr & group)
+void AbstactGroupsModel::saveGroup(Group_ptr group)
 {
     qx::dao::save_with_all_relation(group);
     loadList();
@@ -62,4 +62,12 @@ void AbstactGroupsModel::saveGroup(Group_ptr & group)
 ListOfGroup &AbstactGroupsModel::getList()
 {
     return m_listGroup;
+}
+
+Group_ptr AbstactGroupsModel::getGroup(int index)
+{
+    Group_ptr group;
+    group.reset(new Group());
+    group=m_listGroup.getByIndex(index);
+    return group;
 }

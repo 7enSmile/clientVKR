@@ -34,6 +34,8 @@ SOURCES += main.cpp
 SOURCES += $$PWD/src/view/studentswindow.cpp
 SOURCES += $$PWD/src/model/abstractstudentsmodel.cpp
 SOURCES += $$PWD/src/view/insertstudent.cpp
+SOURCES += $$PWD/src/view/insertgroup.cpp
+SOURCES += $$PWD/src/model/abstactgroupsmodel.cpp
 SOURCES += $$PWD/src/model/abstactgroupsmodel.cpp
 HEADERS += $$PWD/include/view/studentswindow.h
 HEADERS += $$PWD/include/model/abstractstudentsmodel.h
@@ -41,8 +43,10 @@ HEADERS += $$PWD/include/view/insertstudent.h
 HEADERS += $$PWD/include/model/abstactgroupsmodel.h
 HEADERS += $$PWD/include/export.h
 HEADERS += $$PWD/include/precompiled.h
+HEADERS += $$PWD/include/view/insertgroup.h
 FORMS +=$$PWD/ui/studentswindow.ui
 FORMS +=$$PWD/ui/insertstudent.ui
+FORMS +=$$PWD/ui/insertgroup.ui
 
 
 # Default rules for deployment.

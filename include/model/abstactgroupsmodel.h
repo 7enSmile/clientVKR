@@ -21,8 +21,9 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
     void deleteGroup(int);
-    void saveGroup(Group_ptr&);
+    void saveGroup(Group_ptr);
     ListOfGroup& getList();
+    Group_ptr getGroup(int);
 
 };
 

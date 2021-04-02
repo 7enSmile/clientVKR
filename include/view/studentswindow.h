@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <model/abstractstudentsmodel.h>
 #include <view/insertstudent.h>
+#include <view/insertgroup.h>
 #include "model/abstactgroupsmodel.h"
 namespace Ui {
 class StudentsWindow;
@@ -21,10 +22,14 @@ private slots:
     void onDeleteStudentClicked();
     void onInsertStudentClicked();
     void onTableStudentClicked();
+    void onDeleteGroupClicked();
+    void onInsertGroupClicked();
+    void onTableGroupClicked();
 private:
     Ui::StudentsWindow *ui;
     AbstractStudentsModel *m_modelStudents;
     AbstactGroupsModel *m_modelGroups;
+
 };
 
 #endif // STUDENTSWINDOW_H

@@ -32,6 +32,8 @@ private:
     Student_ptr m_student;
     ListOfGroup m_listGroups;
     void fillComboBox();
+    void initInsert();
+
 };
 
 #endif // INSERTSTUDENT_H

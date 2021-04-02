@@ -17,6 +17,9 @@ StudentsWindow::StudentsWindow(QWidget *parent) :
     connect(ui->pushButtonDeleteStudent,SIGNAL(clicked()),this,SLOT(onDeleteStudentClicked()));
     connect(ui->pushButtonInsertStudent,SIGNAL(clicked()),this,SLOT(onInsertStudentClicked()));
     connect(ui->tableViewStudents,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableStudentClicked()));
+    connect(ui->pushButtonInsertGroup,SIGNAL(clicked()),this,SLOT(onInsertGroupClicked()));
+    connect(ui->pushButtonDeleteGroup,SIGNAL(clicked()),this,SLOT(onDeleteGroupClicked()));
+    connect(ui->tableViewGroups,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableGroupClicked()));
 
 
 }
@@ -38,6 +41,7 @@ void StudentsWindow::onInsertStudentClicked()
     insert->setGroups(m_modelGroups->getList());
     if(insert->exec()==InsertStudent::Accepted){
        m_modelStudents->saveStudent(insert->getStudent());
+       QMessageBox::information(this,"Успех","Студент добавлен!");
     }
 
 }
@@ -53,8 +57,43 @@ void StudentsWindow::onTableStudentClicked()
     insert->insert(student);
     if(insert->exec()==InsertStudent::Accepted){
        m_modelStudents->saveStudent(insert->getStudent());
+       QMessageBox::information(this,"Успех","Изменения внесены!");
     }
 
+
+}
+
+void StudentsWindow::onDeleteGroupClicked()
+{
+    QModelIndexList index = ui->tableViewGroups->selectionModel()->selectedRows();
+    m_modelGroups->deleteGroup(index[0].row());
+    QMessageBox::information(this,"Успех","Студент удален!");
+
+}
+
+void StudentsWindow::onInsertGroupClicked()
+{
+    InsertGroup *insert=new InsertGroup();
+
+    if(insert->exec()==InsertGroup::Accepted){
+       m_modelGroups->saveGroup(insert->getGroup());
+       QMessageBox::information(this,"Успех","Группа добавлена!");
+    }
+
+}
+
+void StudentsWindow::onTableGroupClicked()
+{
+    Group_ptr group;
+    group.reset(new Group());
+    QModelIndexList index = ui->tableViewGroups->selectionModel()->selectedRows();
+    group=m_modelGroups->getGroup(index[0].row());
+    InsertGroup *insert=new InsertGroup();
+    insert->insert(group);
+    if(insert->exec()==InsertGroup::Accepted){
+       m_modelGroups->saveGroup(insert->getGroup());
+       QMessageBox::information(this,"Успех","Изменения внесены!");
+    }
 
 }
 
