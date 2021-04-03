@@ -7,6 +7,7 @@ InsertGroup::InsertGroup(QWidget *parent) :
 {
     ui->setupUi(this);
     m_group.reset(new Group);
+    this->setWindowTitle("Добавить");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
 }
@@ -42,6 +43,7 @@ void InsertGroup::initInser()
 void InsertGroup::onOkClicked()
 
 {
+    this->setWindowTitle("Изменить");
     m_group->setnumber(ui->lineEditNumber->text());
     if(!m_group->getnumber().isEmpty()){
         QDialog::accept();

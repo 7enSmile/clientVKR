@@ -20,6 +20,7 @@ StudentsWindow::StudentsWindow(QWidget *parent) :
     connect(ui->pushButtonInsertGroup,SIGNAL(clicked()),this,SLOT(onInsertGroupClicked()));
     connect(ui->pushButtonDeleteGroup,SIGNAL(clicked()),this,SLOT(onDeleteGroupClicked()));
     connect(ui->tableViewGroups,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableGroupClicked()));
+    connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
 
 
 }
@@ -99,6 +100,12 @@ void StudentsWindow::onTableGroupClicked()
        QMessageBox::information(this,"Успех","Изменения внесены!");
     }
    m_modelStudents->loadList();
+
+}
+
+void StudentsWindow::onOkClicked()
+{
+    QDialog::close();
 
 }
 

@@ -25,6 +25,7 @@ private slots:
     void onDeleteGroupClicked();
     void onInsertGroupClicked();
     void onTableGroupClicked();
+    void onOkClicked();
 private:
     Ui::StudentsWindow *ui;
     AbstractStudentsModel *m_modelStudents;
