@@ -5,6 +5,7 @@
 #include <QAction>
 #include <QDebug>
 #include "view/studentswindow.h"
+#include "view/staffuniversitywindow.h"
 namespace Ui {
 class MainWindow;
 }

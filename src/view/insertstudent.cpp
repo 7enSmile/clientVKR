@@ -79,7 +79,7 @@ void InsertStudent::onOkClicked()
 
 void InsertStudent::fillComboBox()
 {
-    qDebug()<<m_listGroups.count();
+
 
     for(int i=0;i<m_listGroups.count();i++){
         ui->comboBoxGrops->addItem(m_listGroups.getByIndex(i)->getnumber());
@@ -97,7 +97,7 @@ void InsertStudent::initInsert()
     ui->pushButtonAction->setText("Изменить");
     ui->pushButton->setText("Ок");
     if(m_student->getgroup()!=nullptr){
-        qDebug()<<m_student->getgroup()->getnumber();
+        ui->comboBoxGrops->setCurrentText((m_student->getgroup()->getnumber()));
 
     }else{
         ui->comboBoxGrops->setCurrentIndex(-1);

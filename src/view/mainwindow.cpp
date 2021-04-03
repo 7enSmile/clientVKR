@@ -77,6 +77,8 @@ void MainWindow::onStaffEmployerClicked()
 
 void MainWindow::onStaffUniversityClicked()
 {
+    StaffUniversityWindow *w=new StaffUniversityWindow();
+    w->exec();
 
 }
 

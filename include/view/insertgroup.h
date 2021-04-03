@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include "Group.h"
-#include "QMessageBox"
+#include <QMessageBox>
 namespace Ui {
 class InsertGroup;
 }

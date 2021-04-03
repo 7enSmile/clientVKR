@@ -1,9 +1,9 @@
-#ifndef ABSTACTGROUPSMODEL_H
-#define ABSTACTGROUPSMODEL_H
+#ifndef ABSTRACTGROUPSMODEL_H
+#define ABSTRACTGROUPSMODEL_H
 #include "Group.h"
 #include <QAbstractTableModel>
 
-class AbstactGroupsModel:public QAbstractTableModel
+class AbstractGroupsModel:public QAbstractTableModel
 {
 
 
@@ -12,7 +12,7 @@ private:
     void loadList();
 
 public:
-    AbstactGroupsModel();
+    AbstractGroupsModel();
 
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
@@ -20,11 +20,15 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+
     void deleteGroup(int);
+
     void saveGroup(Group_ptr);
+
     ListOfGroup& getList();
+
     Group_ptr getGroup(int);
 
 };
 
-#endif // ABSTACTGROUPSMODEL_H
+#endif

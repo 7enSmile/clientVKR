@@ -15,16 +15,13 @@ InsertGroup::InsertGroup(QWidget *parent) :
 InsertGroup::~InsertGroup()
 {
     delete ui;
-    m_group.reset(new Group());
+
 }
 
 void InsertGroup::insert(Group_ptr &group)
 {
     m_group=group;
     initInser();
-
-
-
 
 }
 
@@ -36,6 +33,7 @@ Group_ptr &InsertGroup::getGroup()
 
 void InsertGroup::initInser()
 {
+    this->setWindowTitle("Изменить");
     ui->lineEditNumber->setText(m_group->getnumber());
 
 }
@@ -43,7 +41,7 @@ void InsertGroup::initInser()
 void InsertGroup::onOkClicked()
 
 {
-    this->setWindowTitle("Изменить");
+
     m_group->setnumber(ui->lineEditNumber->text());
     if(!m_group->getnumber().isEmpty()){
         QDialog::accept();

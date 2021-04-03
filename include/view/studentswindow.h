@@ -5,7 +5,7 @@
 #include <model/abstractstudentsmodel.h>
 #include <view/insertstudent.h>
 #include <view/insertgroup.h>
-#include "model/abstactgroupsmodel.h"
+#include "model/abstractgroupsmodel.h"
 namespace Ui {
 class StudentsWindow;
 }
@@ -29,7 +29,7 @@ private slots:
 private:
     Ui::StudentsWindow *ui;
     AbstractStudentsModel *m_modelStudents;
-    AbstactGroupsModel *m_modelGroups;
+    AbstractGroupsModel *m_modelGroups;
 
 };
 

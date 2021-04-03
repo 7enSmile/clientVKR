@@ -11,7 +11,7 @@ StudentsWindow::StudentsWindow(QWidget *parent) :
     this->setWindowTitle("Студенты");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     m_modelStudents=new AbstractStudentsModel();
-    m_modelGroups=new AbstactGroupsModel();
+    m_modelGroups=new AbstractGroupsModel();
     ui->tableViewGroups->setModel(m_modelGroups);
     ui->tableViewStudents->setModel(m_modelStudents);
     connect(ui->pushButtonDeleteStudent,SIGNAL(clicked()),this,SLOT(onDeleteStudentClicked()));
@@ -62,6 +62,7 @@ void StudentsWindow::onTableStudentClicked()
        m_modelStudents->saveStudent(insert->getStudent());
        QMessageBox::information(this,"Успех","Изменения внесены!");
     }
+
 
 
 }

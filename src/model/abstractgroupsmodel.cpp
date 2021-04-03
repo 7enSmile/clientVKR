@@ -1,28 +1,30 @@
-#include "model/abstactgroupsmodel.h"
+#include "model/abstractgroupsmodel.h"
 
-void AbstactGroupsModel::loadList()
+void AbstractGroupsModel::loadList()
 {
     beginInsertRows(QModelIndex(),0,0);
     qx::dao::fetch_all_with_all_relation(m_listGroup);
     endInsertRows();
+    layoutChanged();
+
 }
 
-AbstactGroupsModel::AbstactGroupsModel()
+AbstractGroupsModel::AbstractGroupsModel()
 {
     loadList();
 }
 
-int AbstactGroupsModel::rowCount(const QModelIndex &parent) const
+int AbstractGroupsModel::rowCount(const QModelIndex &parent) const
 {
     return !parent.isValid() ? m_listGroup.count() : 0;
 }
 
-int AbstactGroupsModel::columnCount(const QModelIndex &parent) const
+int AbstractGroupsModel::columnCount(const QModelIndex &parent) const
 {
     return !parent.isValid() ? 1 : 0;
 }
 
-QVariant AbstactGroupsModel::data(const QModelIndex &index, int role) const
+QVariant AbstractGroupsModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
@@ -41,10 +43,10 @@ QVariant AbstactGroupsModel::data(const QModelIndex &index, int role) const
 
 }
 
-void AbstactGroupsModel::deleteGroup(int index)
+void AbstractGroupsModel::deleteGroup(int index)
 {
     Group_ptr group;
-    group.reset(new Group);
+    group.reset(new Group());
     group->setgroup_id(m_listGroup.getByIndex(index)->getgroup_id());
     qx::dao::delete_by_id(group);
     loadList();
@@ -52,19 +54,19 @@ void AbstactGroupsModel::deleteGroup(int index)
 
 }
 
-void AbstactGroupsModel::saveGroup(Group_ptr group)
+void AbstractGroupsModel::saveGroup(Group_ptr group)
 {
     qx::dao::save_with_all_relation(group);
     loadList();
     layoutChanged();
 }
 
-ListOfGroup &AbstactGroupsModel::getList()
+ListOfGroup &AbstractGroupsModel::getList()
 {
     return m_listGroup;
 }
 
-Group_ptr AbstactGroupsModel::getGroup(int index)
+Group_ptr AbstractGroupsModel::getGroup(int index)
 {
     Group_ptr group;
     group.reset(new Group());
