@@ -32,7 +32,7 @@ private:
     ListOfDepartment m_listDepartmens;
     void fillComboBox();
     void initInsert();
-private:
+
 
 };
 

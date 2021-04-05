@@ -10,7 +10,7 @@ InsertStaffUniversity::InsertStaffUniversity(ListOfDepartment &list,QWidget *par
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("СоздатьРаботника университета");
+    this->setWindowTitle("Создать работника университета");
     ui->pushButtonAction->setText("Добавить");
     ui->pushButton->setText("Отмена");
     m_listDepartmens=list;

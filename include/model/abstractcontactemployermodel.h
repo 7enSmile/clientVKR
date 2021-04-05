@@ -21,7 +21,7 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
-    void deleteContactEmployer(int);
+    void deleteContactEmployerGlobal(int);
 
     void deleteContactEmployerLocal(int);
 

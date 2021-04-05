@@ -50,7 +50,7 @@ QVariant AbstractContactEmployerModel::data(const QModelIndex &index, int role) 
 
 }
 
-void AbstractContactEmployerModel::deleteContactEmployer(int index)
+void AbstractContactEmployerModel::deleteContactEmployerGlobal(int index)
 {
     Person_ptr person;
     person.reset(new Person());

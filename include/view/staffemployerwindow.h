@@ -2,6 +2,8 @@
 #define STAFFEMPLOYERWINDOW_H
 
 #include <QDialog>
+#include <QMessageBox>
+#include "view/insertstaffemployer.h"
 #include"model/abstractheademployermodel.h"
 #include"model/abstractcontactemployermodel.h"
 
@@ -17,11 +19,11 @@ public:
     explicit StaffEmployerWindow(QWidget *parent = nullptr);
     ~StaffEmployerWindow();
 private slots:
-    void onDeleteHeadEmployer();
-    void onInsertHeadEmployer();
+    void onDeleteHeadEmployerClicked();
+    void onInsertHeadEmployerClicked();
     void onTableHeadEmployerClicked();
-    void onDeleteContactEmployerClicket();
-    void onInsertContactEmployerClicket();
+    void onDeleteContactEmployerClicked();
+    void onInsertContactEmployerClicked();
     void onTableContactEmployerClicked();
     void onOkClicked();
 private:
