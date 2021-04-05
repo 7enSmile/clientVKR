@@ -33,17 +33,16 @@ StudentsWindow::~StudentsWindow()
 void StudentsWindow::onDeleteStudentClicked()
 {
     QModelIndexList index = ui->tableViewStudents->selectionModel()->selectedRows();
-    m_modelStudents->deleteStudent(index[0].row());
+    m_modelStudents->deleteStudentGlobal(index[0].row());
     QMessageBox::information(this,"Успех","Студент удален!");
 
 }
 
 void StudentsWindow::onInsertStudentClicked()
 {
-    InsertStudent *insert=new InsertStudent();
-    insert->setGroups(m_modelGroups->getList());
+    InsertStudent *insert=new InsertStudent(m_modelGroups->getList());
     if(insert->exec()==InsertStudent::Accepted){
-       m_modelStudents->saveStudent(insert->getStudent());
+       m_modelStudents->saveStudentGlobal(insert->getStudent());
        QMessageBox::information(this,"Успех","Студент добавлен!");
     }
 
@@ -55,11 +54,10 @@ void StudentsWindow::onTableStudentClicked()
     student.reset(new Student());
     QModelIndexList index = ui->tableViewStudents->selectionModel()->selectedRows();
     student=m_modelStudents->getStudent(index[0].row());
-    InsertStudent *insert=new InsertStudent();
-    insert->setGroups(m_modelGroups->getList());
+    InsertStudent *insert=new InsertStudent(m_modelGroups->getList());
     insert->insert(student);
     if(insert->exec()==InsertStudent::Accepted){
-       m_modelStudents->saveStudent(insert->getStudent());
+       m_modelStudents->saveStudentGlobal(insert->getStudent());
        QMessageBox::information(this,"Успех","Изменения внесены!");
     }
 
@@ -72,7 +70,7 @@ void StudentsWindow::onDeleteGroupClicked()
     QModelIndexList index = ui->tableViewGroups->selectionModel()->selectedRows();
     m_modelGroups->deleteGroup(index[0].row());
     QMessageBox::information(this,"Успех","Группа удалена!");
-    m_modelStudents->loadList();
+    m_modelStudents->loadListGlobal();
 
 }
 
@@ -84,7 +82,7 @@ void StudentsWindow::onInsertGroupClicked()
        m_modelGroups->saveGroup(insert->getGroup());
        QMessageBox::information(this,"Успех","Группа добавлена!");
     }
-    m_modelStudents->loadList();
+    m_modelStudents->loadListGlobal();
 
 }
 
@@ -100,7 +98,7 @@ void StudentsWindow::onTableGroupClicked()
        m_modelGroups->saveGroup(insert->getGroup());
        QMessageBox::information(this,"Успех","Изменения внесены!");
     }
-   m_modelStudents->loadList();
+   m_modelStudents->loadListGlobal();
 
 }
 

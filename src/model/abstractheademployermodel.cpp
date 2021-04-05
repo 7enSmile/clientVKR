@@ -2,7 +2,13 @@
 
 AbstractHeadEmployerModel::AbstractHeadEmployerModel()
 {
-    loadList();
+    loadListGlobal();
+
+}
+
+AbstractHeadEmployerModel::AbstractHeadEmployerModel(ListOfHeadEmployer &list)
+{
+    m_listHeadEmployer=list;
 
 }
 
@@ -38,24 +44,48 @@ QVariant AbstractHeadEmployerModel::data(const QModelIndex &index, int role) con
 
         }
 
-        return QVariant();
+    return QVariant();
 }
 
-void AbstractHeadEmployerModel::deleteHeadEmployer(int index)
+
+
+void AbstractHeadEmployerModel::deleteHeadEmployerGlobal(int index)
 {
     Person_ptr person;
     person.reset(new Person());
     person->setperson_id(m_listHeadEmployer.getByIndex(index)->getperson()->getperson_id());
     qx::dao::delete_by_id(person);
-    loadList();
+    loadListGlobal();
     layoutChanged();
 
 }
 
-void AbstractHeadEmployerModel::saveHeadEmployer(HeadUniversity_ptr headEmployer)
+void AbstractHeadEmployerModel::deleteHeadEmployerLocal(int index)
+{
+    m_listHeadEmployer.removeByIndex(index);
+    layoutChanged();
+
+
+}
+
+void AbstractHeadEmployerModel::saveHeadEmployerGlobal(HeadEmployer_ptr headEmployer)
 {
     qx::dao::save_with_all_relation(headEmployer);
-    loadList();
+    loadListGlobal();
+    layoutChanged();
+
+}
+
+void AbstractHeadEmployerModel::saveHeadEmployerLocal(HeadEmployer_ptr headEmployer)
+{
+    m_listHeadEmployer.insert(m_listHeadEmployer.count(),headEmployer);
+    layoutChanged();
+
+}
+
+void AbstractHeadEmployerModel::changeHeadEmployerLocal(int index, long key, HeadEmployer_ptr& headEmployer)
+{
+    m_listHeadEmployer.replace(index,key,headEmployer);
     layoutChanged();
 
 }
@@ -69,7 +99,14 @@ HeadEmployer_ptr AbstractHeadEmployerModel::getHeadEmployer(int index)
 
 }
 
-void AbstractHeadEmployerModel::loadList()
+ListOfHeadEmployer &AbstractHeadEmployerModel::getListHeadEmployer()
+{
+
+    return m_listHeadEmployer;
+
+}
+
+void AbstractHeadEmployerModel::loadListGlobal()
 {
     beginInsertRows(QModelIndex(),0,0);
     qx::dao::fetch_all_with_all_relation(m_listHeadEmployer);

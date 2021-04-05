@@ -14,9 +14,9 @@ class InsertStudent : public QDialog
     Q_OBJECT
 
 public:
-    explicit InsertStudent(QWidget *parent = nullptr);
+    InsertStudent(ListOfGroup&,QWidget *parent = nullptr);
     ~InsertStudent();
-    void setGroups(ListOfGroup&);
+
 
 
     void insert(Student_ptr&);

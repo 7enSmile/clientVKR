@@ -1,6 +1,6 @@
 #include "model/abstractstudentsmodel.h"
 
-void AbstractStudentsModel::loadList()
+void AbstractStudentsModel::loadListGlobal()
 {
     beginInsertRows(QModelIndex(),0,0);
     qx::dao::fetch_all_with_all_relation(m_listStudent);
@@ -9,12 +9,46 @@ void AbstractStudentsModel::loadList()
 
 }
 
+void AbstractStudentsModel::saveStudentLocal(Student_ptr &student)
+{
+    m_listStudent.insert(m_listStudent.count(),student);
+    layoutChanged();
+
+
+}
+
+void AbstractStudentsModel::changeStudentLocal( int index,long key, Student_ptr &student)
+{
+    m_listStudent.replace(index,key,student);
+    layoutChanged();
+
+
+}
+
+void AbstractStudentsModel::deleteStudentLocal(int index)
+{
+    m_listStudent.removeByIndex(index);
+    layoutChanged();
+
+}
+
+ListOfStudent &AbstractStudentsModel::getListStudents()
+{
+    return m_listStudent;
+}
+
 
 
 AbstractStudentsModel::AbstractStudentsModel()
 {
 
-    loadList();
+    loadListGlobal();
+}
+
+AbstractStudentsModel::AbstractStudentsModel(ListOfStudent & list)
+{
+    m_listStudent=list;
+
 }
 
 int AbstractStudentsModel::rowCount(const QModelIndex &parent) const
@@ -53,20 +87,20 @@ QVariant AbstractStudentsModel::data(const QModelIndex &index, int role) const
 
 }
 
-void AbstractStudentsModel::deleteStudent(int index)
+void AbstractStudentsModel::deleteStudentGlobal(int index)
 {
     Person_ptr person;
     person.reset(new Person());
     person->setperson_id(m_listStudent.getByIndex(index)->getperson()->getperson_id());
     qx::dao::delete_by_id(person);
-    loadList();
+    loadListGlobal();
     layoutChanged();
 }
 
-void AbstractStudentsModel::saveStudent(Student_ptr &student)
+void AbstractStudentsModel::saveStudentGlobal(Student_ptr &student)
 {
     qx::dao::save_with_all_relation(student);
-    loadList();
+    loadListGlobal();
     layoutChanged();
 
 }

@@ -1,7 +1,7 @@
 #include "view/insertstudent.h"
 #include "ui_insertstudent.h"
 
-InsertStudent::InsertStudent(QWidget *parent) :
+InsertStudent::InsertStudent(ListOfGroup &list,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::InsertStudent)
 {
@@ -13,7 +13,8 @@ InsertStudent::InsertStudent(QWidget *parent) :
     this->setWindowTitle("Создать студена");
     ui->pushButtonAction->setText("Добавить");
     ui->pushButton->setText("Отмена");
-    ui->comboBoxGrops->setCurrentIndex(-1);
+    m_listGroups=list;
+    fillComboBox();
 
 
 }
@@ -23,11 +24,7 @@ InsertStudent::~InsertStudent()
     delete ui;
 }
 
-void InsertStudent::setGroups(ListOfGroup &list)
-{
-    m_listGroups=list;
-    fillComboBox();
-}
+
 
 
 
@@ -40,7 +37,7 @@ void InsertStudent::insert(Student_ptr &student)
 Student_ptr &InsertStudent::getStudent()
 {
     return m_student;
-    m_student.reset();
+
 }
 
 void InsertStudent::onActionClicked()

@@ -29,17 +29,17 @@ StaffUniversityWindow::~StaffUniversityWindow()
 void StaffUniversityWindow::onDeleteStaffClicked()
 {
     QModelIndexList index = ui->tableViewStaff->selectionModel()->selectedRows();
-    m_staffUniversityModel->deleteStaffUniversity(index[0].row());
+    m_staffUniversityModel->deleteStaffUniversityGlobal(index[0].row());
     QMessageBox::information(this,"Успех","Сотрудник удален!");
 
 }
 
 void StaffUniversityWindow::onInsertStaffClicked()
 {
-    InsertStaffUniversity *insert=new InsertStaffUniversity();
-    insert->setDepartmens(m_departmentModel->getList());
+    InsertStaffUniversity *insert=new InsertStaffUniversity(m_departmentModel->getList());
+
     if(insert->exec()==InsertStaffUniversity::Accepted){
-       m_staffUniversityModel->saveStaffUniversity(insert->getStaffUniversity());
+       m_staffUniversityModel->saveStaffUniversityGlobal(insert->getStaffUniversity());
        QMessageBox::information(this,"Успех","Сотрудник добавлен!");
     }
 
@@ -51,11 +51,10 @@ void StaffUniversityWindow::onTableStaffClicked()
     staff.reset(new HeadUniversity());
     QModelIndexList index = ui->tableViewStaff->selectionModel()->selectedRows();
     staff=m_staffUniversityModel->getStaffUniversity(index[0].row());
-    InsertStaffUniversity *insert=new InsertStaffUniversity();
-    insert->setDepartmens(m_departmentModel->getList());
+    InsertStaffUniversity *insert=new InsertStaffUniversity(m_departmentModel->getList());
     insert->insert(staff);
     if(insert->exec()==InsertStaffUniversity::Accepted){
-       m_staffUniversityModel->saveStaffUniversity(insert->getStaffUniversity());
+       m_staffUniversityModel->saveStaffUniversityGlobal(insert->getStaffUniversity());
        QMessageBox::information(this,"Успех","Изменения внесены!");
     }
 
@@ -66,7 +65,7 @@ void StaffUniversityWindow::onDeleteDepartmentClicked()
     QModelIndexList index = ui->tableViewDepatment->selectionModel()->selectedRows();
     m_departmentModel->deleteDepartment(index[0].row());
     QMessageBox::information(this,"Успех","Кфедра удалена!");
-    m_staffUniversityModel->loadList();
+    m_staffUniversityModel->loadListGlobal();
 
 }
 
@@ -78,7 +77,7 @@ void StaffUniversityWindow::onInsertDepartmentClicked()
       m_departmentModel->saveDepartment(insert->getDepartment());
        QMessageBox::information(this,"Успех","Кафедра добавлена!");
     }
-    m_staffUniversityModel->loadList();
+    m_staffUniversityModel->loadListGlobal();
 
 }
 
@@ -95,7 +94,7 @@ void StaffUniversityWindow::onTableDepartmentClicked()
       m_departmentModel->saveDepartment(insert->getDepartment());
        QMessageBox::information(this,"Успех","Изменения внесены!");
     }
-   m_staffUniversityModel->loadList();
+   m_staffUniversityModel->loadListGlobal();
 
 }
 

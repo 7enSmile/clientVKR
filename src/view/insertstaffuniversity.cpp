@@ -1,7 +1,7 @@
 #include "view/insertstaffuniversity.h"
 #include "ui_insertstaffuniversity.h"
 
-InsertStaffUniversity::InsertStaffUniversity(QWidget *parent) :
+InsertStaffUniversity::InsertStaffUniversity(ListOfDepartment &list,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::InsertStaffUniversity)
 {
@@ -13,7 +13,8 @@ InsertStaffUniversity::InsertStaffUniversity(QWidget *parent) :
     this->setWindowTitle("СоздатьРаботника университета");
     ui->pushButtonAction->setText("Добавить");
     ui->pushButton->setText("Отмена");
-    ui->comboBoxGrops->setCurrentIndex(-1);
+    m_listDepartmens=list;
+    fillComboBox();
 
 }
 
@@ -22,12 +23,7 @@ InsertStaffUniversity::~InsertStaffUniversity()
     delete ui;
 }
 
-void InsertStaffUniversity::setDepartmens(ListOfDepartment &list)
-{
-    m_listDepartmens=list;
-    fillComboBox();
 
-}
 
 void InsertStaffUniversity::insert(HeadUniversity_ptr &staff)
 {

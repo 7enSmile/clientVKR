@@ -9,9 +9,12 @@ private:
 
     ListOfHeadEmployer m_listHeadEmployer;
 
+
 public:
 
     AbstractHeadEmployerModel();
+
+    AbstractHeadEmployerModel(ListOfHeadEmployer&);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
@@ -19,13 +22,21 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
-    void deleteHeadEmployer(int);
+    void deleteHeadEmployerGlobal(int);
 
-    void saveHeadEmployer(HeadUniversity_ptr);
+    void deleteHeadEmployerLocal(int);
+
+    void saveHeadEmployerGlobal(HeadEmployer_ptr);
+
+    void saveHeadEmployerLocal(HeadEmployer_ptr);
+
+    void changeHeadEmployerLocal(int,long,HeadEmployer_ptr&);
 
     HeadEmployer_ptr getHeadEmployer(int);
 
-    void loadList();
+    ListOfHeadEmployer& getListHeadEmployer();
+
+    void loadListGlobal();
 };
 
 #endif // ABSTRACTHEADEMPLOYERMODEL_H

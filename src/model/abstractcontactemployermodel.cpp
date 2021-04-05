@@ -2,6 +2,13 @@
 
 AbstractContactEmployerModel:: AbstractContactEmployerModel()
 {
+    loadListGlobal();
+
+}
+
+AbstractContactEmployerModel::AbstractContactEmployerModel(ListOfContactEmployer &list)
+{
+    m_listContactEmployer=list;
 
 }
 
@@ -49,15 +56,38 @@ void AbstractContactEmployerModel::deleteContactEmployer(int index)
     person.reset(new Person());
     person->setperson_id(m_listContactEmployer.getByIndex(index)->getperson()->getperson_id());
     qx::dao::delete_by_id(person);
-    loadList();
+    loadListGlobal();
     layoutChanged();
 
 }
 
-void AbstractContactEmployerModel::saveContactEmployer(ContactEmployer_ptr contactEmployer)
+void AbstractContactEmployerModel::deleteContactEmployerLocal(int index)
+{
+    m_listContactEmployer.removeByIndex(index);
+    layoutChanged();
+
+}
+
+void AbstractContactEmployerModel::saveContactEmployerGlobal(ContactEmployer_ptr contactEmployer)
 {
     qx::dao::save_with_all_relation(contactEmployer);
-    loadList();
+    loadListGlobal();
+    layoutChanged();
+
+}
+
+void AbstractContactEmployerModel::saveContactEmployerLocal(ContactEmployer_ptr contact)
+{
+    m_listContactEmployer.insert( m_listContactEmployer.count(), contact);
+    layoutChanged();
+
+
+}
+
+void AbstractContactEmployerModel::changeContactEmployerLocal(int index, long key, ContactEmployer_ptr contact)
+{
+
+    m_listContactEmployer.replace(index,key,contact);
     layoutChanged();
 
 }
@@ -71,7 +101,14 @@ ContactEmployer_ptr AbstractContactEmployerModel::getContactEmployer(int index)
 
 }
 
-void AbstractContactEmployerModel::loadList()
+ListOfContactEmployer &AbstractContactEmployerModel::getListContactEmployer()
+{
+    return m_listContactEmployer;
+
+
+}
+
+void AbstractContactEmployerModel::loadListGlobal()
 {
     beginInsertRows(QModelIndex(),0,0);
     qx::dao::fetch_all_with_all_relation(m_listContactEmployer);

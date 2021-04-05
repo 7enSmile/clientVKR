@@ -2,7 +2,13 @@
 
 AbstractStaffUniversityModel::AbstractStaffUniversityModel()
 {
-    loadList();
+    loadListGlobal();
+}
+
+AbstractStaffUniversityModel::AbstractStaffUniversityModel(ListOfHeadUniversity &list)
+{
+    m_listStaffUniversity=list;
+
 }
 
 int AbstractStaffUniversityModel::rowCount(const QModelIndex &parent) const
@@ -41,23 +47,44 @@ QVariant AbstractStaffUniversityModel::data(const QModelIndex &index, int role) 
 
 }
 
-void AbstractStaffUniversityModel::deleteStaffUniversity(int index)
+void AbstractStaffUniversityModel::deleteStaffUniversityGlobal(int index)
 {
     Person_ptr person;
     person.reset(new Person());
     person->setperson_id(m_listStaffUniversity.getByIndex(index)->getperson()->getperson_id());
     qx::dao::delete_by_id(person);
-    loadList();
+    loadListGlobal();
     layoutChanged();
 
 }
 
-void AbstractStaffUniversityModel::saveStaffUniversity(HeadUniversity_ptr staffUniversity)
+void AbstractStaffUniversityModel::deleteStaffUniversityLocal(int index)
 {
-    qx::dao::save_with_all_relation(staffUniversity);
-    loadList();
+    m_listStaffUniversity.removeByIndex(index);
+    layoutChanged();
+}
+
+void AbstractStaffUniversityModel::changeStaffUniversityLocal(int index,long key,HeadUniversity_ptr staff)
+{
+    m_listStaffUniversity.replace(index,key,staff);
     layoutChanged();
 
+
+}
+
+void AbstractStaffUniversityModel::saveStaffUniversityGlobal(HeadUniversity_ptr staffUniversity)
+{
+    qx::dao::save_with_all_relation(staffUniversity);
+    loadListGlobal();
+    layoutChanged();
+
+
+}
+
+void AbstractStaffUniversityModel::saveStaffUniversityLocal(HeadUniversity_ptr staff)
+{
+    m_listStaffUniversity.insert(m_listStaffUniversity.count(),staff);
+    layoutChanged();
 
 }
 
@@ -69,7 +96,13 @@ HeadUniversity_ptr AbstractStaffUniversityModel::getStaffUniversity(int index)
     return staffUniversity;
 }
 
-void AbstractStaffUniversityModel::loadList()
+ListOfHeadUniversity &AbstractStaffUniversityModel::getListStaff()
+{
+    return m_listStaffUniversity;
+
+}
+
+void AbstractStaffUniversityModel::loadListGlobal()
 {
     beginInsertRows(QModelIndex(),0,0);
     qx::dao::fetch_all_with_all_relation(m_listStaffUniversity);

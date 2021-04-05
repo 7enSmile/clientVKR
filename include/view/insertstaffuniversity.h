@@ -13,9 +13,9 @@ class InsertStaffUniversity : public QDialog
     Q_OBJECT
 
 public:
-    explicit InsertStaffUniversity(QWidget *parent = nullptr);
+    InsertStaffUniversity(ListOfDepartment&,QWidget *parent = 0);
     ~InsertStaffUniversity();
-    void setDepartmens(ListOfDepartment&);
+
 
 
     void insert(HeadUniversity_ptr&);

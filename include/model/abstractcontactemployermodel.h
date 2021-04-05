@@ -12,6 +12,9 @@ private:
 public:
     AbstractContactEmployerModel();
 
+    AbstractContactEmployerModel(ListOfContactEmployer&);
+
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
@@ -20,11 +23,19 @@ public:
 
     void deleteContactEmployer(int);
 
-    void saveContactEmployer(ContactEmployer_ptr);
+    void deleteContactEmployerLocal(int);
+
+    void saveContactEmployerGlobal(ContactEmployer_ptr);
+
+    void saveContactEmployerLocal(ContactEmployer_ptr);
+
+    void changeContactEmployerLocal(int,long,ContactEmployer_ptr);
 
     ContactEmployer_ptr getContactEmployer(int);
 
-    void loadList();
+    ListOfContactEmployer& getListContactEmployer();
+
+    void loadListGlobal();
 };
 
 #endif // ABSTRACTCONTACTEMPLOYERMODEL_H
