@@ -46,6 +46,7 @@ SOURCES += $$PWD/src/model/abstractdepartmentsmodel.cpp
 SOURCES += $$PWD/src/view/insertdepartment.cpp
 SOURCES += $$PWD/src/view/insertstaffemployer.cpp
 SOURCES += $$PWD/src/view/staffemployerwindow.cpp
+SOURCES += $$PWD/src/view/employerswindow.cpp
 HEADERS += $$PWD/include/view/studentswindow.h
 HEADERS += $$PWD/include/model/abstractstudentsmodel.h
 HEADERS += $$PWD/include/view/insertstudent.h
@@ -63,6 +64,7 @@ HEADERS += $$PWD/include/model/abstractdepartmentsmodel.h
 HEADERS += $$PWD/include/view/insertstaffuniversity.h
 HEADERS += $$PWD/include/view/insertdepartment.h
 HEADERS += $$PWD/include/view/staffemployerwindow.h
+HEADERS += $$PWD/include/view/employerswindow.h
 FORMS +=$$PWD/ui/studentswindow.ui
 FORMS +=$$PWD/ui/insertstudent.ui
 FORMS +=$$PWD/ui/insertgroup.ui
@@ -72,6 +74,7 @@ FORMS +=$$PWD/ui/insertstaffuniversity.ui
 FORMS +=$$PWD/ui/insertdepartment.ui
 FORMS +=$$PWD/ui/staffemployerwindow.ui
 FORMS +=$$PWD/ui/insertstaffemployer.ui
+FORMS +=$$PWD/ui/employerswindow.ui
 
 
 # Default rules for deployment.
