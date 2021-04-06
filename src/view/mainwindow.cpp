@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_modelEmployer=new AbstractEmployerModel();
     ui->tableViewEmployers->setModel(m_modelEmployer);
     connect(ui->tableViewEmployers,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onEmployersTableClicked()));
+    connect(ui->pushButtonInsertEmployer,SIGNAL(clicked()),this,SLOT(onInsertEmployerClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -107,5 +108,16 @@ void MainWindow::onEmployersTableClicked()
     m_modelEmployer->loadList();
 
 
+
+}
+
+void MainWindow::onInsertEmployerClicked()
+{
+    EmployersWindow *w =new EmployersWindow();
+    if(w->exec()==QDialog::Accepted){
+        m_modelEmployer->saveEmployer(w->getEmployer());
+
+    }
+    m_modelEmployer->loadList();
 
 }

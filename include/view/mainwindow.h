@@ -33,6 +33,7 @@ private slots:
     void onStaffUniversityClicked();
     void onExitClicked();
     void onEmployersTableClicked();
+    void onInsertEmployerClicked();
 
 
 };

@@ -5,7 +5,23 @@ EmployersWindow::EmployersWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EmployersWindow)
 {
+
     ui->setupUi(this);
+    this->setWindowTitle("Работодатель");
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    connect(ui->pushButtonInsertHeadEmployer,SIGNAL(clicked()),this,SLOT(onInsertHeadEmployerClicked()));
+    connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
+    connect(ui->pushButtonDeleteHeadEmployer,SIGNAL(clicked()),this,SLOT(onDeleteHeadEmployerClicked()));
+    connect(ui->tableViewHeadEmployer,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableHeadEmployerClicked()));
+    connect(ui->pushButtonInsertContactEmployer,SIGNAL(clicked()),this,SLOT(onInsertContactEmployerClicked()));
+    connect(ui->pushButtonDeleteContacrEmployer,SIGNAL(clicked()),this,SLOT(onDeleteContactClicked()));
+    connect(ui->tableViewContactEmployer,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableContactClicked()));
+    m_employer.reset(new Employer());
+    m_modelHeadEmployerModel=new AbstractHeadEmployerModel(m_employer->getlist_of_head_employer());
+    m_modelContactemployer=new AbstractContactEmployerModel(m_employer->getlist_of_contact_employer());
+    ui->tableViewHeadEmployer->setModel(m_modelHeadEmployerModel);
+    ui->tableViewContactEmployer->setModel(m_modelContactemployer);
+    ui->lineEditName->setText(m_employer->getname());
 }
 
 EmployersWindow::EmployersWindow(Employer_ptr employer,QWidget *parent) :
