@@ -104,7 +104,7 @@ void StudentsWindow::onTableGroupClicked()
 
 void StudentsWindow::onOkClicked()
 {
-    QDialog::close();
+    QDialog::accept();
 
 }
 

@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle("Главное меню");
     addSubMenu();
+    m_modelEmployer=new AbstractEmployerModel();
+    ui->tableViewEmployers->setModel(m_modelEmployer);
+    connect(ui->tableViewEmployers,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onEmployersTableClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -73,7 +76,9 @@ void MainWindow::onStudentsClicked()
 void MainWindow::onStaffEmployerClicked()
 {
     StaffEmployerWindow *w=new StaffEmployerWindow();
-    w->exec();
+    if(w->exec()==QDialog::Accepted){
+        m_modelEmployer->loadList();
+    }
 
 }
 
@@ -86,5 +91,16 @@ void MainWindow::onStaffUniversityClicked()
 
 void MainWindow::onExitClicked()
 {
+
+}
+
+void MainWindow::onEmployersTableClicked()
+{
+
+    QModelIndexList index = ui->tableViewEmployers->selectionModel()->selectedRows();
+    EmployersWindow *w =new EmployersWindow(m_modelEmployer->getEmployer(index[0].row()));
+    w->exec();
+
+
 
 }

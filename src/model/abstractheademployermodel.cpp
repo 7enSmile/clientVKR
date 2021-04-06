@@ -6,7 +6,7 @@ AbstractHeadEmployerModel::AbstractHeadEmployerModel()
 
 }
 
-AbstractHeadEmployerModel::AbstractHeadEmployerModel(ListOfHeadEmployer &list)
+AbstractHeadEmployerModel::AbstractHeadEmployerModel(ListOfHeadEmployer list)
 {
     m_listHeadEmployer=list;
 

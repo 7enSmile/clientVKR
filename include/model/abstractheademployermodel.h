@@ -15,7 +15,7 @@ public:
 
     AbstractHeadEmployerModel();
 
-    AbstractHeadEmployerModel(ListOfHeadEmployer&);
+    AbstractHeadEmployerModel(ListOfHeadEmployer);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 

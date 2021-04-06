@@ -106,6 +106,6 @@ void StaffEmployerWindow::onTableContactEmployerClicked()
 
 void StaffEmployerWindow::onOkClicked()
 {
-    QDialog::close();
+    QDialog::accept();
 
 }

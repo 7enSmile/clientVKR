@@ -7,6 +7,8 @@
 #include "view/studentswindow.h"
 #include "view/staffuniversitywindow.h"
 #include "view/staffemployerwindow.h"
+#include "model/abstractemployermodel.h"
+#include "view/employerswindow.h"
 namespace Ui {
 class MainWindow;
 }
@@ -22,6 +24,7 @@ public:
 private:
     Ui::MainWindow *ui;
     void addSubMenu();
+    AbstractEmployerModel *m_modelEmployer;
 private slots:
     void onEventsClicked();
     void onEducationProgramsClicked();
@@ -29,6 +32,8 @@ private slots:
     void onStaffEmployerClicked();
     void onStaffUniversityClicked();
     void onExitClicked();
+    void onEmployersTableClicked();
+
 
 };
 

@@ -101,5 +101,6 @@ void StaffUniversityWindow::onTableDepartmentClicked()
 void StaffUniversityWindow::onOkClicked()
 {
 
-    QDialog::close();
+    QDialog::accept();
+
 }

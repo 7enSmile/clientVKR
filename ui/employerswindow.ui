@@ -26,7 +26,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QTableView" name="tableViewHeadEmployer"/>
+        <widget class="QTableView" name="tableViewHeadEmployer">
+         <attribute name="horizontalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>1000</number>
+         </attribute>
+        </widget>
        </item>
       </layout>
      </item>
@@ -158,7 +165,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QTableView" name="tableViewContactEmployer"/>
+        <widget class="QTableView" name="tableViewContactEmployer">
+         <attribute name="horizontalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>1000</number>
+         </attribute>
+        </widget>
        </item>
       </layout>
      </item>
@@ -284,7 +298,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QTableView" name="tableViewEducationResult"/>
+        <widget class="QTableView" name="tableViewEducationResult">
+         <attribute name="horizontalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>1000</number>
+         </attribute>
+        </widget>
        </item>
       </layout>
      </item>

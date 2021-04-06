@@ -6,7 +6,7 @@ AbstractContactEmployerModel:: AbstractContactEmployerModel()
 
 }
 
-AbstractContactEmployerModel::AbstractContactEmployerModel(ListOfContactEmployer &list)
+AbstractContactEmployerModel::AbstractContactEmployerModel(ListOfContactEmployer list)
 {
     m_listContactEmployer=list;
 

@@ -12,7 +12,7 @@ private:
 public:
     AbstractContactEmployerModel();
 
-    AbstractContactEmployerModel(ListOfContactEmployer&);
+    AbstractContactEmployerModel(ListOfContactEmployer);
 
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
