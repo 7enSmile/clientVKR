@@ -7,21 +7,15 @@ EmployersWindow::EmployersWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    this->setWindowTitle("Работодатель");
-    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    connect(ui->pushButtonInsertHeadEmployer,SIGNAL(clicked()),this,SLOT(onInsertHeadEmployerClicked()));
-    connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
-    connect(ui->pushButtonDeleteHeadEmployer,SIGNAL(clicked()),this,SLOT(onDeleteHeadEmployerClicked()));
-    connect(ui->tableViewHeadEmployer,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableHeadEmployerClicked()));
-    connect(ui->pushButtonInsertContactEmployer,SIGNAL(clicked()),this,SLOT(onInsertContactEmployerClicked()));
-    connect(ui->pushButtonDeleteContacrEmployer,SIGNAL(clicked()),this,SLOT(onDeleteContactClicked()));
-    connect(ui->tableViewContactEmployer,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableContactClicked()));
+    initConnection();
     m_employer.reset(new Employer());
     m_modelHeadEmployerModel=new AbstractHeadEmployerModel(m_employer->getlist_of_head_employer());
     m_modelContactemployer=new AbstractContactEmployerModel(m_employer->getlist_of_contact_employer());
     ui->tableViewHeadEmployer->setModel(m_modelHeadEmployerModel);
     ui->tableViewContactEmployer->setModel(m_modelContactemployer);
     ui->lineEditName->setText(m_employer->getname());
+    ui->pushButtonAction->setText("Добавить");
+    ui->pushButtonOk->setText("Отмена");
 }
 
 EmployersWindow::EmployersWindow(Employer_ptr employer,QWidget *parent) :
@@ -30,15 +24,8 @@ EmployersWindow::EmployersWindow(Employer_ptr employer,QWidget *parent) :
 {
 
     ui->setupUi(this);
-    this->setWindowTitle("Работодатель");
-    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    connect(ui->pushButtonInsertHeadEmployer,SIGNAL(clicked()),this,SLOT(onInsertHeadEmployerClicked()));
-    connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
-    connect(ui->pushButtonDeleteHeadEmployer,SIGNAL(clicked()),this,SLOT(onDeleteHeadEmployerClicked()));
-    connect(ui->tableViewHeadEmployer,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableHeadEmployerClicked()));
-    connect(ui->pushButtonInsertContactEmployer,SIGNAL(clicked()),this,SLOT(onInsertContactEmployerClicked()));
-    connect(ui->pushButtonDeleteContacrEmployer,SIGNAL(clicked()),this,SLOT(onDeleteContactClicked()));
-    connect(ui->tableViewContactEmployer,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableContactClicked()));
+    initConnection();
+
     m_employer.reset(new Employer());
     m_employer=employer;
     m_modelHeadEmployerModel=new AbstractHeadEmployerModel(employer->getlist_of_head_employer());
@@ -59,6 +46,23 @@ Employer_ptr EmployersWindow::getEmployer()
 {
     m_employer->setname(ui->lineEditName->text());
     return m_employer;
+
+}
+
+void EmployersWindow::initConnection()
+{
+    this->setWindowTitle("Работодатель");
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    connect(ui->pushButtonInsertHeadEmployer,SIGNAL(clicked()),this,SLOT(onInsertHeadEmployerClicked()));
+    connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
+    connect(ui->pushButtonDeleteHeadEmployer,SIGNAL(clicked()),this,SLOT(onDeleteHeadEmployerClicked()));
+    connect(ui->tableViewHeadEmployer,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableHeadEmployerClicked()));
+    connect(ui->pushButtonInsertContactEmployer,SIGNAL(clicked()),this,SLOT(onInsertContactEmployerClicked()));
+    connect(ui->pushButtonDeleteContacrEmployer,SIGNAL(clicked()),this,SLOT(onDeleteContactClicked()));
+    connect(ui->tableViewContactEmployer,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableContactClicked()));
+    connect(ui->pushButtonAdditional,SIGNAL(clicked()),this,SLOT(onAdditionalClicked()));
+    connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicket()));
+
 
 }
 
@@ -112,10 +116,32 @@ void EmployersWindow::onDeleteContactClicked()
 {
     QModelIndexList index = ui->tableViewContactEmployer->selectionModel()->selectedRows();
     if(index.count()>0){
-    m_modelContactemployer->deleteContactEmployerLocal(index[0].row());
+        m_modelContactemployer->deleteContactEmployerLocal(index[0].row());
     }
     m_employer->setlist_of_contact_employer(m_modelContactemployer->getListContactEmployer());
 
+
+}
+
+void EmployersWindow::onAdditionalClicked()
+{
+    AdditionalWindow *w=new AdditionalWindow(m_employer);
+    if(w->exec()==QDialog::Accepted){
+
+        m_employer->setlist_of_activity(w->getListActivity());
+        m_employer->setlist_of_collaboration(w->getListCollaboration());
+        m_employer->setlist_of_task(w->getListTasks());
+
+    }
+     m_employer->setlist_of_activity(w->getListActivity());
+     m_employer->setlist_of_collaboration(w->getListCollaboration());
+     m_employer->setlist_of_task(w->getListTasks());
+
+}
+
+void EmployersWindow::onOkClicket()
+{
+    QDialog::close();
 
 }
 
@@ -142,7 +168,7 @@ void EmployersWindow::onDeleteHeadEmployerClicked()
     if(index.count()>0){
         m_modelHeadEmployerModel->deleteHeadEmployerLocal(index[0].row());
     }
-     m_employer->setlist_of_head_employer(m_modelHeadEmployerModel->getListHeadEmployer());
+    m_employer->setlist_of_head_employer(m_modelHeadEmployerModel->getListHeadEmployer());
 
 }
 

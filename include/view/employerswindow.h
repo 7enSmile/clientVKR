@@ -6,6 +6,7 @@
 #include "model/abstractcontactemployermodel.h"
 #include "model/abstractheademployermodel.h"
 #include "view/insertstaffemployer.h"
+#include "view/additionalwindow.h"
 namespace Ui {
 class EmployersWindow;
 }
@@ -25,6 +26,7 @@ private:
     Employer_ptr m_employer;
     AbstractContactEmployerModel *m_modelContactemployer;
     AbstractHeadEmployerModel *m_modelHeadEmployerModel;
+    void initConnection();
 private slots:
     void onInsertHeadEmployerClicked();
     void onTableHeadEmployerClicked();
@@ -33,6 +35,10 @@ private slots:
     void onInsertContactEmployerClicked();
     void onTableContactClicked();
     void onDeleteContactClicked();
+    void onAdditionalClicked();
+    void onOkClicket();
+
+
 
 
 
