@@ -62,6 +62,14 @@ void AbstractHeadEmployerModel::deleteHeadEmployerGlobal(int index)
 
 void AbstractHeadEmployerModel::deleteHeadEmployerLocal(int index)
 {
+
+    if(m_listHeadEmployer.getByIndex(index)->getHeadEmployer()!=0){
+        Person_ptr person;
+        person.reset(new Person());
+        person->setperson_id(m_listHeadEmployer.getByIndex(index)->getperson()->getperson_id());
+        qDebug()<<person->getperson_id();
+        qx::dao::delete_by_id(person);
+    }
     m_listHeadEmployer.removeByIndex(index);
     layoutChanged();
 
@@ -83,9 +91,10 @@ void AbstractHeadEmployerModel::saveHeadEmployerLocal(HeadEmployer_ptr headEmplo
 
 }
 
-void AbstractHeadEmployerModel::changeHeadEmployerLocal(int index, long key, HeadEmployer_ptr& headEmployer)
+void AbstractHeadEmployerModel::changeHeadEmployerLocal(int index, long key, HeadEmployer_ptr headEmployer)
 {
-    m_listHeadEmployer.replace(index,key,headEmployer);
+
+    m_listHeadEmployer.replace(index,0,headEmployer);
     layoutChanged();
 
 }

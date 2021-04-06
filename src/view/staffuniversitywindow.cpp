@@ -29,8 +29,10 @@ StaffUniversityWindow::~StaffUniversityWindow()
 void StaffUniversityWindow::onDeleteStaffClicked()
 {
     QModelIndexList index = ui->tableViewStaff->selectionModel()->selectedRows();
+    if(index.count()>0){
     m_staffUniversityModel->deleteStaffUniversityGlobal(index[0].row());
     QMessageBox::information(this,"Успех","Сотрудник удален!");
+    }
 
 }
 
@@ -63,9 +65,11 @@ void StaffUniversityWindow::onTableStaffClicked()
 void StaffUniversityWindow::onDeleteDepartmentClicked()
 {
     QModelIndexList index = ui->tableViewDepatment->selectionModel()->selectedRows();
+    if(index.count()>0){
     m_departmentModel->deleteDepartment(index[0].row());
     QMessageBox::information(this,"Успех","Кфедра удалена!");
     m_staffUniversityModel->loadListGlobal();
+    }
 
 }
 

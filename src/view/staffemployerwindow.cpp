@@ -29,8 +29,10 @@ StaffEmployerWindow::~StaffEmployerWindow()
 void StaffEmployerWindow::onDeleteHeadEmployerClicked()
 {
     QModelIndexList index = ui->tableViewHeadEmployer->selectionModel()->selectedRows();
+    if(index.count()>0){
     m_modelHeadEmployer->deleteHeadEmployerGlobal(index[0].row());
     QMessageBox::information(this,"Успех","Сотрудник удален!");
+    }
 
 }
 
@@ -67,8 +69,10 @@ void StaffEmployerWindow::onTableHeadEmployerClicked()
 void StaffEmployerWindow::onDeleteContactEmployerClicked()
 {
     QModelIndexList index = ui->tableViewContactEmployer->selectionModel()->selectedRows();
+    if(index.count()>0){
     m_modelContactEmployer->deleteContactEmployerGlobal(index[0].row());
     QMessageBox::information(this,"Успех","Сотрудник удален!");
+    }
 
 }
 

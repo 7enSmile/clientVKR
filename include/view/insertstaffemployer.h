@@ -17,6 +17,7 @@ class InsertStaffEmployer : public QDialog
 public:
     InsertStaffEmployer(TypeInsert,ListOfEmployer,QWidget *parent = nullptr);
     ~InsertStaffEmployer();
+    InsertStaffEmployer(TypeInsert,Employer_ptr,QWidget *parent = nullptr);
      void insertHeadEmployer(HeadEmployer_ptr&);
      void insertContactEmplyer(ContactEmployer_ptr&);
      HeadEmployer_ptr& getHeadEmployer();

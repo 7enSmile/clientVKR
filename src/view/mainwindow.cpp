@@ -69,6 +69,7 @@ void MainWindow::onStudentsClicked()
 {
     StudentsWindow *w=new StudentsWindow();
     w->exec();
+    m_modelEmployer->loadList();
 
 
 }
@@ -76,9 +77,8 @@ void MainWindow::onStudentsClicked()
 void MainWindow::onStaffEmployerClicked()
 {
     StaffEmployerWindow *w=new StaffEmployerWindow();
-    if(w->exec()==QDialog::Accepted){
-        m_modelEmployer->loadList();
-    }
+    w->exec();
+    m_modelEmployer->loadList();
 
 }
 
@@ -86,6 +86,7 @@ void MainWindow::onStaffUniversityClicked()
 {
     StaffUniversityWindow *w=new StaffUniversityWindow();
     w->exec();
+    m_modelEmployer->loadList();
 
 }
 
@@ -99,7 +100,11 @@ void MainWindow::onEmployersTableClicked()
 
     QModelIndexList index = ui->tableViewEmployers->selectionModel()->selectedRows();
     EmployersWindow *w =new EmployersWindow(m_modelEmployer->getEmployer(index[0].row()));
-    w->exec();
+    if(w->exec()==QDialog::Accepted){
+        m_modelEmployer->saveEmployer(w->getEmployer());
+
+    }
+    m_modelEmployer->loadList();
 
 
 

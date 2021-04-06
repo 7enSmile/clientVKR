@@ -30,6 +30,7 @@ QVariant AbstractEmployerModel::data(const QModelIndex &index, int role) const
 
         }
 
+
         return QVariant();
 
 }
@@ -41,8 +42,17 @@ void AbstractEmployerModel::deleteEmployer(int)
 
 void AbstractEmployerModel::saveEmployer(Employer_ptr employer)
 {
+    ListOfHeadEmployer listHeadEmployer=employer->getlist_of_head_employer();
+    ListOfContactEmployer listContactEmployer=employer->getlist_of_contact_employer();
+    for(int i=0;i<listHeadEmployer.count();i++){
+        qx::dao::save_with_all_relation(listHeadEmployer.getByIndex(i));
 
+    }
+    for(int i=0;i<listContactEmployer.count();i++){
+        qx::dao::save_with_all_relation(listContactEmployer.getByIndex(i));
 
+    }
+    qx::dao::save_with_all_relation(employer);
 }
 
 Employer_ptr AbstractEmployerModel::getEmployer(int index)

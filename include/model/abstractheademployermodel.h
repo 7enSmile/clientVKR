@@ -31,7 +31,7 @@ public:
 
     void saveHeadEmployerLocal(HeadEmployer_ptr);
 
-    void changeHeadEmployerLocal(int,long,HeadEmployer_ptr&);
+    void changeHeadEmployerLocal(int,long,HeadEmployer_ptr);
 
     HeadEmployer_ptr getHeadEmployer(int);
 

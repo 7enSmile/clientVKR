@@ -63,6 +63,12 @@ void AbstractContactEmployerModel::deleteContactEmployerGlobal(int index)
 
 void AbstractContactEmployerModel::deleteContactEmployerLocal(int index)
 {
+    if(m_listContactEmployer.getByIndex(index)->getcontact_employer_id()!=0){
+        Person_ptr person;
+        person.reset(new Person());
+        person->setperson_id(m_listContactEmployer.getByIndex(index)->getperson()->getperson_id());
+        qx::dao::delete_by_id(person);
+    }
     m_listContactEmployer.removeByIndex(index);
     layoutChanged();
 
@@ -87,7 +93,7 @@ void AbstractContactEmployerModel::saveContactEmployerLocal(ContactEmployer_ptr 
 void AbstractContactEmployerModel::changeContactEmployerLocal(int index, long key, ContactEmployer_ptr contact)
 {
 
-    m_listContactEmployer.replace(index,key,contact);
+    m_listContactEmployer.replace(index,0,contact);
     layoutChanged();
 
 }

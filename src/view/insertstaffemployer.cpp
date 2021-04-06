@@ -27,6 +27,31 @@ InsertStaffEmployer::~InsertStaffEmployer()
     delete ui;
 }
 
+InsertStaffEmployer::InsertStaffEmployer(TypeInsert typeInsert, Employer_ptr employer, QWidget *parent):
+    QDialog(parent),
+    ui(new Ui::InsertStaffEmployer)
+{
+    ui->setupUi(this);
+    connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
+    connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(onOkClicked()));
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    this->setWindowTitle("Создать работника предприятия");
+    ui->pushButtonAction->setText("Добавить");
+    ui->pushButton->setText("Отмена");
+    m_headEmployer.reset(new HeadEmployer());
+    m_contactEmployer.reset(new ContactEmployer());
+    ui->comboBoxRole->setHidden(true);
+    ui->label_2->setHidden(true);
+    m_typeInsert=typeInsert;
+    m_listEmployers.insert(employer->getemployer_id(),employer);
+    ui->comboBox->addItem(employer->getname());
+    ui->comboBox->setCurrentIndex(0);
+    ui->comboBox->setHidden(true);
+    ui->label_4->setHidden(true);
+
+
+}
+
 void InsertStaffEmployer::insertHeadEmployer(HeadEmployer_ptr & headEmployer)
 {
 
@@ -66,6 +91,8 @@ void InsertStaffEmployer::onActionClicked()
         person->setphone_number(ui->lineEditPhone->text());
         person->setemail(ui->lineEditEmail->text());
         m_headEmployer->setperson(person);
+
+
 
         if(ui->comboBox->currentIndex()!=-1){
 
