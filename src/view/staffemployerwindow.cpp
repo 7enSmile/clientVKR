@@ -38,7 +38,7 @@ void StaffEmployerWindow::onInsertHeadEmployerClicked()
 {
     TypeInsert type;
     type=insertheademployer;
-    InsertStaffEmployer *insert=new InsertStaffEmployer(type);
+    InsertStaffEmployer *insert=new InsertStaffEmployer(type,m_modelHeadEmployer->m_listEmployers);
 
     if(insert->exec()==InsertStaffEmployer::Accepted){
        m_modelHeadEmployer->saveHeadEmployerGlobal(insert->getHeadEmployer());
@@ -55,7 +55,7 @@ void StaffEmployerWindow::onTableHeadEmployerClicked()
     headEmployer.reset(new HeadEmployer());
     QModelIndexList index = ui->tableViewHeadEmployer->selectionModel()->selectedRows();
     headEmployer=m_modelHeadEmployer->getHeadEmployer(index[0].row());
-    InsertStaffEmployer *insert=new InsertStaffEmployer(type);
+    InsertStaffEmployer *insert=new InsertStaffEmployer(type,m_modelHeadEmployer->m_listEmployers);
     insert->insertHeadEmployer(headEmployer);
     if(insert->exec()==InsertStaffEmployer::Accepted){
        m_modelHeadEmployer->saveHeadEmployerGlobal(insert->getHeadEmployer());
@@ -76,7 +76,7 @@ void StaffEmployerWindow::onInsertContactEmployerClicked()
 {
     TypeInsert type;
     type=insertcontactemployer;
-    InsertStaffEmployer *insert=new InsertStaffEmployer(type);
+    InsertStaffEmployer *insert=new InsertStaffEmployer(type,m_modelContactEmployer->m_listEmployers);
 
     if(insert->exec()==InsertStaffEmployer::Accepted){
        m_modelContactEmployer->saveContactEmployerGlobal(insert->getContactEmployer());
@@ -95,7 +95,7 @@ void StaffEmployerWindow::onTableContactEmployerClicked()
     contactEmployer.reset(new ContactEmployer());
     QModelIndexList index = ui->tableViewContactEmployer->selectionModel()->selectedRows();
     contactEmployer=m_modelContactEmployer->getContactEmployer(index[0].row());
-    InsertStaffEmployer *insert=new InsertStaffEmployer(type);
+    InsertStaffEmployer *insert=new InsertStaffEmployer(type,m_modelContactEmployer->m_listEmployers);
     insert->insertContactEmplyer(contactEmployer);
     if(insert->exec()==InsertStaffEmployer::Accepted){
        m_modelContactEmployer->saveContactEmployerGlobal(insert->getContactEmployer());

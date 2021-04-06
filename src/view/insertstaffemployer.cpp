@@ -1,7 +1,7 @@
 #include "view/insertstaffemployer.h"
 #include "ui_insertstaffemployer.h"
 
-InsertStaffEmployer::InsertStaffEmployer(TypeInsert typeInsert ,QWidget *parent) :
+InsertStaffEmployer::InsertStaffEmployer(TypeInsert typeInsert,ListOfEmployer listEmployers,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::InsertStaffEmployer)
 {
@@ -17,6 +17,8 @@ InsertStaffEmployer::InsertStaffEmployer(TypeInsert typeInsert ,QWidget *parent)
     ui->comboBoxRole->setHidden(true);
     ui->label_2->setHidden(true);
     m_typeInsert=typeInsert;
+    m_listEmployers=listEmployers;
+    fillComboBox();
 
 }
 
@@ -54,7 +56,6 @@ void InsertStaffEmployer::onActionClicked()
 {
     Person_ptr person;
     person.reset(new Person());
-    qDebug()<<ui->comboBoxRole->currentIndex();
     if(m_typeInsert==insertheademployer){
         if(m_headEmployer->getperson()!=nullptr){
             person=m_headEmployer->getperson();
@@ -66,7 +67,11 @@ void InsertStaffEmployer::onActionClicked()
         person->setemail(ui->lineEditEmail->text());
         m_headEmployer->setperson(person);
 
-        //m_headEmployer->setemployer(m_listDepartmens.getByIndex(ui->comboBoxGrops->currentIndex()));
+        if(ui->comboBox->currentIndex()!=-1){
+
+        m_headEmployer->setemployer(m_listEmployers.getByIndex(ui->comboBox->currentIndex()));
+
+        }
 
         if(!person->getfirstname().isEmpty()&&!person->getlastname().isEmpty()&&!person->getpatronymic().isEmpty()&&!person->getphone_number().isEmpty()&&!person->getemail().isEmpty()){
 
@@ -89,8 +94,11 @@ void InsertStaffEmployer::onActionClicked()
         person->setphone_number(ui->lineEditPhone->text());
         person->setemail(ui->lineEditEmail->text());
         m_contactEmployer->setperson(person);
+        if(ui->comboBox->currentIndex()!=-1){
 
-        //m_headEmployer->setemployer(m_listDepartmens.getByIndex(ui->comboBoxGrops->currentIndex()));
+        m_contactEmployer->setemployer(m_listEmployers.getByIndex(ui->comboBox->currentIndex()));
+
+        }
 
         if(!person->getfirstname().isEmpty()&&!person->getlastname().isEmpty()&&!person->getpatronymic().isEmpty()&&!person->getphone_number().isEmpty()&&!person->getemail().isEmpty()){
 
@@ -114,6 +122,9 @@ void InsertStaffEmployer::onOkClicked()
 
 void InsertStaffEmployer::fillComboBox()
 {
+    for(int i=0;i<m_listEmployers.count();i++){
+        ui->comboBox->addItem(m_listEmployers.getByIndex(i)->getname());
+    }
 
 }
 
@@ -131,14 +142,13 @@ void InsertStaffEmployer::initInsertHeadEmployer()
     ui->label_2->setHidden(false);
     ui->comboBoxRole->setCurrentIndex(0);
     ui->comboBoxRole->setEnabled(false);
-    /*
-    if(m_headEmployer->getdepartment()!=nullptr){
-        ui->comboBoxGrops->setCurrentText((m_headEmployer->getdepartment()->getname()));
+    if(m_headEmployer->getemployer()!=nullptr){
+        ui->comboBox->setCurrentText(m_headEmployer->getemployer()->getname());
 
     }else{
-        ui->comboBoxGrops->setCurrentIndex(-1);
+        ui->comboBox->setCurrentIndex(-1);
     }
-    */
+
 
 
 }
@@ -157,13 +167,11 @@ void InsertStaffEmployer::initInsertContactEmployer()
     ui->label_2->setHidden(false);
     ui->comboBoxRole->setCurrentIndex(1);
     ui->comboBoxRole->setEnabled(false);
-    /*
-    if(m_headEmployer->getdepartment()!=nullptr){
-        ui->comboBoxGrops->setCurrentText((m_headEmployer->getdepartment()->getname()));
+    if(m_contactEmployer->getemployer()!=nullptr){
+        ui->comboBox->setCurrentText(m_contactEmployer->getemployer()->getname());
 
     }else{
-        ui->comboBoxGrops->setCurrentIndex(-1);
+        ui->comboBox->setCurrentIndex(-1);
     }
-    */
 
 }

@@ -15,7 +15,7 @@ class InsertStaffEmployer : public QDialog
     Q_OBJECT
 
 public:
-    InsertStaffEmployer(TypeInsert,QWidget *parent = nullptr);
+    InsertStaffEmployer(TypeInsert,ListOfEmployer,QWidget *parent = nullptr);
     ~InsertStaffEmployer();
      void insertHeadEmployer(HeadEmployer_ptr&);
      void insertContactEmplyer(ContactEmployer_ptr&);
@@ -33,6 +33,7 @@ private:
     void initInsertHeadEmployer();
     void initInsertContactEmployer();
     TypeInsert m_typeInsert;
+    ListOfEmployer m_listEmployers;
 };
 
 

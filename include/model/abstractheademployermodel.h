@@ -10,6 +10,7 @@ private:
     ListOfHeadEmployer m_listHeadEmployer;
 
 
+
 public:
 
     AbstractHeadEmployerModel();
@@ -37,6 +38,8 @@ public:
     ListOfHeadEmployer& getListHeadEmployer();
 
     void loadListGlobal();
+
+    ListOfEmployer m_listEmployers;
 };
 
 #endif // ABSTRACTHEADEMPLOYERMODEL_H

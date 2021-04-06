@@ -55,8 +55,11 @@ void InsertStudent::onActionClicked()
     person->setphone_number(ui->lineEditPhone->text());
     person->setemail(ui->lineEditEmail->text());
     m_student->setperson(person);
+    if(ui->comboBoxGrops->currentIndex()!=-1){
 
     m_student->setgroup(m_listGroups.getByIndex(ui->comboBoxGrops->currentIndex()));
+
+    }
 
     if(!person->getfirstname().isEmpty()&&!person->getlastname().isEmpty()&&!person->getpatronymic().isEmpty()&&!person->getphone_number().isEmpty()&&!person->getemail().isEmpty()){
 

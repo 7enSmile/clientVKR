@@ -36,6 +36,9 @@ public:
     ListOfContactEmployer& getListContactEmployer();
 
     void loadListGlobal();
+
+    ListOfEmployer m_listEmployers;
+
 };
 
 #endif // ABSTRACTCONTACTEMPLOYERMODEL_H

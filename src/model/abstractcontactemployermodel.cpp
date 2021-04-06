@@ -113,6 +113,7 @@ void AbstractContactEmployerModel::loadListGlobal()
     beginInsertRows(QModelIndex(),0,0);
     qx::dao::fetch_all_with_all_relation(m_listContactEmployer);
     endInsertRows();
+    qx::dao::fetch_all(m_listEmployers);
     layoutChanged();
 
 }

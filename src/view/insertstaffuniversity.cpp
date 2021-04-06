@@ -53,7 +53,10 @@ void InsertStaffUniversity::onActionClicked()
     person->setemail(ui->lineEditEmail->text());
     m_staff->setperson(person);
 
+    if(ui->comboBoxGrops->currentIndex()!=-1){
+
     m_staff->setdepartment(m_listDepartmens.getByIndex(ui->comboBoxGrops->currentIndex()));
+    }
 
     if(!person->getfirstname().isEmpty()&&!person->getlastname().isEmpty()&&!person->getpatronymic().isEmpty()&&!person->getphone_number().isEmpty()&&!person->getemail().isEmpty()){
 
