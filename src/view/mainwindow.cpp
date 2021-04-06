@@ -103,9 +103,10 @@ void MainWindow::onEmployersTableClicked()
     EmployersWindow *w =new EmployersWindow(m_modelEmployer->getEmployer(index[0].row()));
     if(w->exec()==QDialog::Accepted){
         m_modelEmployer->saveEmployer(w->getEmployer());
-         m_modelEmployer->loadList();
+
 
     }
+      m_modelEmployer->loadList();
 
 
 
@@ -117,9 +118,10 @@ void MainWindow::onInsertEmployerClicked()
     EmployersWindow *w =new EmployersWindow();
     if(w->exec()==QDialog::Accepted){
         m_modelEmployer->saveEmployer(w->getEmployer());
-        m_modelEmployer->loadList();
+
 
     }
+     m_modelEmployer->loadList();
 
 
 }
