@@ -21,7 +21,7 @@ AdditionalWindow::AdditionalWindow(Employer_ptr employer,QWidget *parent) :
     connect(ui->pushButtonInsertCollaboration,SIGNAL(clicked()),this,SLOT(onInsertCollaborationClicked()));
     connect(ui->pushButtonInsertTasks,SIGNAL(clicked()),this,SLOT(onInsertTasksClicked()));
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
-    connect(ui->pushButtondeleteActivity,SIGNAL(clicked()),this,SLOT(onDeleteTasksClicked()));
+    connect(ui->pushButtondeleteActivity,SIGNAL(clicked()),this,SLOT(onDeleteActivityClicked()));
     connect(ui->pushButtonDeleteTasks,SIGNAL(clicked()),this,SLOT(onDeleteTasksClicked()));
     connect(ui->pushButtonDeleteCollaboration,SIGNAL(clicked()),this,SLOT(onDeleteCollaborationClicked()));
 

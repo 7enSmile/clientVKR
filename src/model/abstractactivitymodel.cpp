@@ -62,6 +62,7 @@ void AbstractActivityModel::insertGlobalActivity(Activity_ptr activity)
 
 void AbstractActivityModel::deleteGlobal(int index)
 {
+    qDebug()<<"Delete";
     qx::dao::delete_by_id(m_listGlobalActivity.getByIndex(index));
     if(m_listLocalActivity.contains(m_listGlobalActivity.getByIndex(index)->getactivity_id())){
         m_listLocalActivity.removeByKey(m_listGlobalActivity.getByIndex(index)->getactivity_id());
