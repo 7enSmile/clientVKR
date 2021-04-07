@@ -12,6 +12,7 @@ PracticeWindow::PracticeWindow(ListOfEmployer listEmployers, Practice_ptr practi
     initElementsChange();
     iniconnection();
 
+
 }
 
 PracticeWindow::PracticeWindow(ListOfEmployer listEmployers, QWidget *parent) :
@@ -60,6 +61,8 @@ void PracticeWindow::initElementsChange()
     ui->dateEditEnding->setDate(m_practice->getending());
     ui->pushButtonAction->setText("Изменить");
     ui->pushButtonOk->setText("Ок");
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    this->setWindowTitle("Создать студена");
 
 
 }
@@ -71,6 +74,8 @@ void PracticeWindow::initElementInsert()
     }
     ui->pushButtonAction->setText("Создать");
     ui->pushButtonOk->setText("Отмена");
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    this->setWindowTitle("Создать студена");
 
 }
 
