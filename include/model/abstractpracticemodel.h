@@ -9,6 +9,7 @@ class AbstractPracticeModel:public QAbstractTableModel
 private:
 
     ListOfPractice m_listPractice;
+    ListOfEmployer m_listEmployer;
 
 public:
     AbstractPracticeModel();
@@ -25,6 +26,8 @@ public:
     void savePractice(Practice_ptr);
 
     Practice_ptr getPractice(int);
+
+    ListOfEmployer getListEmployer();
 
     void loadList();
 

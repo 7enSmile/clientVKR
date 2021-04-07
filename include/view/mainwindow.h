@@ -10,6 +10,7 @@
 #include "model/abstractemployermodel.h"
 #include "view/employerswindow.h"
 #include "model/abstractpracticemodel.h"
+#include "view/practicewindow.h"
 namespace Ui {
 class MainWindow;
 }
@@ -36,6 +37,8 @@ private slots:
     void onExitClicked();
     void onEmployersTableClicked();
     void onInsertEmployerClicked();
+    void onPracticeTableClicked();
+    void onInsertPracticeClicked();
 
 
 };

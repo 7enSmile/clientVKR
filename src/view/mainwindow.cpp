@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableViewEmployers->setModel(m_modelEmployer);
     connect(ui->tableViewEmployers,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onEmployersTableClicked()));
     connect(ui->pushButtonInsertEmployer,SIGNAL(clicked()),this,SLOT(onInsertEmployerClicked()));
+    connect(ui->tableViewPractice,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onPracticeTableClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -109,10 +110,6 @@ void MainWindow::onEmployersTableClicked()
 
     }
       m_modelEmployer->loadList();
-
-
-
-
 }
 
 void MainWindow::onInsertEmployerClicked()
@@ -125,5 +122,22 @@ void MainWindow::onInsertEmployerClicked()
     }
      m_modelEmployer->loadList();
 
+
+}
+
+void MainWindow::onPracticeTableClicked()
+{
+    QModelIndexList index = ui->tableViewPractice->selectionModel()->selectedRows();
+    PracticeWindow *w=new PracticeWindow(m_modelPractice->getListEmployer(),m_modelPractice->getPractice(index[0].row()));
+    if(w->exec()==QDialog::Accepted){
+        m_modelPractice->savePractice(w->getPractice());
+
+    }
+    m_modelEmployer->loadList();
+
+}
+
+void MainWindow::onInsertPracticeClicked()
+{
 
 }

@@ -62,6 +62,13 @@ Practice_ptr AbstractPracticeModel::getPractice(int index)
 
 }
 
+ListOfEmployer AbstractPracticeModel::getListEmployer()
+{
+    qx::dao::fetch_all_with_all_relation(m_listEmployer);
+    return m_listEmployer;
+
+}
+
 void AbstractPracticeModel::loadList()
 {
     beginInsertRows(QModelIndex(),0,0);
