@@ -62,7 +62,7 @@ void PracticeWindow::initElementsChange()
     ui->pushButtonAction->setText("Изменить");
     ui->pushButtonOk->setText("Ок");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Создать студена");
+    this->setWindowTitle("Изменить");
 
 
 }
@@ -75,7 +75,7 @@ void PracticeWindow::initElementInsert()
     ui->pushButtonAction->setText("Создать");
     ui->pushButtonOk->setText("Отмена");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Создать студена");
+    this->setWindowTitle("Добавить");
 
 }
 

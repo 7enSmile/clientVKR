@@ -37,6 +37,31 @@ ListOfStudent &AbstractStudentsModel::getListStudents()
     return m_listStudent;
 }
 
+void AbstractStudentsModel::search(QString searchName, QString searchLastname, QString searchGroup)
+{
+    ListOfStudent list;
+    m_listStudent._clear();
+    qx::dao::fetch_all_with_all_relation(list);
+    QRegExp regName("^"+searchName);
+    QRegExp reglastname("^"+searchLastname);
+    QRegExp reggroup("^"+searchGroup);
+    QString name;
+    QString lastname;
+    QString group;
+    for(int i=0;i<list.count();i++){
+        name=list.getByIndex(i)->getperson()->getfirstname();
+        lastname=list.getByIndex(i)->getperson()->getlastname();
+        group=list.getByIndex(i)->getgroup()->getnumber();
+        if(name.contains(regName)&&lastname.contains(reglastname)&&group.contains(reggroup)){
+            m_listStudent.insert(list.getByIndex(i)->getstudent_id(),list.getByIndex(i));
+        }
+    }
+    layoutChanged();
+
+
+
+}
+
 
 
 AbstractStudentsModel::AbstractStudentsModel()

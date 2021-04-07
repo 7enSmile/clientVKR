@@ -2,6 +2,7 @@
 #define ABSTRACTSTUDENTSMODEL_H
 #include <QAbstractTableModel>
 #include <Student.h>
+#include <QRegExp>
 
 class AbstractStudentsModel:public QAbstractTableModel
 {
@@ -38,6 +39,8 @@ public:
     void deleteStudentLocal(int);
 
     ListOfStudent& getListStudents();
+
+    void search(QString,QString,QString);
 
 };
 

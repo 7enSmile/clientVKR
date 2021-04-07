@@ -57,6 +57,7 @@ SOURCES += $$PWD/src/view/insertevent.cpp
 SOURCES += $$PWD/src/view/eventswindow.cpp
 SOURCES += $$PWD/src/view/practicewindow.cpp
 SOURCES += $$PWD/src/model/abstractpracticemodel.cpp
+SOURCES += $$PWD/src/view/searchstudents.cpp
 HEADERS += $$PWD/include/view/studentswindow.h
 HEADERS += $$PWD/include/model/abstractstudentsmodel.h
 HEADERS += $$PWD/include/view/insertstudent.h
@@ -85,6 +86,7 @@ HEADERS += $$PWD/include/view/insertevent.h
 HEADERS += $$PWD/include/view/eventswindow.h
 HEADERS += $$PWD/include/view/practicewindow.h
 HEADERS += $$PWD/include/model/abstractpracticemodel.h
+HEADERS += $$PWD/include/view/searchstudents.h
 FORMS +=$$PWD/ui/studentswindow.ui
 FORMS +=$$PWD/ui/insertstudent.ui
 FORMS +=$$PWD/ui/insertgroup.ui
@@ -100,6 +102,7 @@ FORMS +=$$PWD/ui/insertadditional.ui
 FORMS +=$$PWD/ui/inserevent.ui
 FORMS +=$$PWD/ui/eventswindow.ui
 FORMS +=$$PWD/ui/practicewindow.ui
+FORMS +=$$PWD/ui/searchstudents.ui
 
 
 # Default rules for deployment.

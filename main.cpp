@@ -4,6 +4,7 @@
 #include "include/precompiled.h"
 #include <QtCore/qcoreapplication.h>
 #include <QApplication>
+#include "view/searchstudents.h"
 void init();
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
 
 
     w->show();
+
     a.exec();
 
 
