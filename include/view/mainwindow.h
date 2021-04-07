@@ -9,6 +9,7 @@
 #include "view/staffemployerwindow.h"
 #include "model/abstractemployermodel.h"
 #include "view/employerswindow.h"
+#include "model/abstractpracticemodel.h"
 namespace Ui {
 class MainWindow;
 }
@@ -25,6 +26,7 @@ private:
     Ui::MainWindow *ui;
     void addSubMenu();
     AbstractEmployerModel *m_modelEmployer;
+    AbstractPracticeModel *m_modelPractice;
 private slots:
     void onEventsClicked();
     void onEducationProgramsClicked();

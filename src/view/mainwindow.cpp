@@ -9,6 +9,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowTitle("Главное меню");
     addSubMenu();
     m_modelEmployer=new AbstractEmployerModel();
+    m_modelPractice=new AbstractPracticeModel();
+    ui->tableViewPractice->setModel(m_modelPractice);
     ui->tableViewEmployers->setModel(m_modelEmployer);
     connect(ui->tableViewEmployers,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onEmployersTableClicked()));
     connect(ui->pushButtonInsertEmployer,SIGNAL(clicked()),this,SLOT(onInsertEmployerClicked()));

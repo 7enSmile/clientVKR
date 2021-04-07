@@ -90,16 +90,6 @@ void AbstractEmployerModel::loadList()
 
 }
 
-ListOfHeadEmployer AbstractEmployerModel::getListHeadEmployer(int index)
-{
-    return m_listEmployer.getByIndex(index)->getlist_of_head_employer();
 
-}
-
-ListOfContactEmployer AbstractEmployerModel::getListContactEmployer(int index)
-{
-
-    return m_listEmployer.getByIndex(index)->getlist_of_contact_employer();
-}
 
 

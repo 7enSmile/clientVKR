@@ -1,33 +1,36 @@
-#ifndef ABSTRACTEMPLOYERMODEL_H
-#define ABSTRACTEMPLOYERMODEL_H
 #include <QAbstractTableModel>
-#include "Employer.h"
+#include "Practice.h"
+#ifndef ABSTRACTPRACTICEMODEL_H
+#define ABSTRACTPRACTICEMODEL_H
 
-class AbstractEmployerModel:public QAbstractTableModel
+
+class AbstractPracticeModel:public QAbstractTableModel
 {
 private:
 
-    ListOfEmployer m_listEmployer;
-
+    ListOfPractice m_listPractice;
 
 public:
-    AbstractEmployerModel();
+    AbstractPracticeModel();
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
-    void deleteEmployer(int);
+    void deletePractice(int);
 
-    void saveEmployer(Employer_ptr);
+    void savePractice(Practice_ptr);
 
-    Employer_ptr getEmployer(int);
+    Practice_ptr getPractice(int);
 
     void loadList();
 
+
+
+
 };
 
-
-#endif // ABSTRACTEMPLOYERMODEL_H
+#endif // ABSTRACTPRACTICEMODEL_H
