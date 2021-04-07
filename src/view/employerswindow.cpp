@@ -106,7 +106,7 @@ void EmployersWindow::onTableContactClicked()
     InsertStaffEmployer *w =new InsertStaffEmployer(type,m_employer);
     w->insertContactEmplyer(contactEmployer);
     if(w->exec()==QDialog::Accepted){
-        m_modelContactemployer->changeContactEmployerLocal(index[0].row(),w->getContactEmployer()->getcontact_employer_id(),w->getContactEmployer());
+        //m_modelContactemployer->changeContactEmployerLocal(index[0].row(),w->getContactEmployer()->getcontact_employer_id(),w->getContactEmployer());
     }
     m_employer->setlist_of_contact_employer(m_modelContactemployer->getListContactEmployer());
 
@@ -156,7 +156,7 @@ void EmployersWindow::onTableHeadEmployerClicked()
     InsertStaffEmployer *insert=new InsertStaffEmployer(type,m_employer);
     insert->insertHeadEmployer(headEmployer);
     if(insert->exec()==InsertStaffEmployer::Accepted){
-        m_modelHeadEmployerModel->changeHeadEmployerLocal(index[0].row(),headEmployer->getHeadEmployer(),insert->getHeadEmployer());
+        //m_modelHeadEmployerModel->changeHeadEmployerLocal(index[0].row(),headEmployer->getHeadEmployer(),insert->getHeadEmployer());
     }
     m_employer->setlist_of_head_employer(m_modelHeadEmployerModel->getListHeadEmployer());
 

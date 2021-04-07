@@ -55,6 +55,8 @@ void AdditionalWindow::onActivityTableClicked()
 {
     QModelIndexList index = ui->tableViewActivity->selectionModel()->selectedRows();
     m_modelActivity->action(index[0].row());
+    ui->tableViewActivity->clearSelection();
+    ui->tableViewActivity->clearFocus();
 
 }
 
@@ -62,6 +64,8 @@ void AdditionalWindow::onCollaborationTableClicked()
 {
     QModelIndexList index = ui->tableViewCollaboration->selectionModel()->selectedRows();
     m_modelCollaboration->action(index[0].row());
+    ui->tableViewCollaboration->clearSelection();
+    ui->tableViewCollaboration->clearFocus();
 
 }
 
@@ -69,6 +73,8 @@ void AdditionalWindow::onTasksTableClicked()
 {
     QModelIndexList index = ui->tableViewTasks->selectionModel()->selectedRows();
     m_modelTask->action(index[0].row());
+    ui->tableViewTasks->clearSelection();
+    ui->tableViewTasks->clearFocus();
 
 }
 

@@ -111,6 +111,8 @@ void MainWindow::onEmployersTableClicked()
 
     }
       m_modelEmployer->loadList();
+      ui->tableViewEmployers->clearSelection();
+      ui->tableViewEmployers->clearFocus();
 }
 
 void MainWindow::onInsertEmployerClicked()
@@ -122,6 +124,8 @@ void MainWindow::onInsertEmployerClicked()
 
     }
      m_modelEmployer->loadList();
+     ui->tableViewEmployers->clearSelection();
+     ui->tableViewEmployers->clearFocus();
 
 
 }
@@ -135,6 +139,8 @@ void MainWindow::onPracticeTableClicked()
 
     }
     m_modelPractice->loadList();
+    ui->tableViewPractice->clearSelection();
+    ui->tableViewPractice->clearFocus();
 
 }
 
@@ -146,5 +152,7 @@ void MainWindow::onInsertPracticeClicked()
 
     }
     m_modelPractice->loadList();
+    ui->tableViewPractice->clearSelection();
+    ui->tableViewPractice->clearFocus();
 
 }
