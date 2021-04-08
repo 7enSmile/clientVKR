@@ -14,9 +14,9 @@ AdditionalWindow::AdditionalWindow(Employer_ptr employer,QWidget *parent) :
     ui->tableViewActivity->setModel(m_modelActivity);
     ui->tableViewTasks->setModel(m_modelTask);
     ui->tableViewCollaboration->setModel(m_modelCollaboration);
-    connect(ui->tableViewActivity,SIGNAL(clicked(QModelIndex)),this,SLOT(onActivityTableClicked()));
-    connect(ui->tableViewCollaboration,SIGNAL(clicked(QModelIndex)),this,SLOT(onCollaborationTableClicked()));
-    connect(ui->tableViewTasks,SIGNAL(clicked(QModelIndex)),this,SLOT(onTasksTableClicked()));
+    connect(ui->tableViewActivity,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onActivityTableClicked()));
+    connect(ui->tableViewCollaboration,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onCollaborationTableClicked()));
+    connect(ui->tableViewTasks,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTasksTableClicked()));
     connect(ui->pushButtonInsertActitivity,SIGNAL(clicked()),this,SLOT(onInsertActivityClicked()));
     connect(ui->pushButtonInsertCollaboration,SIGNAL(clicked()),this,SLOT(onInsertCollaborationClicked()));
     connect(ui->pushButtonInsertTasks,SIGNAL(clicked()),this,SLOT(onInsertTasksClicked()));

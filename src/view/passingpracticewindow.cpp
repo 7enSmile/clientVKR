@@ -54,7 +54,7 @@ PassingPractice_ptr& PassingPracticeWindow::getPassingPractice()
 
 void PassingPracticeWindow::initconnect()
 {
-    connect(ui->tableViewTask,SIGNAL(clicked(QModelIndex)),this,SLOT(onTableTasksClicked()));
+    connect(ui->tableViewTask,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableTasksClicked()));
     connect(ui->pushButtonInsertStudent,SIGNAL(clicked()),this,SLOT(onInsertStudentClicked()));
     connect(ui->pushButtonInserHeadUniversity,SIGNAL(clicked()),this,SLOT(onInserStaffUniversityClicked()));
     connect(ui->pushButtonHeadEmployer,SIGNAL(clicked()),this,SLOT(onInsertHeadEmployerClicked()));
