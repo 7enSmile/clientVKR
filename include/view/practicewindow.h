@@ -32,6 +32,7 @@ private slots:
     void onOkClicked();
     void onActionClicked();
     void onTablePassingPracticeclicked();
+    void onInsertPassingPracticeClicked();
 
 };
 

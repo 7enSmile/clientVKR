@@ -47,6 +47,7 @@ void PracticeWindow::iniconnection()
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect(ui->tableViewPassingPractice,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTablePassingPracticeclicked()));
+    connect(ui->pushButtonInserPassingPractice,SIGNAL(clicked()),this,SLOT(onInsertPassingPracticeClicked()));
 
 }
 
@@ -99,7 +100,22 @@ void PracticeWindow::onTablePassingPracticeclicked()
 {
     QModelIndexList index = ui->tableViewPassingPractice->selectionModel()->selectedRows();
     PassingPracticeWindow *w=new PassingPracticeWindow(m_modelPassingPractice->getPassingpractice(index[0].row()));
-    w->exec();
+    if(w->exec()==QDialog::Accepted){
+        m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
+    }
+
 
 
 }
+
+void PracticeWindow::onInsertPassingPracticeClicked()
+{
+    PassingPracticeWindow *w=new PassingPracticeWindow(m_practice->getemployer(),m_practice);
+    if(w->exec()==QDialog::Accepted){
+        m_modelPassingPractice->save(w->getPassingPractice());
+        m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
+    }
+
+}
+
+

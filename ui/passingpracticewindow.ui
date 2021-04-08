@@ -33,7 +33,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_7">
+        <widget class="QPushButton" name="pushButtonHeadEmployer">
          <property name="text">
           <string>Назначить</string>
          </property>
@@ -312,14 +312,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="pushButtonAction">
        <property name="text">
         <string>Добавить</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="pushButtonOk">
        <property name="text">
         <string>Ок</string>
        </property>

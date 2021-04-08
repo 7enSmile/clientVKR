@@ -39,6 +39,8 @@ public:
 
     void loadListGlobal();
 
+
+
     void search(QString,QString,QString);
 
     ListOfEmployer m_listEmployers;

@@ -6,6 +6,7 @@
 #include "model/abstracttaskspracticemodel.h"
 #include "view/searchstudents.h"
 #include "view/searchstaffuniversity.h"
+#include "view/searchheademployer.h"
 namespace Ui {
 class PassingPracticeWindow;
 }
@@ -17,9 +18,9 @@ class PassingPracticeWindow : public QDialog
 public:
     PassingPracticeWindow(PassingPractice_ptr,QWidget *parent = nullptr);
 
-    PassingPracticeWindow(Employer_ptr,QWidget *parent = nullptr);
+    PassingPracticeWindow(Employer_ptr,Practice_ptr ,QWidget *parent = nullptr);
 
-    PassingPractice_ptr getPassingPractice();
+    PassingPractice_ptr& getPassingPractice();
 
 private:
 
@@ -35,6 +36,9 @@ private slots:
     void onTableTasksClicked();
     void onInsertStudentClicked();
     void onInserStaffUniversityClicked();
+    void onInsertHeadEmployerClicked();
+    void onOkClicked();
+    void onActionClicked();
 };
 
 #endif // PASSINGPRACTICEWINDOW_H

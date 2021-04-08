@@ -23,7 +23,7 @@ private:
     Ui::SearchStaffUniversity *ui;
     AbstractStaffUniversityModel *m_modelStaffUniversity;
     AbstractDepartmentsModel *m_modelDepartment;
-    Student_ptr m_student;
+
     HeadUniversity_ptr m_staff;
 private slots:
     void textChanged();

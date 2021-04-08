@@ -9,11 +9,13 @@ AbstractPassingPracticeModel::AbstractPassingPracticeModel(ListOfPassingPractice
 
 }
 
-PassingPractice_ptr AbstractPassingPracticeModel::getPassingpractice(int index)
+ListOfPassingPractice AbstractPassingPracticeModel::getListPassingpractice()
 {
-    return m_listPassingPractice.getByIndex(index);
 
+    return m_listPassingPractice;
 }
+
+
 
 int AbstractPassingPracticeModel::rowCount(const QModelIndex &parent) const
 {
@@ -56,6 +58,23 @@ QVariant AbstractPassingPracticeModel::data(const QModelIndex &index, int role) 
     return QVariant();
 
 }
+
+void AbstractPassingPracticeModel::save(PassingPractice_ptr passingpractice)
+{
+
+    m_listPassingPractice.insert(m_listPassingPractice.count(),passingpractice);
+
+    layoutChanged();
+
+}
+
+PassingPractice_ptr AbstractPassingPracticeModel::getPassingpractice(int index)
+{
+    return m_listPassingPractice.getByIndex(index);
+
+}
+
+
 
 void AbstractPassingPracticeModel::loadList()
 {

@@ -7,7 +7,11 @@ class AbstractPassingPracticeModel:public QAbstractTableModel
 public:
 
     AbstractPassingPracticeModel(ListOfPassingPractice);
+    ListOfPassingPractice getListPassingpractice();
+    void savePassingPractice(PassingPractice_ptr);
     PassingPractice_ptr getPassingpractice(int);
+    void save(PassingPractice_ptr);
+
 
 
 private:
@@ -20,7 +24,15 @@ private:
 
     ListOfPassingPractice m_listPassingPractice;
 
+
+
+
+
     void loadList();
+
+
+
+
 
 
 };

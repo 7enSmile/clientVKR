@@ -39,6 +39,8 @@ void SearchStaffUniversity::textChanged()
 
 }
 
+
+
 void SearchStaffUniversity::onTableStaffUniversityClicked()
 {
     QModelIndexList index = ui->tableView->selectionModel()->selectedRows();

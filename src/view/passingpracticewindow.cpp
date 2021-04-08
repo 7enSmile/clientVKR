@@ -22,20 +22,23 @@ PassingPracticeWindow::PassingPracticeWindow(PassingPractice_ptr passingPractice
     initconnect();
 }
 
-PassingPracticeWindow::PassingPracticeWindow(Employer_ptr employer,QWidget *parent) :
+PassingPracticeWindow::PassingPracticeWindow(Employer_ptr employer,Practice_ptr practice,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PassingPracticeWindow)
 {
     ui->setupUi(this);
     m_passingPractice.reset(new PassingPractice());
     m_passingPractice->setemployer(employer);
+    m_passingPractice->setpractice(practice);
     m_modelTasks=new AbstractTasksPracticeModel(m_passingPractice->gettask());
     ui->tableViewTask->setModel(m_modelTasks);
     initconnect();
 }
 
-PassingPractice_ptr PassingPracticeWindow::getPassingPractice()
+PassingPractice_ptr& PassingPracticeWindow::getPassingPractice()
 {
+
+
     return m_passingPractice;
 
 }
@@ -45,6 +48,9 @@ void PassingPracticeWindow::initconnect()
     connect(ui->tableViewTask,SIGNAL(clicked(QModelIndex)),this,SLOT(onTableTasksClicked()));
     connect(ui->pushButtonInsertStudent,SIGNAL(clicked()),this,SLOT(onInsertStudentClicked()));
     connect(ui->pushButtonInserHeadUniversity,SIGNAL(clicked()),this,SLOT(onInserStaffUniversityClicked()));
+    connect(ui->pushButtonHeadEmployer,SIGNAL(clicked()),this,SLOT(onInsertHeadEmployerClicked()));
+    connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
+    connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
 }
 
 void PassingPracticeWindow::onTableTasksClicked()
@@ -77,10 +83,27 @@ void PassingPracticeWindow::onInserStaffUniversityClicked()
 
 }
 
+void PassingPracticeWindow::onInsertHeadEmployerClicked()
+{
+    SearchHeadEmployer *w=new SearchHeadEmployer(m_passingPractice->getemployer());
+    if(w->exec()==QDialog::Accepted){
+        m_passingPractice->sethead_employer(w->getHeadEmployer());
+        ui->labelHeadEmployer->setText(m_passingPractice->gethead_employer()->getperson()->getfirstname()+" "+m_passingPractice->gethead_employer()->getperson()->getlastname());
+    }
 
+}
 
+void PassingPracticeWindow::onOkClicked()
+{
+    QDialog::close();
 
+}
 
+void PassingPracticeWindow::onActionClicked()
+{
+    QDialog::accept();
+
+}
 
 PassingPracticeWindow::~PassingPracticeWindow()
 {
