@@ -33,6 +33,8 @@ public:
 
     HeadUniversity_ptr getStaffUniversity(int);
 
+    void search(QString,QString,QString);
+
     ListOfHeadUniversity& getListStaff();
 
     void loadListGlobal();

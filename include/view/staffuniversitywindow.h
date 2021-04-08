@@ -32,6 +32,7 @@ private:
     AbstractStaffUniversityModel *m_staffUniversityModel;
     AbstractDepartmentsModel *m_departmentModel;
 
+
 };
 
 

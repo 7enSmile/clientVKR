@@ -44,6 +44,7 @@ void PassingPracticeWindow::initconnect()
 {
     connect(ui->tableViewTask,SIGNAL(clicked(QModelIndex)),this,SLOT(onTableTasksClicked()));
     connect(ui->pushButtonInsertStudent,SIGNAL(clicked()),this,SLOT(onInsertStudentClicked()));
+    connect(ui->pushButtonInserHeadUniversity,SIGNAL(clicked()),this,SLOT(onInserStaffUniversityClicked()));
 }
 
 void PassingPracticeWindow::onTableTasksClicked()
@@ -62,6 +63,16 @@ void PassingPracticeWindow::onInsertStudentClicked()
     if(w->exec()==QDialog::Accepted){
         m_passingPractice->setstuden(w->getStudent());
         ui->labelStudent->setText(m_passingPractice->getstuden()->getperson()->getfirstname()+" "+m_passingPractice->getstuden()->getperson()->getlastname());
+    }
+
+}
+
+void PassingPracticeWindow::onInserStaffUniversityClicked()
+{
+    SearchStaffUniversity *w=new  SearchStaffUniversity();
+    if(w->exec()==QDialog::Accepted){
+        m_passingPractice->sethead_university(w->getStaffUniversity());
+        ui->labelHeadUniversity->setText(m_passingPractice->gethead_university()->getperson()->getfirstname()+" "+m_passingPractice->gethead_university()->getperson()->getlastname());
     }
 
 }

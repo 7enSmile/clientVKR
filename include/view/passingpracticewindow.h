@@ -5,6 +5,7 @@
 #include "Passing_practice.h"
 #include "model/abstracttaskspracticemodel.h"
 #include "view/searchstudents.h"
+#include "view/searchstaffuniversity.h"
 namespace Ui {
 class PassingPracticeWindow;
 }
@@ -33,6 +34,7 @@ private slots:
 
     void onTableTasksClicked();
     void onInsertStudentClicked();
+    void onInserStaffUniversityClicked();
 };
 
 #endif // PASSINGPRACTICEWINDOW_H

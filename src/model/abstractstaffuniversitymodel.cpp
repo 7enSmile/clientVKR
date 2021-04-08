@@ -96,6 +96,28 @@ HeadUniversity_ptr AbstractStaffUniversityModel::getStaffUniversity(int index)
     return staffUniversity;
 }
 
+void AbstractStaffUniversityModel::search(QString searchName, QString searchLastname, QString searchDepartment)
+{
+    ListOfHeadUniversity list;
+    m_listStaffUniversity._clear();
+    qx::dao::fetch_all_with_all_relation(list);
+    QRegExp regName("^"+searchName);
+    QRegExp reglastname("^"+searchLastname);
+    QRegExp regdepartment("^"+searchDepartment);
+    QString name;
+    QString lastname;
+    QString department;
+    for(int i=0;i<list.count();i++){
+        name=list.getByIndex(i)->getperson()->getfirstname();
+        lastname=list.getByIndex(i)->getperson()->getlastname();
+        department=list.getByIndex(i)->getdepartment()->getname();
+        if(name.contains(regName)&&lastname.contains(reglastname)&&department.contains(regdepartment)){
+            m_listStaffUniversity.insert(list.getByIndex(i)->getHeadUniversity_id(),list.getByIndex(i));
+        }
+    }
+    layoutChanged();
+}
+
 ListOfHeadUniversity &AbstractStaffUniversityModel::getListStaff()
 {
     return m_listStaffUniversity;

@@ -124,3 +124,9 @@ void AbstractHeadEmployerModel::loadListGlobal()
     layoutChanged();
 
 }
+
+void AbstractHeadEmployerModel::search(QString, QString, QString)
+{
+
+
+}
