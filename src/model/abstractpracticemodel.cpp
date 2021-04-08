@@ -51,6 +51,7 @@ void AbstractPracticeModel::deletePractice(int index)
 
 void AbstractPracticeModel::savePractice(Practice_ptr practic)
 {
+
     qx::dao::save_with_all_relation(practic);
 
 

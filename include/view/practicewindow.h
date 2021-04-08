@@ -33,6 +33,7 @@ private slots:
     void onActionClicked();
     void onTablePassingPracticeclicked();
     void onInsertPassingPracticeClicked();
+    void onDeletePassingPractice();
 
 };
 

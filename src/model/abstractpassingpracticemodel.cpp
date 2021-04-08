@@ -62,8 +62,25 @@ QVariant AbstractPassingPracticeModel::data(const QModelIndex &index, int role) 
 void AbstractPassingPracticeModel::save(PassingPractice_ptr passingpractice)
 {
 
-    m_listPassingPractice.insert(m_listPassingPractice.count(),passingpractice);
+     qDebug()<<m_listPassingPractice.count();
 
+    m_listPassingPractice.insert( m_listPassingPractice.count(),passingpractice);
+
+
+
+    layoutChanged();
+
+}
+
+void AbstractPassingPracticeModel::deletePassingPractice(int index)
+{
+    if(m_listPassingPractice.getByIndex(index)->getPassingPractice_id()!=0){
+        Person_ptr person;
+        person.reset(new Person());
+
+        qx::dao::delete_by_id(m_listPassingPractice.getByIndex(index));
+    }
+    m_listPassingPractice.removeByIndex(index);
     layoutChanged();
 
 }

@@ -26,6 +26,8 @@ PracticeWindow::PracticeWindow(ListOfEmployer listEmployers, QWidget *parent) :
     m_listEmployers=listEmployers;
     initElementInsert();
     iniconnection();
+    m_modelPassingPractice=new AbstractPassingPracticeModel(m_practice->getlist_of_passing_practice());
+    ui->tableViewPassingPractice->setModel(m_modelPassingPractice);
 }
 
 PracticeWindow::~PracticeWindow()
@@ -48,6 +50,7 @@ void PracticeWindow::iniconnection()
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect(ui->tableViewPassingPractice,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTablePassingPracticeclicked()));
     connect(ui->pushButtonInserPassingPractice,SIGNAL(clicked()),this,SLOT(onInsertPassingPracticeClicked()));
+    connect(ui->pushButtonDeletePassingPractice,SIGNAL(clicked()),this,SLOT(onDeletePassingPractice()));
 
 }
 
@@ -115,6 +118,15 @@ void PracticeWindow::onInsertPassingPracticeClicked()
         m_modelPassingPractice->save(w->getPassingPractice());
         m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
     }
+}
+
+void PracticeWindow::onDeletePassingPractice()
+{
+    QModelIndexList index = ui->tableViewPassingPractice->selectionModel()->selectedRows();
+    m_modelPassingPractice->deletePassingPractice(index[0].row());
+    m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
+    ui->tableViewPassingPractice->clearSelection();
+    ui->tableViewPassingPractice->clearFocus();
 
 }
 

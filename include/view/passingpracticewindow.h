@@ -22,6 +22,8 @@ public:
 
     PassingPractice_ptr& getPassingPractice();
 
+
+
 private:
 
     PassingPractice_ptr m_passingPractice;
@@ -39,6 +41,7 @@ private slots:
     void onInsertHeadEmployerClicked();
     void onOkClicked();
     void onActionClicked();
+
 };
 
 #endif // PASSINGPRACTICEWINDOW_H

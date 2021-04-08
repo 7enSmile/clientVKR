@@ -11,6 +11,7 @@ public:
     void savePassingPractice(PassingPractice_ptr);
     PassingPractice_ptr getPassingpractice(int);
     void save(PassingPractice_ptr);
+    void deletePassingPractice(int index);
 
 
 

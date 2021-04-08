@@ -23,8 +23,6 @@ public:
 
     void deleteStudentGlobal(int);
 
-
-
     void saveStudentGlobal(Student_ptr&);
 
     Student_ptr getStudent(int);
