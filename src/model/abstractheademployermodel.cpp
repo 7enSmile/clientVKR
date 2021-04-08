@@ -125,22 +125,22 @@ void AbstractHeadEmployerModel::loadListGlobal()
 
 }
 
-void AbstractHeadEmployerModel::search(QString searchName, QString searchLastname, QString searchEmployer)
+void AbstractHeadEmployerModel::search(QString searchName, QString searchLastname,long key)
 {
     ListOfHeadEmployer list;
     m_listHeadEmployer._clear();
     qx::dao::fetch_all_with_all_relation(list);
     QRegExp regName("^"+searchName);
     QRegExp reglastname("^"+searchLastname);
-    QRegExp regdemployer("^"+searchEmployer);
+
     QString name;
     QString lastname;
-    QString employer;
+
     for(int i=0;i<list.count();i++){
         name=list.getByIndex(i)->getperson()->getfirstname();
         lastname=list.getByIndex(i)->getperson()->getlastname();
-        employer=list.getByIndex(i)->getemployer()->getname();
-        if(name.contains(regName)&&lastname.contains(reglastname)&&employer.contains(regdemployer)){
+
+        if(name.contains(regName)&&lastname.contains(reglastname)&&list.getByIndex(i)->getemployer()->getemployer_id()==key){
             m_listHeadEmployer.insert(list.getByIndex(i)->getHeadEmployer(),list.getByIndex(i));
         }
     }

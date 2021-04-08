@@ -17,6 +17,7 @@ SearchHeadEmployer::SearchHeadEmployer(Employer_ptr employer,QWidget *parent) :
     connect(ui->lineEditLastName, &QLineEdit::textChanged, this, &SearchHeadEmployer::textChanged);
     connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTablHeadEmployerClicked()));
     m_headEmployer.reset(new HeadEmployer());
+    textChanged();
 }
 
 SearchHeadEmployer::~SearchHeadEmployer()
@@ -31,7 +32,8 @@ HeadEmployer_ptr SearchHeadEmployer::getHeadEmployer()
 
 void SearchHeadEmployer::textChanged()
 {
-   m_modelHeadEmployer->search(ui->lineEditName->text(),ui->lineEditLastName->text(),m_employer->getname());
+
+   m_modelHeadEmployer->search(ui->lineEditName->text(),ui->lineEditLastName->text(),m_employer->getemployer_id());
 
 }
 

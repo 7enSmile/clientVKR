@@ -28,6 +28,8 @@ PracticeWindow::PracticeWindow(ListOfEmployer listEmployers, QWidget *parent) :
     iniconnection();
     m_modelPassingPractice=new AbstractPassingPracticeModel(m_practice->getlist_of_passing_practice());
     ui->tableViewPassingPractice->setModel(m_modelPassingPractice);
+    ui->pushButtonInserPassingPractice->setEnabled(false);
+    ui->pushButtonDeletePassingPractice->setEnabled(false);
 }
 
 PracticeWindow::~PracticeWindow()

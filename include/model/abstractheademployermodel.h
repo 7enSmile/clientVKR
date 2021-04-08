@@ -41,7 +41,7 @@ public:
 
 
 
-    void search(QString,QString,QString);
+    void search(QString,QString,long);
 
     ListOfEmployer m_listEmployers;
 };
