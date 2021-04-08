@@ -20,6 +20,12 @@ PassingPracticeWindow::PassingPracticeWindow(PassingPractice_ptr passingPractice
         ui->labelStudent->setText(m_passingPractice->getstuden()->getperson()->getlastname()+" "+m_passingPractice->getstuden()->getperson()->getfirstname());
     }
     initconnect();
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    this->setWindowTitle("Изменить");
+    ui->pushButtonOk->setText("Ок");
+    ui->pushButtonAction->setText("Изменить");
+
+
 }
 
 PassingPracticeWindow::PassingPracticeWindow(Employer_ptr employer,Practice_ptr practice,QWidget *parent) :
@@ -33,6 +39,8 @@ PassingPracticeWindow::PassingPracticeWindow(Employer_ptr employer,Practice_ptr 
     m_modelTasks=new AbstractTasksPracticeModel(m_passingPractice->gettask());
     ui->tableViewTask->setModel(m_modelTasks);
     initconnect();
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    this->setWindowTitle("Добавить");
 }
 
 PassingPractice_ptr& PassingPracticeWindow::getPassingPractice()
