@@ -162,7 +162,7 @@ void InsertStaffEmployer::initInsertHeadEmployer()
     ui->lineEditPatronymic->setText(m_headEmployer->getperson()->getpatronymic());
     ui->lineEditEmail->setText(m_headEmployer->getperson()->getemail());
     ui->lineEditPhone->setText(m_headEmployer->getperson()->getphone_number());
-    this->setWindowTitle("Изменить студента");
+    this->setWindowTitle("Изменить работника предприятия");
     ui->pushButtonAction->setText("Изменить");
     ui->pushButton->setText("Ок");
     ui->comboBoxRole->setHidden(false);
@@ -187,7 +187,7 @@ void InsertStaffEmployer::initInsertContactEmployer()
     ui->lineEditPatronymic->setText(m_contactEmployer->getperson()->getpatronymic());
     ui->lineEditEmail->setText(m_contactEmployer->getperson()->getemail());
     ui->lineEditPhone->setText(m_contactEmployer->getperson()->getphone_number());
-    this->setWindowTitle("Изменить студента");
+    this->setWindowTitle("Изменить работника предприятия");
     ui->pushButtonAction->setText("Изменить");
     ui->pushButton->setText("Ок");
     ui->comboBoxRole->setHidden(false);

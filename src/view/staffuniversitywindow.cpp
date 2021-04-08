@@ -33,6 +33,8 @@ void StaffUniversityWindow::onDeleteStaffClicked()
     m_staffUniversityModel->deleteStaffUniversityGlobal(index[0].row());
     QMessageBox::information(this,"Успех","Сотрудник удален!");
     }
+    ui->tableViewStaff->clearSelection();
+    ui->tableViewStaff->clearFocus();
 
 }
 
@@ -44,6 +46,7 @@ void StaffUniversityWindow::onInsertStaffClicked()
        m_staffUniversityModel->saveStaffUniversityGlobal(insert->getStaffUniversity());
        QMessageBox::information(this,"Успех","Сотрудник добавлен!");
     }
+
 
 }
 
@@ -59,6 +62,8 @@ void StaffUniversityWindow::onTableStaffClicked()
        m_staffUniversityModel->saveStaffUniversityGlobal(insert->getStaffUniversity());
        QMessageBox::information(this,"Успех","Изменения внесены!");
     }
+    ui->tableViewStaff->clearSelection();
+    ui->tableViewStaff->clearFocus();
 
 }
 
@@ -70,6 +75,8 @@ void StaffUniversityWindow::onDeleteDepartmentClicked()
     QMessageBox::information(this,"Успех","Кфедра удалена!");
     m_staffUniversityModel->loadListGlobal();
     }
+    ui->tableViewDepatment->clearSelection();
+    ui->tableViewDepatment->clearFocus();
 
 }
 
@@ -82,6 +89,8 @@ void StaffUniversityWindow::onInsertDepartmentClicked()
        QMessageBox::information(this,"Успех","Кафедра добавлена!");
     }
     m_staffUniversityModel->loadListGlobal();
+    ui->tableViewDepatment->clearSelection();
+    ui->tableViewDepatment->clearFocus();
 
 }
 
@@ -99,6 +108,8 @@ void StaffUniversityWindow::onTableDepartmentClicked()
        QMessageBox::information(this,"Успех","Изменения внесены!");
     }
    m_staffUniversityModel->loadListGlobal();
+   ui->tableViewDepatment->clearSelection();
+   ui->tableViewDepatment->clearFocus();
 
 }
 

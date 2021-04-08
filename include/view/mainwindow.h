@@ -41,6 +41,7 @@ private slots:
     void onInsertPracticeClicked();
 
 
+
 };
 
 #endif // MAINWINDOW_H

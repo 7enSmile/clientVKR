@@ -4,6 +4,8 @@
 #include <QDialog>
 #include "Practice.h"
 #include "Employer.h"
+#include "model/abstractpassingpracticemodel.h"
+#include "view/passingpracticewindow.h"
 namespace Ui {
 class PracticeWindow;
 }
@@ -22,12 +24,15 @@ private:
     Ui::PracticeWindow *ui;
     Practice_ptr m_practice;
     ListOfEmployer m_listEmployers;
+    AbstractPassingPracticeModel *m_modelPassingPractice;
     void iniconnection();
     void initElementsChange();
     void initElementInsert();
 private slots:
     void onOkClicked();
     void onActionClicked();
+    void onTablePassingPracticeclicked();
+
 };
 
 #endif // PRACTICEWINDOW_H

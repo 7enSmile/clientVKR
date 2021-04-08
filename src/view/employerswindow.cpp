@@ -75,6 +75,7 @@ void EmployersWindow::onInsertHeadEmployerClicked()
         m_modelHeadEmployerModel->saveHeadEmployerLocal(w->getHeadEmployer());
     }
     m_employer->setlist_of_head_employer(m_modelHeadEmployerModel->getListHeadEmployer());
+
 }
 
 void EmployersWindow::onActionClicked()
@@ -109,6 +110,8 @@ void EmployersWindow::onTableContactClicked()
         //m_modelContactemployer->changeContactEmployerLocal(index[0].row(),w->getContactEmployer()->getcontact_employer_id(),w->getContactEmployer());
     }
     m_employer->setlist_of_contact_employer(m_modelContactemployer->getListContactEmployer());
+    ui->tableViewContactEmployer->clearSelection();
+    ui->tableViewContactEmployer->clearFocus();
 
 }
 
@@ -119,6 +122,8 @@ void EmployersWindow::onDeleteContactClicked()
         m_modelContactemployer->deleteContactEmployerLocal(index[0].row());
     }
     m_employer->setlist_of_contact_employer(m_modelContactemployer->getListContactEmployer());
+    ui->tableViewContactEmployer->clearSelection();
+    ui->tableViewContactEmployer->clearFocus();
 
 
 }
@@ -133,9 +138,9 @@ void EmployersWindow::onAdditionalClicked()
         m_employer->setlist_of_task(w->getListTasks());
 
     }
-     m_employer->setlist_of_activity(w->getListActivity());
-     m_employer->setlist_of_collaboration(w->getListCollaboration());
-     m_employer->setlist_of_task(w->getListTasks());
+    m_employer->setlist_of_activity(w->getListActivity());
+    m_employer->setlist_of_collaboration(w->getListCollaboration());
+    m_employer->setlist_of_task(w->getListTasks());
 
 }
 
@@ -159,6 +164,8 @@ void EmployersWindow::onTableHeadEmployerClicked()
         //m_modelHeadEmployerModel->changeHeadEmployerLocal(index[0].row(),headEmployer->getHeadEmployer(),insert->getHeadEmployer());
     }
     m_employer->setlist_of_head_employer(m_modelHeadEmployerModel->getListHeadEmployer());
+    ui->tableViewHeadEmployer->clearSelection();
+    ui->tableViewHeadEmployer->clearFocus();
 
 }
 
@@ -169,6 +176,8 @@ void EmployersWindow::onDeleteHeadEmployerClicked()
         m_modelHeadEmployerModel->deleteHeadEmployerLocal(index[0].row());
     }
     m_employer->setlist_of_head_employer(m_modelHeadEmployerModel->getListHeadEmployer());
+    ui->tableViewHeadEmployer->clearSelection();
+    ui->tableViewHeadEmployer->clearFocus();
 
 }
 

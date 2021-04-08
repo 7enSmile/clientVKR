@@ -33,6 +33,8 @@ void StaffEmployerWindow::onDeleteHeadEmployerClicked()
     m_modelHeadEmployer->deleteHeadEmployerGlobal(index[0].row());
     QMessageBox::information(this,"Успех","Сотрудник удален!");
     }
+    ui->tableViewHeadEmployer->clearSelection();
+    ui->tableViewHeadEmployer->clearFocus();
 
 }
 
@@ -46,6 +48,9 @@ void StaffEmployerWindow::onInsertHeadEmployerClicked()
        m_modelHeadEmployer->saveHeadEmployerGlobal(insert->getHeadEmployer());
        QMessageBox::information(this,"Успех","Сотрудник добавлен!");
     }
+    ui->tableViewHeadEmployer->clearSelection();
+    ui->tableViewHeadEmployer->clearFocus();
+
 
 }
 
@@ -63,6 +68,8 @@ void StaffEmployerWindow::onTableHeadEmployerClicked()
        m_modelHeadEmployer->saveHeadEmployerGlobal(insert->getHeadEmployer());
        QMessageBox::information(this,"Успех","Изменения внесены!");
     }
+    ui->tableViewHeadEmployer->clearSelection();
+    ui->tableViewHeadEmployer->clearFocus();
 
 }
 
@@ -73,6 +80,8 @@ void StaffEmployerWindow::onDeleteContactEmployerClicked()
     m_modelContactEmployer->deleteContactEmployerGlobal(index[0].row());
     QMessageBox::information(this,"Успех","Сотрудник удален!");
     }
+    ui->tableViewContactEmployer->clearSelection();
+    ui->tableViewContactEmployer->clearFocus();
 
 }
 
@@ -86,6 +95,8 @@ void StaffEmployerWindow::onInsertContactEmployerClicked()
        m_modelContactEmployer->saveContactEmployerGlobal(insert->getContactEmployer());
        QMessageBox::information(this,"Успех","Сотрудник добавлен!");
     }
+    ui->tableViewContactEmployer->clearSelection();
+    ui->tableViewContactEmployer->clearFocus();
 
 
 
@@ -105,6 +116,8 @@ void StaffEmployerWindow::onTableContactEmployerClicked()
        m_modelContactEmployer->saveContactEmployerGlobal(insert->getContactEmployer());
        QMessageBox::information(this,"Успех","Изменения внесены!");
     }
+    ui->tableViewContactEmployer->clearSelection();
+    ui->tableViewContactEmployer->clearFocus();
 
 }
 
