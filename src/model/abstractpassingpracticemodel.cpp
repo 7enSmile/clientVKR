@@ -62,7 +62,7 @@ QVariant AbstractPassingPracticeModel::data(const QModelIndex &index, int role) 
 void AbstractPassingPracticeModel::save(PassingPractice_ptr passingpractice)
 {
 
-     qDebug()<<m_listPassingPractice.count();
+
 
     m_listPassingPractice.insert( m_listPassingPractice.count(),passingpractice);
 

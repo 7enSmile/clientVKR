@@ -8,7 +8,7 @@ AbstractPracticeModel::AbstractPracticeModel()
 
 int AbstractPracticeModel::rowCount(const QModelIndex &parent) const
 {
-     return !parent.isValid() ? m_listPractice.count() : 0;
+    return !parent.isValid() ? m_listPractice.count() : 0;
 
 }
 
@@ -21,24 +21,24 @@ int AbstractPracticeModel::columnCount(const QModelIndex &parent) const
 QVariant AbstractPracticeModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
+    {
+
+        if (index.column() == 0)
         {
 
-            if (index.column() == 0)
-            {
 
-
-               QString title;
-               QString employer;
-               QString databegin;
-               QString dataending;
-               employer=m_listPractice.getByIndex(index.row())->getemployer()->getname();
-               databegin=m_listPractice.getByIndex(index.row())->getbeginning().toString("dd.MM.yy");
-               dataending=m_listPractice.getByIndex(index.row())->getending().toString("dd.MM.yy");
-               title=employer+"  "+databegin+" - "+dataending;
-               return title;
-            }
-
+            QString title;
+            QString employer;
+            QString databegin;
+            QString dataending;
+            employer=m_listPractice.getByIndex(index.row())->getemployer()->getname();
+            databegin=m_listPractice.getByIndex(index.row())->getbeginning().toString("dd.MM.yy");
+            dataending=m_listPractice.getByIndex(index.row())->getending().toString("dd.MM.yy");
+            title=employer+"  "+databegin+" - "+dataending;
+            return title;
         }
+
+    }
 
     return QVariant();
 
@@ -50,7 +50,22 @@ void AbstractPracticeModel::deletePractice(int index)
 }
 
 void AbstractPracticeModel::savePractice(Practice_ptr practic)
+
 {
+    ListOfPassingPractice listPassing;
+    listPassing=practic->getlist_of_passing_practice();
+    Employer_ptr employer;
+    employer.reset(new Employer());
+    employer=practic->getemployer();
+    PassingPractice_ptr passing;
+    passing.reset(new PassingPractice);
+    for(int i=0;i<listPassing.count();i++){
+     listPassing.getByIndex(i)->setemployer(employer);
+
+
+
+    }
+
 
     qx::dao::save_with_all_relation(practic);
 
