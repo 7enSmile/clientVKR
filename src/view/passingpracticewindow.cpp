@@ -41,6 +41,8 @@ PassingPracticeWindow::PassingPracticeWindow(Employer_ptr employer,Practice_ptr 
     initconnect();
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     this->setWindowTitle("Добавить");
+    if(m_passingPractice->getemployer()==nullptr)
+        ui->pushButtonHeadEmployer->setDisabled(true);
 
 }
 
