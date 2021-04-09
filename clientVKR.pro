@@ -63,7 +63,7 @@ SOURCES += $$PWD/src/view/passingpracticewindow.cpp
 SOURCES += $$PWD/src/model/abstracttaskspracticemodel.cpp
 SOURCES += $$PWD/src/view/searchstaffuniversity.cpp
 SOURCES += $$PWD/src/view/searchheademployer.cpp
-
+SOURCES += $$PWD/src/view/inserttaskpractice.cpp
 
 
 
@@ -104,6 +104,13 @@ HEADERS += $$PWD/include/model/abstractpassingpracticemodel.h
 HEADERS += $$PWD/include/view/passingpracticewindow.h
 HEADERS += $$PWD/include/view/searchstaffuniversity.h
 HEADERS += $$PWD/include/view/searchheademployer.h
+HEADERS += $$PWD/include/view/inserttaskpractice.h
+
+
+
+
+
+
 
 FORMS +=$$PWD/ui/studentswindow.ui
 FORMS +=$$PWD/ui/insertstudent.ui
@@ -124,6 +131,7 @@ FORMS +=$$PWD/ui/searchstudents.ui
 FORMS +=$$PWD/ui/passingpracticewindow.ui
 FORMS +=$$PWD/ui/searchstaffuniversity.ui
 FORMS +=$$PWD/ui/searchheademployer.ui
+FORMS +=$$PWD/ui/inserttaskpractice.ui
 
 
 # Default rules for deployment.
