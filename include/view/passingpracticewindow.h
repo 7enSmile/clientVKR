@@ -7,6 +7,7 @@
 #include "view/searchstudents.h"
 #include "view/searchstaffuniversity.h"
 #include "view/searchheademployer.h"
+#include "view/inserttaskpractice.h"
 namespace Ui {
 class PassingPracticeWindow;
 }
@@ -41,6 +42,8 @@ private slots:
     void onInsertHeadEmployerClicked();
     void onOkClicked();
     void onActionClicked();
+    void onInsertTaskClicked();
+    void onDeleteTaskClicked();
 
 };
 

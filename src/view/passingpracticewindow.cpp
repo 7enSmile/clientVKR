@@ -60,6 +60,9 @@ void PassingPracticeWindow::initconnect()
     connect(ui->pushButtonHeadEmployer,SIGNAL(clicked()),this,SLOT(onInsertHeadEmployerClicked()));
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
+    connect(ui->pushButtonInsertTask,SIGNAL(clicked()),this,SLOT(onInsertTaskClicked()));
+    connect(ui->pushButtonDeleteTask,SIGNAL(clicked()),this,SLOT(onDeleteTaskClicked()));
+
 }
 
 void PassingPracticeWindow::onTableTasksClicked()
@@ -111,6 +114,27 @@ void PassingPracticeWindow::onOkClicked()
 void PassingPracticeWindow::onActionClicked()
 {
     QDialog::accept();
+
+}
+
+void PassingPracticeWindow::onInsertTaskClicked()
+{
+    InsertTaskPractice *w=new InsertTaskPractice();
+    if(w->exec()==QDialog::Accepted){
+        qDebug()<<"ТЕст";
+        m_modelTasks->insertTaskGlobal(w->getTaskPractice());
+    }
+
+
+}
+
+void PassingPracticeWindow::onDeleteTaskClicked()
+{
+    QModelIndexList index = ui->tableViewTask->selectionModel()->selectedRows();
+    m_modelTasks->deleteTask(index[0].row());
+    ui->tableViewTask->clearSelection();
+    ui->tableViewTask->clearFocus();
+
 
 }
 
