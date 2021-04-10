@@ -89,6 +89,13 @@ void AbstractPracticeModel::loadList()
 {
     beginInsertRows(QModelIndex(),0,0);
     qx::dao::fetch_all_with_all_relation(m_listPractice);
+    ListOfPassingPractice listPassing;
+
+    for(int i=0;i<m_listPractice.count();i++){
+       listPassing=m_listPractice.getByIndex(i)->getlist_of_passing_practice();
+       qx::dao::fetch_all_with_all_relation(listPassing);
+       m_listPractice.getByIndex(i)->setlist_of_passing_practice(listPassing);
+    }
     endInsertRows();
     layoutChanged();
 

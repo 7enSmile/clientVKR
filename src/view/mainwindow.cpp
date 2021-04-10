@@ -111,7 +111,7 @@ void MainWindow::onEmployersTableClicked()
 
 
     }
-      m_modelEmployer->loadList();
+
       ui->tableViewEmployers->clearSelection();
       ui->tableViewEmployers->clearFocus();
 }
@@ -121,10 +121,11 @@ void MainWindow::onInsertEmployerClicked()
     EmployersWindow *w =new EmployersWindow();
     if(w->exec()==QDialog::Accepted){
         m_modelEmployer->saveEmployer(w->getEmployer());
+        m_modelEmployer->loadList();
 
 
     }
-     m_modelEmployer->loadList();
+
      ui->tableViewEmployers->clearSelection();
      ui->tableViewEmployers->clearFocus();
 
@@ -137,9 +138,10 @@ void MainWindow::onPracticeTableClicked()
     PracticeWindow *w=new PracticeWindow(m_modelPractice->getListEmployer(),m_modelPractice->getPractice(index[0].row()));
     if(w->exec()==QDialog::Accepted){
         m_modelPractice->savePractice(w->getPractice());
+        m_modelPractice->loadList();
 
     }
-    m_modelPractice->loadList();
+
     ui->tableViewPractice->clearSelection();
     ui->tableViewPractice->clearFocus();
 
@@ -150,9 +152,10 @@ void MainWindow::onInsertPracticeClicked()
     PracticeWindow *w=new PracticeWindow(m_modelPractice->getListEmployer());
     if(w->exec()==QDialog::Accepted){
         m_modelPractice->savePractice(w->getPractice());
+        m_modelPractice->loadList();
 
     }
-    m_modelPractice->loadList();
+
     ui->tableViewPractice->clearSelection();
     ui->tableViewPractice->clearFocus();
 

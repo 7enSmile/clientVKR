@@ -8,6 +8,7 @@
 #include "view/searchstaffuniversity.h"
 #include "view/searchheademployer.h"
 #include "view/inserttaskpractice.h"
+#include "model/abstractreportsmodel.h"
 namespace Ui {
 class PassingPracticeWindow;
 }
@@ -17,6 +18,7 @@ class PassingPracticeWindow : public QDialog
     Q_OBJECT
 
 public:
+
     PassingPracticeWindow(PassingPractice_ptr,QWidget *parent = nullptr);
 
     PassingPracticeWindow(Employer_ptr,Practice_ptr ,QWidget *parent = nullptr);
@@ -30,6 +32,7 @@ private:
     PassingPractice_ptr m_passingPractice;
 
     AbstractTasksPracticeModel *m_modelTasks;
+    AbstractReportsModel *m_modelReports;
     void initconnect();
     ~PassingPracticeWindow();
     Ui::PassingPracticeWindow *ui;

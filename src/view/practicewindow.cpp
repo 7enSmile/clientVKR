@@ -104,6 +104,7 @@ void PracticeWindow::onActionClicked()
 void PracticeWindow::onTablePassingPracticeclicked()
 {
     QModelIndexList index = ui->tableViewPassingPractice->selectionModel()->selectedRows();
+
     PassingPracticeWindow *w=new PassingPracticeWindow(m_modelPassingPractice->getPassingpractice(index[0].row()));
     if(w->exec()==QDialog::Accepted){
         m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());

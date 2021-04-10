@@ -5,6 +5,8 @@
 AbstractPassingPracticeModel::AbstractPassingPracticeModel(ListOfPassingPractice listPassingPractice)
 {
     m_listPassingPractice=listPassingPractice;
+
+
     loadList();
 
 }
@@ -87,6 +89,7 @@ void AbstractPassingPracticeModel::deletePassingPractice(int index)
 
 PassingPractice_ptr AbstractPassingPracticeModel::getPassingpractice(int index)
 {
+
     return m_listPassingPractice.getByIndex(index);
 
 }
