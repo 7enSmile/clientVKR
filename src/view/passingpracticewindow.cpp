@@ -41,6 +41,10 @@ PassingPracticeWindow::PassingPracticeWindow(Employer_ptr employer,Practice_ptr 
     m_passingPractice->setpractice(practice);
     m_modelTasks=new AbstractTasksPracticeModel(m_passingPractice->gettask());
     ui->tableViewTask->setModel(m_modelTasks);
+
+
+    m_modelReports=new AbstractReportsModel(m_passingPractice->getlist_of_reports());
+    ui->tableViewReports->setModel(m_modelReports);
     initconnect();
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     this->setWindowTitle("Добавить");

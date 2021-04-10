@@ -10,7 +10,7 @@ ReportWindow::ReportWindow(PassingPractice_ptr passingPractice,QWidget *parent) 
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect( ui->pushButtonReport,SIGNAL(clicked()),this,SLOT(onInputReportClicked()));
-    m_report->setpassing_practice(passingPractice);
+    //m_report->setpassing_practice(passingPractice);
 
 }
 
@@ -62,15 +62,7 @@ ReportWindow::~ReportWindow()
 
 void ReportWindow::onActionClicked()
 {
-    PracticeResult_ptr result;
-    result.reset(new PracticeResult());
-    if(m_report->getpractice_result()!=nullptr){
-    result=m_report->getpractice_result();
-    }
-    result->setestimate_employer(ui->comboBoxHEadEmployer->currentText());
-    result->setestimate_university(ui->comboBoxHeadUniversity->currentText());
-    result->setpassing_practice(m_report->getpassing_practice());
-    m_report->setpractice_result(result);
+
     m_report->setfeedback_employer(ui->plainTextEditHEadEmployer->toPlainText());
     m_report->setfeedback_university(ui->plainTextEditHeadUniversity->toPlainText());
     QDialog::accept();

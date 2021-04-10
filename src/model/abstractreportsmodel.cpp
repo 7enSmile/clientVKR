@@ -69,12 +69,13 @@ ListOfReport &AbstractReportsModel::getListReports()
 
 void AbstractReportsModel::saveReport(Report_ptr report)
 {
-    if(m_listReports.count()!=0){
+
+    if(!m_listReports.empty()){
     m_listReports.insert(m_listReports.getKeyByIndex(m_listReports.count()-1)+1,report);
     }
     else{
 
-         m_listReports.insert(m_listReports.count(),report);
+         m_listReports.insert(1,report);
 
     }
     layoutChanged();

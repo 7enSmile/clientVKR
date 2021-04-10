@@ -71,7 +71,10 @@ void AbstractPracticeModel::savePractice(Practice_ptr practic)
 
         }
     }
+    ListOfReport listReport;
     for(int i=0;i<listPassing.count();i++){
+     listReport=listPassing.getByIndex(i)->getlist_of_reports();
+     qx::dao::save_with_all_relation(listReport);
      qx::dao::save_with_all_relation(listPassing.getByIndex(i));
     }
 
