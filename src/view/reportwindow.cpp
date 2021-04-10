@@ -25,6 +25,10 @@ ReportWindow::ReportWindow(Report_ptr report, QWidget *parent):
     ui->pushButtonOk->setText("Ок");
     ui->plainTextEditHEadEmployer->setPlainText(m_report->getfeedback_employer());
     ui->plainTextEditHeadUniversity->setPlainText(m_report->getfeedback_university());
+
+    ui->comboBoxHEadEmployer->setCurrentText(m_report->getpractice_result()->getestimate_employer());
+    ui->comboBoxHeadUniversity->setCurrentText(m_report->getpractice_result()->getestimate_university());
+
     if(m_report->getreport().isEmpty()){
 
 
@@ -58,9 +62,17 @@ ReportWindow::~ReportWindow()
 
 void ReportWindow::onActionClicked()
 {
+    PracticeResult_ptr result;
+    result.reset(new PracticeResult());
+    if(m_report->getpractice_result()!=nullptr){
+    result=m_report->getpractice_result();
+    }
+    result->setestimate_employer(ui->comboBoxHEadEmployer->currentText());
+    result->setestimate_university(ui->comboBoxHeadUniversity->currentText());
+    result->setpassing_practice(m_report->getpassing_practice());
+    m_report->setpractice_result(result);
     m_report->setfeedback_employer(ui->plainTextEditHEadEmployer->toPlainText());
     m_report->setfeedback_university(ui->plainTextEditHeadUniversity->toPlainText());
-
     QDialog::accept();
 
 }

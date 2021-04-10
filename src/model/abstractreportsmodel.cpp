@@ -4,6 +4,7 @@ AbstractReportsModel::AbstractReportsModel(ListOfReport listReports)
 {
 
     m_listReports=listReports;
+    //loadList();
 
 
 
@@ -13,6 +14,14 @@ AbstractReportsModel::AbstractReportsModel(ListOfReport listReports)
 
 void AbstractReportsModel::loadList()
 {
+    PracticeResult_ptr result;
+    result.reset(new PracticeResult());
+    for(int i=0;i<m_listReports.count();i++){
+        result->setpractice_result_id(m_listReports.getByIndex(i)->getpractice_result()->getpractice_result_id());
+        qx::dao::fetch_by_id(result);
+        m_listReports.getByIndex(i)->setpractice_result(result);
+
+    }
 
 }
 
@@ -60,7 +69,14 @@ ListOfReport &AbstractReportsModel::getListReports()
 
 void AbstractReportsModel::saveReport(Report_ptr report)
 {
-    m_listReports.insert(m_listReports.count(),report);
+    if(m_listReports.count()!=0){
+    m_listReports.insert(m_listReports.getKeyByIndex(m_listReports.count()-1)+1,report);
+    }
+    else{
+
+         m_listReports.insert(m_listReports.count(),report);
+
+    }
     layoutChanged();
 
 }
