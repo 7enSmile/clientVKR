@@ -152,7 +152,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="pushButtonInsertReport">
            <property name="text">
             <string>Добавить</string>
            </property>

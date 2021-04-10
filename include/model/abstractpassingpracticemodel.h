@@ -9,6 +9,7 @@ public:
     AbstractPassingPracticeModel(ListOfPassingPractice);
     ListOfPassingPractice getListPassingpractice();
     void savePassingPractice(PassingPractice_ptr);
+    void changePassingPractice(PassingPractice_ptr,int);
     PassingPractice_ptr getPassingpractice(int);
     void save(PassingPractice_ptr);
     void deletePassingPractice(int index);

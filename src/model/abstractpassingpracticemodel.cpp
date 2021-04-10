@@ -17,6 +17,15 @@ ListOfPassingPractice AbstractPassingPracticeModel::getListPassingpractice()
     return m_listPassingPractice;
 }
 
+void AbstractPassingPracticeModel::changePassingPractice(PassingPractice_ptr passingPractice,int index)
+{
+
+    m_listPassingPractice.removeByIndex(index);
+    m_listPassingPractice.insert(passingPractice->getPassingPractice_id(),passingPractice);
+
+
+}
+
 
 
 int AbstractPassingPracticeModel::rowCount(const QModelIndex &parent) const
@@ -110,17 +119,17 @@ void AbstractPassingPracticeModel::loadList()
     for(int i=0;i<m_listPassingPractice.count();i++){
         if( m_listPassingPractice.getByIndex(i)->gethead_employer()!=nullptr){
             headEmployer=m_listPassingPractice.getByIndex(i)->gethead_employer();
-            qx::dao::fetch_by_id_with_all_relation(headEmployer);
+            qx::dao::fetch_by_id_with_relation("person_id",headEmployer);
             m_listPassingPractice.getByIndex(i)->sethead_employer(headEmployer);
         }
         if( m_listPassingPractice.getByIndex(i)->gethead_university()!=nullptr){
             headUniversity=m_listPassingPractice.getByIndex(i)->gethead_university();
-            qx::dao::fetch_by_id_with_all_relation(headUniversity);
+            qx::dao::fetch_by_id_with_relation("person",headUniversity);
             m_listPassingPractice.getByIndex(i)->sethead_university(headUniversity);
         }
         if( m_listPassingPractice.getByIndex(i)->getstuden()!=nullptr){
             student=m_listPassingPractice.getByIndex(i)->getstuden();
-            qx::dao::fetch_by_id_with_all_relation(student);
+            qx::dao::fetch_by_id_with_relation("person_id",student);
             m_listPassingPractice.getByIndex(i)->setstuden(student);
         }
 

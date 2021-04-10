@@ -61,9 +61,18 @@ void AbstractPracticeModel::savePractice(Practice_ptr practic)
     passing.reset(new PassingPractice);
     for(int i=0;i<listPassing.count();i++){
      listPassing.getByIndex(i)->setemployer(employer);
+    }
+    for(int i=0;i<listPassing.count();i++){
+        for(int j=0;j<listPassing.getByIndex(i)->list_of_reports().count();j++){
 
+            listPassing.getByIndex(i)->list_of_reports().getByIndex(j)->sethead_employer(listPassing.getByIndex(i)->gethead_employer());
+            listPassing.getByIndex(i)->list_of_reports().getByIndex(j)->sethead_university(listPassing.getByIndex(i)->gethead_university());
+            listPassing.getByIndex(i)->list_of_reports().getByIndex(j)->setstudent(listPassing.getByIndex(i)->getstuden());
 
-
+        }
+    }
+    for(int i=0;i<listPassing.count();i++){
+     qx::dao::save_with_all_relation(listPassing.getByIndex(i));
     }
 
 

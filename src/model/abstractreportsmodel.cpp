@@ -4,8 +4,8 @@ AbstractReportsModel::AbstractReportsModel(ListOfReport listReports)
 {
 
     m_listReports=listReports;
-    qDebug()<<m_listReports.count();
-    loadList();
+
+
 
 }
 
@@ -13,7 +13,7 @@ AbstractReportsModel::AbstractReportsModel(ListOfReport listReports)
 
 void AbstractReportsModel::loadList()
 {
-   qx::dao::fetch_by_id_with_all_relation(m_listReports);
+
 }
 
 
@@ -61,6 +61,7 @@ ListOfReport &AbstractReportsModel::getListReports()
 void AbstractReportsModel::saveReport(Report_ptr report)
 {
     m_listReports.insert(m_listReports.count(),report);
+    layoutChanged();
 
 }
 
@@ -70,3 +71,5 @@ Report_ptr AbstractReportsModel::getReport(int index)
     return m_listReports.getByIndex(index);
 
 }
+
+

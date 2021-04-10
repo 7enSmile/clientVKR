@@ -9,6 +9,7 @@
 #include "view/searchheademployer.h"
 #include "view/inserttaskpractice.h"
 #include "model/abstractreportsmodel.h"
+#include "view/reportwindow.h"
 namespace Ui {
 class PassingPracticeWindow;
 }
@@ -47,6 +48,8 @@ private slots:
     void onActionClicked();
     void onInsertTaskClicked();
     void onDeleteTaskClicked();
+    void onTableReportClicked();
+    void onInsertReportClicked();
 
 };
 

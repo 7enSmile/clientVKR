@@ -53,6 +53,7 @@ PassingPractice_ptr& PassingPracticeWindow::getPassingPractice()
 {
 
 
+
     return m_passingPractice;
 
 }
@@ -67,6 +68,8 @@ void PassingPracticeWindow::initconnect()
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     connect(ui->pushButtonInsertTask,SIGNAL(clicked()),this,SLOT(onInsertTaskClicked()));
     connect(ui->pushButtonDeleteTask,SIGNAL(clicked()),this,SLOT(onDeleteTaskClicked()));
+    connect(ui->tableViewReports,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableReportClicked()));
+    connect(ui->pushButtonInsertReport,SIGNAL(clicked()),this,SLOT(onInsertReportClicked()));
 
 }
 
@@ -140,6 +143,27 @@ void PassingPracticeWindow::onDeleteTaskClicked()
     ui->tableViewTask->clearSelection();
     ui->tableViewTask->clearFocus();
 
+
+}
+
+void PassingPracticeWindow::onTableReportClicked()
+{
+    QModelIndexList index = ui->tableViewReports->selectionModel()->selectedRows();
+    ReportWindow *w=new ReportWindow(m_modelReports->getReport(index[0].row()));
+    if(w->exec()==QDialog::Accepted){
+
+        m_passingPractice->setlist_of_reports(m_modelReports->getListReports());
+    }
+
+}
+
+void PassingPracticeWindow::onInsertReportClicked()
+{
+    ReportWindow *w=new ReportWindow(m_passingPractice);
+    if(w->exec()==QDialog::Accepted){
+        m_modelReports->saveReport(w->getReport());
+        m_passingPractice->setlist_of_reports(m_modelReports->getListReports());
+    }
 
 }
 
