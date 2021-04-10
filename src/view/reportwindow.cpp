@@ -1,4 +1,4 @@
-#include "reportwindow.h"
+#include "view/reportwindow.h"
 #include "ui_reportwindow.h"
 
 ReportWindow::ReportWindow(QWidget *parent) :

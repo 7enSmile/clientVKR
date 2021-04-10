@@ -13,7 +13,7 @@ AbstractReportsModel::AbstractReportsModel(ListOfReport listReports)
 
 void AbstractReportsModel::loadList()
 {
-    qx::dao::fetch_all_with_all_relation(m_listReports);
+   qx::dao::fetch_by_id_with_all_relation(m_listReports);
 }
 
 

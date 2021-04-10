@@ -93,7 +93,7 @@ void AbstractPracticeModel::loadList()
 
     for(int i=0;i<m_listPractice.count();i++){
        listPassing=m_listPractice.getByIndex(i)->getlist_of_passing_practice();
-       qx::dao::fetch_all_with_all_relation(listPassing);
+       qx::dao::fetch_by_id_with_all_relation(listPassing);
        m_listPractice.getByIndex(i)->setlist_of_passing_practice(listPassing);
     }
     endInsertRows();
