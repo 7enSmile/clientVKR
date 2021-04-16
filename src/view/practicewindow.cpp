@@ -107,10 +107,10 @@ void PracticeWindow::onTablePassingPracticeclicked()
 
     PassingPracticeWindow *w=new PassingPracticeWindow(m_modelPassingPractice->getPassingpractice(index[0].row()));
     if(w->exec()==QDialog::Accepted){
-        m_modelPassingPractice->changePassingPractice(w->getPassingPractice(),index[0].row());
+
 
         m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
-        qDebug()<< m_practice->getlist_of_passing_practice().getByIndex(index[0].row())->getlist_of_reports().getByIndex(0)->getfeedback_employer();
+
     }
 
 
