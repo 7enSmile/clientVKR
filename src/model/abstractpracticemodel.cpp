@@ -60,7 +60,7 @@ void AbstractPracticeModel::savePractice(Practice_ptr practic)
     PassingPractice_ptr passing;
     passing.reset(new PassingPractice);
     for(int i=0;i<listPassing.count();i++){
-     listPassing.getByIndex(i)->setemployer(employer);
+        listPassing.getByIndex(i)->setemployer(employer);
     }
     for(int i=0;i<listPassing.count();i++){
         for(int j=0;j<listPassing.getByIndex(i)->list_of_reports().count();j++){
@@ -68,14 +68,26 @@ void AbstractPracticeModel::savePractice(Practice_ptr practic)
             listPassing.getByIndex(i)->list_of_reports().getByIndex(j)->sethead_employer(listPassing.getByIndex(i)->gethead_employer());
             listPassing.getByIndex(i)->list_of_reports().getByIndex(j)->sethead_university(listPassing.getByIndex(i)->gethead_university());
             listPassing.getByIndex(i)->list_of_reports().getByIndex(j)->setstudent(listPassing.getByIndex(i)->getstuden());
+            listPassing.getByIndex(i)->list_of_reports().getByIndex(j)->getpractice_result()->setStudent((listPassing.getByIndex(i)->getstuden()));
+            listPassing.getByIndex(i)->list_of_reports().getByIndex(j)->getpractice_result()->setpassing_practice((listPassing.getByIndex(i)));
+
 
         }
     }
     ListOfReport listReport;
+    PracticeResult_ptr practiceresult;
+    practiceresult.reset(new PracticeResult());
     for(int i=0;i<listPassing.count();i++){
-     listReport=listPassing.getByIndex(i)->getlist_of_reports();
-     qx::dao::save_with_all_relation(listReport);
-     qx::dao::save_with_all_relation(listPassing.getByIndex(i));
+        listReport=listPassing.getByIndex(i)->getlist_of_reports();
+
+        qx::dao::save_with_all_relation(listReport);
+        qx::dao::save_with_all_relation(listPassing.getByIndex(i));
+        for(int j=0;j<listReport.count();j++){
+            if(listReport.getByIndex(j)->getpractice_result()->getestimate_employer()!=""){
+                practiceresult=listReport.getByIndex(j)->getpractice_result();
+                qx::dao::save(practiceresult);
+            }
+        }
     }
 
 
@@ -104,9 +116,9 @@ void AbstractPracticeModel::loadList()
     ListOfPassingPractice listPassing;
 
     for(int i=0;i<m_listPractice.count();i++){
-       listPassing=m_listPractice.getByIndex(i)->getlist_of_passing_practice();
-       qx::dao::fetch_by_id_with_all_relation(listPassing);
-       m_listPractice.getByIndex(i)->setlist_of_passing_practice(listPassing);
+        listPassing=m_listPractice.getByIndex(i)->getlist_of_passing_practice();
+        qx::dao::fetch_by_id_with_all_relation(listPassing);
+        m_listPractice.getByIndex(i)->setlist_of_passing_practice(listPassing);
     }
     endInsertRows();
     layoutChanged();

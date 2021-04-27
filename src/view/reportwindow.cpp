@@ -11,6 +11,8 @@ ReportWindow::ReportWindow(PassingPractice_ptr passingPractice,QWidget *parent) 
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect( ui->pushButtonReport,SIGNAL(clicked()),this,SLOT(onInputReportClicked()));
     m_report->setpassing_practice(passingPractice);
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    this->setWindowTitle("Добавить");
 
 }
 
@@ -25,11 +27,12 @@ ReportWindow::ReportWindow(Report_ptr report, QWidget *parent):
     ui->pushButtonOk->setText("Ок");
     ui->plainTextEditHEadEmployer->setPlainText(m_report->getfeedback_employer());
     ui->plainTextEditHeadUniversity->setPlainText(m_report->getfeedback_university());
+    this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    this->setWindowTitle("Изменить");
 
 
 
     if(m_report->getreport().isEmpty()){
-
 
         connect( ui->pushButtonReport,SIGNAL(clicked()),this,SLOT(onInputReportClicked()));
 
@@ -43,6 +46,11 @@ ReportWindow::ReportWindow(Report_ptr report, QWidget *parent):
     }
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
+    if(m_report->getpractice_result()!=nullptr){
+        ui->comboBoxHEadEmployer->setCurrentText(m_report->getpractice_result()->getestimate_employer());
+        ui->comboBoxHeadUniversity->setCurrentText(m_report->getpractice_result()->getestimate_university());
+        qDebug()<<m_report->getpractice_result()->getpractice_result_id();
+    }
 
 
 }
@@ -61,7 +69,21 @@ ReportWindow::~ReportWindow()
 
 void ReportWindow::onActionClicked()
 {
+    if(m_report->getpractice_result()==nullptr){
+    PracticeResult_ptr practiceresult;
+    practiceresult.reset(new PracticeResult);
+    practiceresult->setestimate_employer(ui->comboBoxHEadEmployer->currentText());
+    practiceresult->setestimate_university(ui->comboBoxHeadUniversity->currentText());
+    m_report->setpractice_result(practiceresult);
+    }else{
+      PracticeResult_ptr practiceresult;
+      practiceresult.reset(new PracticeResult);
+      practiceresult=m_report->getpractice_result();
+      practiceresult->setestimate_employer((ui->comboBoxHEadEmployer->currentText()));
+      practiceresult->setestimate_university(ui->comboBoxHeadUniversity->currentText());
+      m_report->setpractice_result(practiceresult);
 
+    }
     m_report->setfeedback_employer(ui->plainTextEditHEadEmployer->toPlainText());
     m_report->setfeedback_university(ui->plainTextEditHeadUniversity->toPlainText());
     QDialog::accept();

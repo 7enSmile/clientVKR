@@ -4,7 +4,7 @@ AbstractReportsModel::AbstractReportsModel(ListOfReport listReports)
 {
 
     m_listReports=listReports;
-    //loadList();
+    loadList();
 
 
 
@@ -17,11 +17,14 @@ void AbstractReportsModel::loadList()
     PracticeResult_ptr result;
     result.reset(new PracticeResult());
     for(int i=0;i<m_listReports.count();i++){
-        result->setpractice_result_id(m_listReports.getByIndex(i)->getpractice_result()->getpractice_result_id());
+      if(m_listReports.getByIndex(i)->getpractice_result()!=nullptr){
+        result=m_listReports.getByIndex(i)->getpractice_result();
         qx::dao::fetch_by_id(result);
         m_listReports.getByIndex(i)->setpractice_result(result);
-
+        }
     }
+
+
 
 }
 
@@ -84,6 +87,7 @@ void AbstractReportsModel::saveReport(Report_ptr report)
 
 Report_ptr AbstractReportsModel::getReport(int index)
 {
+
 
     return m_listReports.getByIndex(index);
 
