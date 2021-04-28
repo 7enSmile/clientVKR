@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButtonInsertEmployer,SIGNAL(clicked()),this,SLOT(onInsertEmployerClicked()));
     connect(ui->tableViewPractice,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onPracticeTableClicked()));
     connect(ui->pushButtonInserPractice,SIGNAL(clicked()),this,SLOT(onInsertPracticeClicked()));
+    connect(ui->pushButtonReport,SIGNAL(clicked()),this,SLOT(onReportPracticeClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -160,5 +161,12 @@ void MainWindow::onInsertPracticeClicked()
 
     ui->tableViewPractice->clearSelection();
     ui->tableViewPractice->clearFocus();
+
+}
+
+void MainWindow::onReportPracticeClicked()
+{
+    ReportPracticeWindow *w=new ReportPracticeWindow();
+    w->exec();
 
 }

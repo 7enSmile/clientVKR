@@ -11,6 +11,7 @@
 #include "view/employerswindow.h"
 #include "model/abstractpracticemodel.h"
 #include "view/practicewindow.h"
+#include "view/reportpracticewindow.h"
 namespace Ui {
 class MainWindow;
 }
@@ -39,6 +40,7 @@ private slots:
     void onInsertEmployerClicked();
     void onPracticeTableClicked();
     void onInsertPracticeClicked();
+    void onReportPracticeClicked();
 
 
 
