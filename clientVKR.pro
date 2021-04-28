@@ -67,6 +67,7 @@ SOURCES += $$PWD/src/view/inserttaskpractice.cpp
 SOURCES += $$PWD/src/model/abstractreportsmodel.cpp
 SOURCES += $$PWD/src/view/reportwindow.cpp
 SOURCES += $$PWD/src/view/reportpracticewindow.cpp
+SOURCES += $$PWD/src/model/abstactsubclassmodel.cpp
 
 
 
@@ -110,6 +111,7 @@ HEADERS += $$PWD/include/view/inserttaskpractice.h
 HEADERS += $$PWD/include/model/abstractreportsmodel.h
 HEADERS += $$PWD/include/view/reportwindow.h
 HEADERS += $$PWD/include/view/reportpracticewindow.h
+HEADERS += $$PWD/include/model/abstactsubclassmodel.h
 
 
 

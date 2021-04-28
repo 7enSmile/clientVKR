@@ -13,6 +13,20 @@ PracticeWindow::PracticeWindow(ListOfEmployer listEmployers, Practice_ptr practi
     iniconnection();
     m_modelPassingPractice=new AbstractPassingPracticeModel(m_practice->getlist_of_passing_practice());
     ui->tableViewPassingPractice->setModel(m_modelPassingPractice);
+    if(m_practice->getlist_of_TestPractice().count()!=0){
+
+        connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onGetTestClicked()));
+        ui->pushButtonTest->setText("Тестовое задание");
+
+
+    }else{
+
+        connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
+        ui->pushButtonDeleteTest->hide();
+
+
+
+    }
 
 
 }
@@ -28,8 +42,10 @@ PracticeWindow::PracticeWindow(ListOfEmployer listEmployers, QWidget *parent) :
     iniconnection();
     m_modelPassingPractice=new AbstractPassingPracticeModel(m_practice->getlist_of_passing_practice());
     ui->tableViewPassingPractice->setModel(m_modelPassingPractice);
+    ui->pushButtonDeleteTest->hide();
     //ui->pushButtonInserPassingPractice->setEnabled(false);
     //ui->pushButtonDeletePassingPractice->setEnabled(false);
+    connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
 }
 
 PracticeWindow::~PracticeWindow()
@@ -53,6 +69,7 @@ void PracticeWindow::iniconnection()
     connect(ui->tableViewPassingPractice,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTablePassingPracticeclicked()));
     connect(ui->pushButtonInserPassingPractice,SIGNAL(clicked()),this,SLOT(onInsertPassingPracticeClicked()));
     connect(ui->pushButtonDeletePassingPractice,SIGNAL(clicked()),this,SLOT(onDeletePassingPractice()));
+    connect(ui->pushButtonDeleteTest,SIGNAL(clicked()),this,SLOT(onDeleteTestClicked()));
 
 }
 
@@ -133,6 +150,65 @@ void PracticeWindow::onDeletePassingPractice()
     m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
     ui->tableViewPassingPractice->clearSelection();
     ui->tableViewPassingPractice->clearFocus();
+
+}
+
+void PracticeWindow::onInsertTestClicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "Загрузить тестовое задание", QStandardPaths::writableLocation(QStandardPaths::HomeLocation), QFileDialog::tr("*"));
+
+    QFile file(fileName);
+
+    file.open(QIODevice::ReadOnly);
+    QByteArray array=file.readAll();
+
+    QFileInfo fileInfo(file.fileName());
+    QString nameTest(fileInfo.fileName());
+    TestPractice_ptr testpractice;
+    testpractice.reset(new TestPractice());
+    testpractice->setdata(array);
+    testpractice->setname(nameTest);
+    testpractice->setpractice(m_practice);
+    testpractice->setemployer(m_practice->getemployer());
+    listOfTestPractice list;
+    list.insert(0,testpractice);
+    m_practice->setlist_of_TestPractice(list);
+    file.close();
+    disconnect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
+    connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onGetTestClicked()));
+    ui->pushButtonTest->setText("Тестовое задание");
+    ui->pushButtonDeleteTest->show();
+
+
+}
+
+void PracticeWindow::onGetTestClicked()
+{
+
+    QString fileName = QFileDialog::getSaveFileName(this, "Тестовое задание", m_practice->getlist_of_TestPractice().getByIndex(0)->getname());
+
+    QFile file(fileName);
+
+    file.open(QIODevice::WriteOnly);
+
+    file.write(m_practice->getlist_of_TestPractice().getByIndex(0)->getdata());
+
+    file.close();
+
+
+}
+
+void PracticeWindow::onDeleteTestClicked()
+{
+     AbstactSubClassModel model;
+     model.deleteTestPractice(m_practice->getlist_of_TestPractice().getByIndex(0));
+     m_practice->getlist_of_TestPractice().clear();
+     disconnect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onGetTestClicked()));
+     connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
+     ui->pushButtonDeleteTest->hide();
+     ui->pushButtonTest->setText("Загрузить задание");
+
+
 
 }
 

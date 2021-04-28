@@ -5,6 +5,7 @@
 #include "Report.h"
 #include <QFileDialog>
 #include <QStandardPaths>
+
 namespace Ui {
 class ReportWindow;
 }

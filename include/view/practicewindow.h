@@ -6,6 +6,7 @@
 #include "Employer.h"
 #include "model/abstractpassingpracticemodel.h"
 #include "view/passingpracticewindow.h"
+#include "model/abstactsubclassmodel.h"
 namespace Ui {
 class PracticeWindow;
 }
@@ -34,6 +35,9 @@ private slots:
     void onTablePassingPracticeclicked();
     void onInsertPassingPracticeClicked();
     void onDeletePassingPractice();
+    void onInsertTestClicked();
+    void onGetTestClicked();
+    void onDeleteTestClicked();
 
 };
 
