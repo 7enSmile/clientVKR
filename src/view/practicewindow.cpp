@@ -202,7 +202,8 @@ void PracticeWindow::onDeleteTestClicked()
 {
      AbstactSubClassModel model;
      model.deleteTestPractice(m_practice->getlist_of_TestPractice().getByIndex(0));
-     m_practice->getlist_of_TestPractice().clear();
+     listOfTestPractice list;
+     m_practice->setlist_of_TestPractice(list);
      disconnect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onGetTestClicked()));
      connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
      ui->pushButtonDeleteTest->hide();
