@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/sfu.ico</file>
+    </qresource>
+</RCC>
