@@ -98,6 +98,7 @@ void MainWindow::onStaffUniversityClicked()
 
 void MainWindow::onExitClicked()
 {
+    MainWindow::close();
 
 }
 
@@ -139,10 +140,11 @@ void MainWindow::onPracticeTableClicked()
     PracticeWindow *w=new PracticeWindow(m_modelPractice->getListEmployer(),m_modelPractice->getPractice(index[0].row()));
     if(w->exec()==QDialog::Accepted){
         m_modelPractice->savePractice(w->getPractice());
+        //m_modelPractice->loadList();
 
 
     }
-     m_modelPractice->loadList();
+
 
     ui->tableViewPractice->clearSelection();
     ui->tableViewPractice->clearFocus();
@@ -154,10 +156,11 @@ void MainWindow::onInsertPracticeClicked()
     PracticeWindow *w=new PracticeWindow(m_modelPractice->getListEmployer());
     if(w->exec()==QDialog::Accepted){
         m_modelPractice->savePractice(w->getPractice());
+        //m_modelPractice->loadList();
 
 
     }
-    m_modelPractice->loadList();
+
 
     ui->tableViewPractice->clearSelection();
     ui->tableViewPractice->clearFocus();

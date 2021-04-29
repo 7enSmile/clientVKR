@@ -68,6 +68,11 @@ SOURCES += $$PWD/src/model/abstractreportsmodel.cpp
 SOURCES += $$PWD/src/view/reportwindow.cpp
 SOURCES += $$PWD/src/view/reportpracticewindow.cpp
 SOURCES += $$PWD/src/model/abstactsubclassmodel.cpp
+SOURCES += $$PWD/src/view/authorizationwindow.cpp
+SOURCES += $$PWD/src/view/adminwindow.cpp
+SOURCES += $$PWD/src/view/insertuser.cpp
+SOURCES += $$PWD/src/model/abstractusersmodel.cpp
+SOURCES += $$PWD/src/model/checkauthorizationmodel.cpp
 
 
 
@@ -112,6 +117,11 @@ HEADERS += $$PWD/include/model/abstractreportsmodel.h
 HEADERS += $$PWD/include/view/reportwindow.h
 HEADERS += $$PWD/include/view/reportpracticewindow.h
 HEADERS += $$PWD/include/model/abstactsubclassmodel.h
+HEADERS += $$PWD/include/view/authorizationwindow.h
+HEADERS += $$PWD/include/view/adminwindow.h
+HEADERS += $$PWD/include/view/insertuser.h
+HEADERS += $$PWD/include/model/abstractusersmodel.h
+HEADERS += $$PWD/include/model/checkauthorizationmodel.h
 
 
 
@@ -139,6 +149,9 @@ FORMS +=$$PWD/ui/searchheademployer.ui
 FORMS +=$$PWD/ui/inserttaskpractice.ui
 FORMS +=$$PWD/ui/reportwindow.ui
 FORMS +=$$PWD/ui/reportpracticewindow.ui
+FORMS +=$$PWD/ui/authorizationwindow.ui
+FORMS +=$$PWD/ui/adminwindow.ui
+FORMS +=$$PWD/ui/insertuser.ui
 
 
 # Default rules for deployment.

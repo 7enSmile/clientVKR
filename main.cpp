@@ -5,12 +5,13 @@
 #include <QtCore/qcoreapplication.h>
 #include <QApplication>
 #include "view/searchstudents.h"
+#include "view/authorizationwindow.h"
 void init();
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    init();
-    MainWindow *w=new MainWindow();
+
+    AuthorizationWindow *w=new AuthorizationWindow();
 
 
     w->show();
@@ -21,10 +22,5 @@ int main(int argc, char *argv[])
 
 }
 void init(){
-    qx::QxSqlDatabase::getSingleton()->setDriverName("QPSQL");
-    qx::QxSqlDatabase::getSingleton()->setDatabaseName("department");
-    qx::QxSqlDatabase::getSingleton()->setHostName("localhost");
-    qx::QxSqlDatabase::getSingleton()->setUserName("postgres");
-    qx::QxSqlDatabase::getSingleton()->setPassword("hesoyam2012QWE");
-    qx::QxSqlDatabase::getSingleton()->setVerifyOffsetRelation(true);
+
 }
