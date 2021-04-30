@@ -16,6 +16,7 @@ EmployersWindow::EmployersWindow(QWidget *parent) :
     ui->lineEditName->setText(m_employer->getname());
     ui->pushButtonAction->setText("Добавить");
     ui->pushButtonOk->setText("Отмена");
+
 }
 
 EmployersWindow::EmployersWindow(Employer_ptr employer,QWidget *parent) :

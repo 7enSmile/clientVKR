@@ -62,6 +62,8 @@ void MainWindow::addSubMenu()
 
 void MainWindow::onEventsClicked()
 {
+    EventsWindow *w=new EventsWindow(m_modelEmployer->getList());
+    w->exec();
    \
 
 }

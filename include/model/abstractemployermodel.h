@@ -25,6 +25,8 @@ public:
 
     Employer_ptr getEmployer(int);
 
+    ListOfEmployer& getList();
+
     void loadList();
 
 };

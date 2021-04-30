@@ -12,6 +12,7 @@
 #include "model/abstractpracticemodel.h"
 #include "view/practicewindow.h"
 #include "view/reportpracticewindow.h"
+#include "view/eventswindow.h"
 namespace Ui {
 class MainWindow;
 }

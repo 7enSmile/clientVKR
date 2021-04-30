@@ -73,6 +73,7 @@ SOURCES += $$PWD/src/view/adminwindow.cpp
 SOURCES += $$PWD/src/view/insertuser.cpp
 SOURCES += $$PWD/src/model/abstractusersmodel.cpp
 SOURCES += $$PWD/src/model/checkauthorizationmodel.cpp
+SOURCES += $$PWD/src/model/abstracteventsmodel.cpp
 
 
 
@@ -122,6 +123,7 @@ HEADERS += $$PWD/include/view/adminwindow.h
 HEADERS += $$PWD/include/view/insertuser.h
 HEADERS += $$PWD/include/model/abstractusersmodel.h
 HEADERS += $$PWD/include/model/checkauthorizationmodel.h
+HEADERS += $$PWD/include/model/abstracteventsmodel.h
 
 
 
@@ -139,7 +141,7 @@ FORMS +=$$PWD/ui/insertstaffemployer.ui
 FORMS +=$$PWD/ui/employerswindow.ui
 FORMS +=$$PWD/ui/additionalwindow.ui
 FORMS +=$$PWD/ui/insertadditional.ui
-FORMS +=$$PWD/ui/inserevent.ui
+FORMS +=$$PWD/ui/insertevent.ui
 FORMS +=$$PWD/ui/eventswindow.ui
 FORMS +=$$PWD/ui/practicewindow.ui
 FORMS +=$$PWD/ui/searchstudents.ui

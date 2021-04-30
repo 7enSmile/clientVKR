@@ -61,6 +61,12 @@ Employer_ptr AbstractEmployerModel::getEmployer(int index)
 
 }
 
+ListOfEmployer &AbstractEmployerModel::getList()
+{
+    return m_listEmployer;
+
+}
+
 void AbstractEmployerModel::loadList()
 {
     ListOfPerson persons;
