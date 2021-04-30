@@ -70,18 +70,18 @@ ReportWindow::~ReportWindow()
 void ReportWindow::onActionClicked()
 {
     if(m_report->getpractice_result()==nullptr){
-    PracticeResult_ptr practiceresult;
-    practiceresult.reset(new PracticeResult);
-    practiceresult->setestimate_employer(ui->comboBoxHEadEmployer->currentText());
-    practiceresult->setestimate_university(ui->comboBoxHeadUniversity->currentText());
-    m_report->setpractice_result(practiceresult);
+        PracticeResult_ptr practiceresult;
+        practiceresult.reset(new PracticeResult);
+        practiceresult->setestimate_employer(ui->comboBoxHEadEmployer->currentText());
+        practiceresult->setestimate_university(ui->comboBoxHeadUniversity->currentText());
+        m_report->setpractice_result(practiceresult);
     }else{
-      PracticeResult_ptr practiceresult;
-      practiceresult.reset(new PracticeResult);
-      practiceresult=m_report->getpractice_result();
-      practiceresult->setestimate_employer((ui->comboBoxHEadEmployer->currentText()));
-      practiceresult->setestimate_university(ui->comboBoxHeadUniversity->currentText());
-      m_report->setpractice_result(practiceresult);
+        PracticeResult_ptr practiceresult;
+        practiceresult.reset(new PracticeResult);
+        practiceresult=m_report->getpractice_result();
+        practiceresult->setestimate_employer((ui->comboBoxHEadEmployer->currentText()));
+        practiceresult->setestimate_university(ui->comboBoxHeadUniversity->currentText());
+        m_report->setpractice_result(practiceresult);
 
     }
     m_report->setfeedback_employer(ui->plainTextEditHEadEmployer->toPlainText());
@@ -99,29 +99,33 @@ void ReportWindow::onOkClicked()
 void ReportWindow::onInputReportClicked()
 {
 
-    QString fileName = QFileDialog::getOpenFileName(this, "Get PDF", QStandardPaths::writableLocation(QStandardPaths::HomeLocation), QFileDialog::tr("Pdf (*.pdf)"));
+    QString fileName = QFileDialog::getOpenFileName(this, "Зазгрузить отчет", QStandardPaths::writableLocation(QStandardPaths::HomeLocation), QFileDialog::tr("Pdf (*.pdf)"));
 
     QFile file(fileName);
 
-    file.open(QIODevice::ReadOnly);
-    QByteArray array=file.readAll();
+    if(file.open(QIODevice::ReadOnly)){
+        QByteArray array=file.readAll();
 
-    m_report->setreport(array);
+        m_report->setreport(array);
 
-    file.close();
+        file.close();
+    }
+
+
 
 }
 
 void ReportWindow::onGetReportClicked()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, "Get PDF", QDir::currentPath(), QFileDialog::tr("Pdf (*.pdf)"));
+    QString fileName = QFileDialog::getSaveFileName(this, "Сохранить отчет", QDir::currentPath(), QFileDialog::tr("Pdf (*.pdf)"));
 
     QFile file(fileName);
 
-    file.open(QIODevice::WriteOnly);
+    if(file.open(QIODevice::WriteOnly)){
 
-    file.write(m_report->getreport());
+        file.write(m_report->getreport());
 
-    file.close();
+        file.close();
+    }
 
 }

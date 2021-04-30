@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "model/abstracteventsmodel.h"
 #include "view/insertevent.h"
+#include "view/reporteventswindow.h"
 
 namespace Ui {
 class EventsWindow;
@@ -26,6 +27,7 @@ private slots:
     void onDeleteClicked();
     void onInsertClicked();
     void onTableEventsClicked();
+    void onReportClicked();
 };
 
 #endif // EVENTSWINDOW_H

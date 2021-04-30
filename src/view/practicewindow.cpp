@@ -159,25 +159,26 @@ void PracticeWindow::onInsertTestClicked()
 
     QFile file(fileName);
 
-    file.open(QIODevice::ReadOnly);
-    QByteArray array=file.readAll();
+    if(file.open(QIODevice::ReadOnly)){
+        QByteArray array=file.readAll();
 
-    QFileInfo fileInfo(file.fileName());
-    QString nameTest(fileInfo.fileName());
-    TestPractice_ptr testpractice;
-    testpractice.reset(new TestPractice());
-    testpractice->setdata(array);
-    testpractice->setname(nameTest);
-    testpractice->setpractice(m_practice);
-    testpractice->setemployer(m_practice->getemployer());
-    listOfTestPractice list;
-    list.insert(0,testpractice);
-    m_practice->setlist_of_TestPractice(list);
-    file.close();
-    disconnect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
-    connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onGetTestClicked()));
-    ui->pushButtonTest->setText("Тестовое задание");
-    ui->pushButtonDeleteTest->show();
+        QFileInfo fileInfo(file.fileName());
+        QString nameTest(fileInfo.fileName());
+        TestPractice_ptr testpractice;
+        testpractice.reset(new TestPractice());
+        testpractice->setdata(array);
+        testpractice->setname(nameTest);
+        testpractice->setpractice(m_practice);
+        testpractice->setemployer(m_practice->getemployer());
+        listOfTestPractice list;
+        list.insert(0,testpractice);
+        m_practice->setlist_of_TestPractice(list);
+        file.close();
+        disconnect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
+        connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onGetTestClicked()));
+        ui->pushButtonTest->setText("Тестовое задание");
+        ui->pushButtonDeleteTest->show();
+    }
 
 
 }
@@ -200,14 +201,14 @@ void PracticeWindow::onGetTestClicked()
 
 void PracticeWindow::onDeleteTestClicked()
 {
-     AbstactSubClassModel model;
-     model.deleteTestPractice(m_practice->getlist_of_TestPractice().getByIndex(0));
-     listOfTestPractice list;
-     m_practice->setlist_of_TestPractice(list);
-     disconnect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onGetTestClicked()));
-     connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
-     ui->pushButtonDeleteTest->hide();
-     ui->pushButtonTest->setText("Загрузить задание");
+    AbstactSubClassModel model;
+    model.deleteTestPractice(m_practice->getlist_of_TestPractice().getByIndex(0));
+    listOfTestPractice list;
+    m_practice->setlist_of_TestPractice(list);
+    disconnect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onGetTestClicked()));
+    connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
+    ui->pushButtonDeleteTest->hide();
+    ui->pushButtonTest->setText("Загрузить задание");
 
 
 

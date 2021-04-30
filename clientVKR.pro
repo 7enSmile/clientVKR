@@ -74,6 +74,7 @@ SOURCES += $$PWD/src/view/insertuser.cpp
 SOURCES += $$PWD/src/model/abstractusersmodel.cpp
 SOURCES += $$PWD/src/model/checkauthorizationmodel.cpp
 SOURCES += $$PWD/src/model/abstracteventsmodel.cpp
+SOURCES += $$PWD/src/view/reporteventswindow.cpp
 
 
 
@@ -124,6 +125,7 @@ HEADERS += $$PWD/include/view/insertuser.h
 HEADERS += $$PWD/include/model/abstractusersmodel.h
 HEADERS += $$PWD/include/model/checkauthorizationmodel.h
 HEADERS += $$PWD/include/model/abstracteventsmodel.h
+HEADERS += $$PWD/include/view/reporteventswindow.h
 
 
 
@@ -154,6 +156,7 @@ FORMS +=$$PWD/ui/reportpracticewindow.ui
 FORMS +=$$PWD/ui/authorizationwindow.ui
 FORMS +=$$PWD/ui/adminwindow.ui
 FORMS +=$$PWD/ui/insertuser.ui
+FORMS +=$$PWD/ui/reporteventswindow.ui
 
 
 # Default rules for deployment.

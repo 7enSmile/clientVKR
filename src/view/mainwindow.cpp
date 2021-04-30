@@ -77,7 +77,7 @@ void MainWindow::onStudentsClicked()
 {
     StudentsWindow *w=new StudentsWindow();
     w->exec();
-    m_modelEmployer->loadList();
+
 
 
 }
@@ -94,7 +94,7 @@ void MainWindow::onStaffUniversityClicked()
 {
     StaffUniversityWindow *w=new StaffUniversityWindow();
     w->exec();
-    m_modelEmployer->loadList();
+
 
 }
 
