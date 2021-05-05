@@ -57,7 +57,7 @@ void ReportEventsWindow::onSaveClicked()
         }
 
     }
-    QString fileName = QFileDialog::getSaveFileName(this, "Сохранить отчет", QDir::currentPath(), QFileDialog::tr("odf (*.odf)"));
+    QString fileName = QFileDialog::getSaveFileName(this, "Сохранить отчет", QDir::currentPath(), QFileDialog::tr("odt (*.odt)"));
     QTextDocumentWriter writer(fileName);
     writer.write(document);
     QDialog::close();
