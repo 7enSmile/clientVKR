@@ -125,6 +125,7 @@ void StudentsWindow::onloadListClicked()
 {
     QString fileName = QFileDialog::getOpenFileName(this, "Зазгрузить", QStandardPaths::writableLocation(QStandardPaths::HomeLocation), QFileDialog::tr(" (*.csv)"));
     m_modelStudents->creatFromFile(fileName);
+    m_modelGroups->loadList();
 
 }
 

@@ -9,7 +9,7 @@ class AbstractGroupsModel:public QAbstractTableModel
 
 private:
     ListOfGroup m_listGroup;
-    void loadList();
+
 
 public:
     AbstractGroupsModel();
@@ -28,6 +28,8 @@ public:
     ListOfGroup& getList();
 
     Group_ptr getGroup(int);
+
+    void loadList();
 
 };
 
