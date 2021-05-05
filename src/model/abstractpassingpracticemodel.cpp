@@ -75,7 +75,14 @@ void AbstractPassingPracticeModel::save(PassingPractice_ptr passingpractice)
 
 
 
-    m_listPassingPractice.insert( m_listPassingPractice.count(),passingpractice);
+    if(!m_listPassingPractice.empty()){
+    m_listPassingPractice.insert(m_listPassingPractice.getKeyByIndex(m_listPassingPractice.count()-1)+1,passingpractice);
+    }
+    else{
+
+         m_listPassingPractice.insert(1,passingpractice);
+
+    }
 
 
 
@@ -134,5 +141,6 @@ void AbstractPassingPracticeModel::loadList()
         }
 
     }
+    m_listPassingPractice.sortByKey();
 
 }

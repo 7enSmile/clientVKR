@@ -4,6 +4,7 @@ void AbstractStudentsModel::loadListGlobal()
 {
     beginInsertRows(QModelIndex(),0,0);
     qx::dao::fetch_all_with_all_relation(m_listStudent);
+    m_listStudent.sortByKey();
     endInsertRows();
     layoutChanged();
 

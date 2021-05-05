@@ -4,6 +4,7 @@ void AbstractGroupsModel::loadList()
 {
     beginInsertRows(QModelIndex(),0,0);
     qx::dao::fetch_all_with_all_relation(m_listGroup);
+    m_listGroup.sortByKey();
     endInsertRows();
     layoutChanged();
 

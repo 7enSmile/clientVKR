@@ -91,6 +91,7 @@ void AbstractEmployerModel::loadList()
         m_listEmployer.getByIndex(i)->setlist_of_head_employer(listHeadEmployer);
         m_listEmployer.getByIndex(i)->setlist_of_contact_employer(listContactEmployer);
     }
+    m_listEmployer.sortByKey();
     endInsertRows();
     layoutChanged();
 

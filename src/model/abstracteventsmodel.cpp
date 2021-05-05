@@ -68,4 +68,5 @@ Events_ptr AbstractEventsModel::getEvent(int index)
 void AbstractEventsModel::loadList()
 {
     qx::dao::fetch_all_with_all_relation(m_listEvent);
+    m_listEvent.sortByKey();
 }
