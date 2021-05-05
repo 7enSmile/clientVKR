@@ -62,6 +62,101 @@ void AbstractStudentsModel::search(QString searchName, QString searchLastname, Q
 
 }
 
+void AbstractStudentsModel::creatFromFile(QString filename)
+{
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly)) {
+
+        return;
+    }
+    QStringList wordList;
+    QString word;
+    while (!file.atEnd()) {
+        QByteArray line = file.readLine();
+        word=line.split(';').at(0);
+        wordList.append(word);
+        word=line.split(';').at(1);
+        wordList.append(word);
+        word=line.split(';').at(2);
+        wordList.append(word);
+        word=line.split(';').at(3);
+        wordList.append(word);
+        word=line.split(';').at(4);
+        word.remove(word.size()-2,2);
+        wordList.append(word);
+        qDebug() << wordList;
+
+    }
+    qx::QxSqlQuery queryPerson("WHERE t_Person.fistname=:name AND t_Person.lastname=:lastname AND t_Person.patronymic=:patronymic");
+    queryPerson.bind(":name",wordList.at(0));
+    queryPerson.bind(":lastname",wordList.at(1));
+    queryPerson.bind(":patronymic",wordList.at(2));
+    qx::QxSqlQuery queryGroup("WHERE t_Group.number=:number");
+    queryGroup.bind(":number",wordList.at(3));
+    qx::QxSqlQuery queryPractice("WHERE t_Practice.customid=:customid");
+    queryPractice.bind(":customid",wordList.at(4));
+    Practice_ptr practice;
+    practice.reset(new Practice());
+    qx::dao::fetch_by_query(queryPractice, practice);
+    Group_ptr group;
+    group.reset(new Group());
+    qx::dao::fetch_by_query(queryGroup, group);
+    Person_ptr person;
+    person.reset(new Person);
+    qx::dao::fetch_by_query(queryPerson, person);
+    qx::QxSqlQuery queryStudent("WHERE t_Student.group_id=:id_group AND t_Student.person_id=:id_person");
+
+    Student_ptr student;
+    student.reset(new Student());
+    if(practice->getPractice_id()!=0){
+
+        if(group->getgroup_id()!=0&&person->getperson_id()!=0){
+            queryStudent.bind(":id_group",QString::number(group->getgroup_id()));
+            queryStudent.bind(":id_person",QString::number(person->getperson_id()));
+            qx::dao::fetch_by_query(queryStudent, student);
+            if(student->getstudent_id()==0){
+                student->setgroup(group);
+                student->setperson(person);
+                qx::dao::save_with_all_relation(student);
+            }
+
+        }else{
+            if(group->getgroup_id()==0){
+
+                group->setnumber(wordList.at(3));
+                person->setperson_id(0);
+
+            }
+            if(person->getperson_id()==0){
+
+                person->setfirstname(wordList.at(0));
+                person->setlastname(wordList.at(1));
+                person->setpatronymic(wordList.at(2));
+            }
+            student->setgroup(group);
+            student->setperson(person);
+            qx::dao::save_with_all_relation(student);
+        }
+    }else{
+        return ;
+    }
+    PassingPractice_ptr passingPractice;
+    passingPractice.reset(new PassingPractice);
+    qx::QxSqlQuery queryPassingPractice("WHERE t_Passing_practice.practice_id=:practice_id AND t_Passing_practice.Student_id=:student_id");
+    queryPassingPractice.bind(":practice_id",QString::number(practice->getPractice_id()));
+    queryPassingPractice.bind(":student_id",QString::number(student->getstudent_id()));
+    qx::dao::fetch_by_query(queryPassingPractice, passingPractice);
+    if(passingPractice->getPassingPractice_id()==0){
+        passingPractice->setpractice(practice);
+        passingPractice->setstuden(student);
+        passingPractice->setemployer(practice->getemployer());
+        qx::dao::save(passingPractice);
+    }
+    loadListGlobal();
+    layoutChanged();
+
+}
+
 
 
 AbstractStudentsModel::AbstractStudentsModel()

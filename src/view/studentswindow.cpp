@@ -21,6 +21,7 @@ StudentsWindow::StudentsWindow(QWidget *parent) :
     connect(ui->pushButtonDeleteGroup,SIGNAL(clicked()),this,SLOT(onDeleteGroupClicked()));
     connect(ui->tableViewGroups,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableGroupClicked()));
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
+    connect(ui->pushButtonLoadLIst,SIGNAL(clicked()),this,SLOT(onloadListClicked()));
 
 
 }
@@ -117,6 +118,13 @@ void StudentsWindow::onTableGroupClicked()
 void StudentsWindow::onOkClicked()
 {
     QDialog::accept();
+
+}
+
+void StudentsWindow::onloadListClicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "Зазгрузить", QStandardPaths::writableLocation(QStandardPaths::HomeLocation), QFileDialog::tr(" (*.csv)"));
+    m_modelStudents->creatFromFile(fileName);
 
 }
 

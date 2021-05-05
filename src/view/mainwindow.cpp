@@ -79,6 +79,7 @@ void MainWindow::onStudentsClicked()
 {
     StudentsWindow *w=new StudentsWindow();
     w->exec();
+    m_modelPractice->loadList();
 
 
 

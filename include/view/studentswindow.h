@@ -6,6 +6,8 @@
 #include <view/insertstudent.h>
 #include <view/insertgroup.h>
 #include "model/abstractgroupsmodel.h"
+#include <QFileDialog>
+#include <QStandardPaths>
 namespace Ui {
 class StudentsWindow;
 }
@@ -26,6 +28,7 @@ private slots:
     void onInsertGroupClicked();
     void onTableGroupClicked();
     void onOkClicked();
+    void onloadListClicked();
 private:
     Ui::StudentsWindow *ui;
     AbstractStudentsModel *m_modelStudents;

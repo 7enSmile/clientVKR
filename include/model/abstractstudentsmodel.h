@@ -33,12 +33,13 @@ public:
 
     void changeStudentLocal(int,long,Student_ptr&);
 
-
     void deleteStudentLocal(int);
 
     ListOfStudent& getListStudents();
 
     void search(QString,QString,QString);
+
+    void creatFromFile(QString);
 
 };
 
