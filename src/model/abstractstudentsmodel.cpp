@@ -69,25 +69,26 @@ void AbstractStudentsModel::creatFromFile(QString filename)
 
         return;
     }
+    QRegExp regName("(^/D[^;]{1,});(/D[^;]{1,});(/D{1,});(/S[^;]{1,});(/S[^;]{1,})$");
     QStringList wordList;
     QString word;
     while (!file.atEnd()) {
         QByteArray line = file.readLine();
-        if(line.count()==5){
-            word=QString::fromLocal8Bit(line.split(';').at(0));
-            wordList.append(word);
-            word=QString::fromLocal8Bit(line.split(';').at(1));
-            wordList.append(word);
-            word=QString::fromLocal8Bit(line.split(';').at(2));
-            wordList.append(word);
-            word=QString::fromLocal8Bit(line.split(';').at(3));
-            wordList.append(word);
-            word=QString::fromLocal8Bit(line.split(';').at(4));
-            word.remove(word.size()-2,2);
-            wordList.append(word);
-            generateStudent(wordList);
-            wordList.clear();
-        }
+
+        word=QString::fromLocal8Bit(line.split(';').at(0));
+        wordList.append(word);
+        word=QString::fromLocal8Bit(line.split(';').at(1));
+        wordList.append(word);
+        word=QString::fromLocal8Bit(line.split(';').at(2));
+        wordList.append(word);
+        word=QString::fromLocal8Bit(line.split(';').at(3));
+        wordList.append(word);
+        word=QString::fromLocal8Bit(line.split(';').at(4));
+        word.remove(word.size()-2,2);
+        wordList.append(word);
+        generateStudent(wordList);
+        wordList.clear();
+
 
     }
     loadListGlobal();
