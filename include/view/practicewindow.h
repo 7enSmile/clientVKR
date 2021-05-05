@@ -29,6 +29,7 @@ private:
     void iniconnection();
     void initElementsChange();
     void initElementInsert();
+    QString genCustomId();
 private slots:
     void onOkClicked();
     void onActionClicked();
@@ -38,6 +39,7 @@ private slots:
     void onInsertTestClicked();
     void onGetTestClicked();
     void onDeleteTestClicked();
+    void onGenClicked();
 
 };
 

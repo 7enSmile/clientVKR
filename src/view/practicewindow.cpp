@@ -13,6 +13,8 @@ PracticeWindow::PracticeWindow(ListOfEmployer listEmployers, Practice_ptr practi
     iniconnection();
     m_modelPassingPractice=new AbstractPassingPracticeModel(m_practice->getlist_of_passing_practice());
     ui->tableViewPassingPractice->setModel(m_modelPassingPractice);
+    ui->lineEditCustomId->setText(m_practice->getcustomid());
+
     if(m_practice->getlist_of_TestPractice().count()!=0){
 
         connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onGetTestClicked()));
@@ -59,6 +61,14 @@ Practice_ptr PracticeWindow::getPractice()
     m_practice->setemployer(m_listEmployers.getByIndex(ui->comboBox->currentIndex()));
     m_practice->setbeginning(ui->dateEditbegining->date());
     m_practice->setending(ui->dateEditEnding->date());
+    if(!ui->lineEditCustomId->text().isEmpty()){
+        m_practice->setcustomid(ui->lineEditCustomId->text());
+    }else{
+
+        m_practice->setcustomid(genCustomId());
+
+    }
+
     return m_practice;
 }
 
@@ -70,6 +80,8 @@ void PracticeWindow::iniconnection()
     connect(ui->pushButtonInserPassingPractice,SIGNAL(clicked()),this,SLOT(onInsertPassingPracticeClicked()));
     connect(ui->pushButtonDeletePassingPractice,SIGNAL(clicked()),this,SLOT(onDeletePassingPractice()));
     connect(ui->pushButtonDeleteTest,SIGNAL(clicked()),this,SLOT(onDeleteTestClicked()));
+    connect(ui->pushButtonGenCustomId,SIGNAL(clicked()),this,SLOT(onGenClicked()));
+
 
 }
 
@@ -102,6 +114,59 @@ void PracticeWindow::initElementInsert()
     ui->pushButtonOk->setText("Отмена");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     this->setWindowTitle("Добавить");
+
+}
+
+QString PracticeWindow::genCustomId()
+{
+    QString res;
+        static QMap<QString, QString> toTranslit;
+        toTranslit["а"] = 'a';
+        toTranslit["б"] = 'b';
+        toTranslit["в"] = 'v';
+        toTranslit["г"] = 'g';
+        toTranslit["д"] = 'd';
+        toTranslit["е"] = 'e';
+        toTranslit["ё"] = "jo";
+        toTranslit["ж"] = "zh";
+        toTranslit["з"] = 'z';
+        toTranslit["и"] = 'i';
+        toTranslit["й"] = 'j';
+        toTranslit["к"] = 'k';
+        toTranslit["л"] = 'l';
+        toTranslit["м"] = 'm';
+        toTranslit["н"] = 'n';
+        toTranslit["о"] = 'o';
+        toTranslit["п"] = 'p';
+        toTranslit["р"] = 'r';
+        toTranslit["с"] = 's';
+        toTranslit["т"] = 't';
+        toTranslit["у"] = 'u';
+        toTranslit["ф"] = 'f';
+        toTranslit["х"] = 'h';
+        toTranslit["ц"] = 'c';
+        toTranslit["ч"] = "ch";
+        toTranslit["ш"] = "sh";
+        toTranslit["щ"] = 'w';
+        toTranslit["ъ"] = '#';
+        toTranslit["ы"] = 'y';
+        toTranslit["ь"] = '\'';
+        toTranslit["э"] = "e";
+        toTranslit["ю"] = "ju";
+        toTranslit["я"] = "ja";
+        toTranslit[" "] = "_";
+        QString name=ui->comboBox->currentText();
+        for (int i = 0; i < name.length(); i++) {
+            const QString ch = name.at(i);
+            const QString lowerCh = ch.toLower();
+            if (toTranslit.contains(lowerCh)) {
+                QString tmp = ch == lowerCh ? toTranslit[lowerCh] : toTranslit[lowerCh].toUpper();
+                res += tmp;
+            } else
+                res += ch;
+        }
+        res+=ui->dateEditbegining->date().toString("yy");
+        return res;
 
 }
 
@@ -209,6 +274,15 @@ void PracticeWindow::onDeleteTestClicked()
     connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
     ui->pushButtonDeleteTest->hide();
     ui->pushButtonTest->setText("Загрузить задание");
+
+
+
+}
+
+void PracticeWindow::onGenClicked()
+{
+
+    ui->lineEditCustomId->setText(genCustomId());
 
 
 

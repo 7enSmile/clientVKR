@@ -14,7 +14,7 @@ int AbstractPracticeModel::rowCount(const QModelIndex &parent) const
 
 int AbstractPracticeModel::columnCount(const QModelIndex &parent) const
 {
-    return !parent.isValid() ? 1 : 0;
+    return !parent.isValid() ? 3 : 0;
 
 }
 
@@ -29,14 +29,30 @@ QVariant AbstractPracticeModel::data(const QModelIndex &index, int role) const
 
             QString title;
             QString employer;
-            QString databegin;
-            QString dataending;
+
             employer=m_listPractice.getByIndex(index.row())->getemployer()->getname();
-            databegin=m_listPractice.getByIndex(index.row())->getbeginning().toString("dd.MM.yy");
-            dataending=m_listPractice.getByIndex(index.row())->getending().toString("dd.MM.yy");
-            title=employer+"  "+databegin+" - "+dataending;
+
+
+            title=employer;
             return title;
         }
+        if (index.column() == 1){
+
+            QString databegin;
+            databegin=m_listPractice.getByIndex(index.row())->getbeginning().toString("dd.MM.yy");
+            return databegin;
+
+
+        }
+        if (index.column() == 2){
+
+            QString dataending;
+            dataending=m_listPractice.getByIndex(index.row())->getending().toString("dd.MM.yy");
+            return dataending;
+
+
+        }
+
 
     }
 

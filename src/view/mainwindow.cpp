@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_modelPractice=new AbstractPracticeModel();
     ui->tableViewPractice->setModel(m_modelPractice);
     ui->tableViewEmployers->setModel(m_modelEmployer);
+    ui->tableViewPractice->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableViewPractice->setColumnWidth(0,200);
     connect(ui->tableViewEmployers,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onEmployersTableClicked()));
     connect(ui->pushButtonInsertEmployer,SIGNAL(clicked()),this,SLOT(onInsertEmployerClicked()));
     connect(ui->tableViewPractice,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onPracticeTableClicked()));
@@ -158,7 +160,7 @@ void MainWindow::onInsertPracticeClicked()
     PracticeWindow *w=new PracticeWindow(m_modelPractice->getListEmployer());
     if(w->exec()==QDialog::Accepted){
         m_modelPractice->savePractice(w->getPractice());
-        //m_modelPractice->loadList();
+        m_modelPractice->loadList();
 
 
     }
