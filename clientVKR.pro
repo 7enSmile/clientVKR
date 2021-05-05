@@ -16,7 +16,7 @@ LIBS += -l"departmentd"
 } else {
 TARGET = department
 LIBS += -l"QxOrm"
-LIBS += -l"departmentd"
+LIBS += -l"department"
 } # CONFIG(debug, debug|release)
 
 !contains(DEFINES, _QX_NO_PRECOMPILED_HEADER) {
