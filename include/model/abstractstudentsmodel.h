@@ -8,6 +8,7 @@ class AbstractStudentsModel:public QAbstractTableModel
 {
 private:
     ListOfStudent m_listStudent;
+    void generateStudent(QStringList);
 
 
 public:

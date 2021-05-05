@@ -73,23 +73,35 @@ void AbstractStudentsModel::creatFromFile(QString filename)
     QString word;
     while (!file.atEnd()) {
         QByteArray line = file.readLine();
-        word=line.split(';').at(0);
+        word=QString::fromLocal8Bit(line.split(';').at(0));
         wordList.append(word);
-        word=line.split(';').at(1);
+        word=QString::fromLocal8Bit(line.split(';').at(1));
         wordList.append(word);
-        word=line.split(';').at(2);
+        word=QString::fromLocal8Bit(line.split(';').at(2));
         wordList.append(word);
-        word=line.split(';').at(3);
+        word=QString::fromLocal8Bit(line.split(';').at(3));
         wordList.append(word);
-        word=line.split(';').at(4);
+        word=QString::fromLocal8Bit(line.split(';').at(4));
         word.remove(word.size()-2,2);
         wordList.append(word);
-        qDebug() << wordList;
+        generateStudent(wordList);
+        wordList.clear();
 
     }
+    loadListGlobal();
+    layoutChanged();
+
+
+}
+
+
+
+void AbstractStudentsModel::generateStudent(QStringList wordList)
+{
+
     qx::QxSqlQuery queryPerson("WHERE t_Person.fistname=:name AND t_Person.lastname=:lastname AND t_Person.patronymic=:patronymic");
-    queryPerson.bind(":name",wordList.at(0));
-    queryPerson.bind(":lastname",wordList.at(1));
+    queryPerson.bind(":name",wordList.at(1));
+    queryPerson.bind(":lastname",wordList.at(0));
     queryPerson.bind(":patronymic",wordList.at(2));
     qx::QxSqlQuery queryGroup("WHERE t_Group.number=:number");
     queryGroup.bind(":number",wordList.at(3));
@@ -129,8 +141,8 @@ void AbstractStudentsModel::creatFromFile(QString filename)
             }
             if(person->getperson_id()==0){
 
-                person->setfirstname(wordList.at(0));
-                person->setlastname(wordList.at(1));
+                person->setfirstname(wordList.at(1));
+                person->setlastname(wordList.at(0));
                 person->setpatronymic(wordList.at(2));
             }
             student->setgroup(group);
@@ -152,12 +164,9 @@ void AbstractStudentsModel::creatFromFile(QString filename)
         passingPractice->setemployer(practice->getemployer());
         qx::dao::save(passingPractice);
     }
-    loadListGlobal();
-    layoutChanged();
+
 
 }
-
-
 
 AbstractStudentsModel::AbstractStudentsModel()
 {
