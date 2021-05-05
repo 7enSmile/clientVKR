@@ -73,19 +73,21 @@ void AbstractStudentsModel::creatFromFile(QString filename)
     QString word;
     while (!file.atEnd()) {
         QByteArray line = file.readLine();
-        word=QString::fromLocal8Bit(line.split(';').at(0));
-        wordList.append(word);
-        word=QString::fromLocal8Bit(line.split(';').at(1));
-        wordList.append(word);
-        word=QString::fromLocal8Bit(line.split(';').at(2));
-        wordList.append(word);
-        word=QString::fromLocal8Bit(line.split(';').at(3));
-        wordList.append(word);
-        word=QString::fromLocal8Bit(line.split(';').at(4));
-        word.remove(word.size()-2,2);
-        wordList.append(word);
-        generateStudent(wordList);
-        wordList.clear();
+        if(line.count()==5){
+            word=QString::fromLocal8Bit(line.split(';').at(0));
+            wordList.append(word);
+            word=QString::fromLocal8Bit(line.split(';').at(1));
+            wordList.append(word);
+            word=QString::fromLocal8Bit(line.split(';').at(2));
+            wordList.append(word);
+            word=QString::fromLocal8Bit(line.split(';').at(3));
+            wordList.append(word);
+            word=QString::fromLocal8Bit(line.split(';').at(4));
+            word.remove(word.size()-2,2);
+            wordList.append(word);
+            generateStudent(wordList);
+            wordList.clear();
+        }
 
     }
     loadListGlobal();
@@ -110,6 +112,8 @@ void AbstractStudentsModel::generateStudent(QStringList wordList)
     Practice_ptr practice;
     practice.reset(new Practice());
     qx::dao::fetch_by_query(queryPractice, practice);
+    if(practice->getPractice_id()==0)
+        return;
     Group_ptr group;
     group.reset(new Group());
     qx::dao::fetch_by_query(queryGroup, group);
@@ -117,41 +121,36 @@ void AbstractStudentsModel::generateStudent(QStringList wordList)
     person.reset(new Person);
     qx::dao::fetch_by_query(queryPerson, person);
     qx::QxSqlQuery queryStudent("WHERE t_Student.group_id=:id_group AND t_Student.person_id=:id_person");
-
     Student_ptr student;
     student.reset(new Student());
-    if(practice->getPractice_id()!=0){
-
-        if(group->getgroup_id()!=0&&person->getperson_id()!=0){
-            queryStudent.bind(":id_group",QString::number(group->getgroup_id()));
-            queryStudent.bind(":id_person",QString::number(person->getperson_id()));
-            qx::dao::fetch_by_query(queryStudent, student);
-            if(student->getstudent_id()==0){
-                student->setgroup(group);
-                student->setperson(person);
-                qx::dao::save_with_all_relation(student);
-            }
-
-        }else{
-            if(group->getgroup_id()==0){
-
-                group->setnumber(wordList.at(3));
-                person->setperson_id(0);
-
-            }
-            if(person->getperson_id()==0){
-
-                person->setfirstname(wordList.at(1));
-                person->setlastname(wordList.at(0));
-                person->setpatronymic(wordList.at(2));
-            }
+    if(group->getgroup_id()!=0&&person->getperson_id()!=0){
+        queryStudent.bind(":id_group",QString::number(group->getgroup_id()));
+        queryStudent.bind(":id_person",QString::number(person->getperson_id()));
+        qx::dao::fetch_by_query(queryStudent, student);
+        if(student->getstudent_id()==0){
             student->setgroup(group);
             student->setperson(person);
             qx::dao::save_with_all_relation(student);
         }
+
     }else{
-        return ;
+        if(group->getgroup_id()==0){
+
+            group->setnumber(wordList.at(3));
+            person->setperson_id(0);
+
+        }
+        if(person->getperson_id()==0){
+
+            person->setfirstname(wordList.at(1));
+            person->setlastname(wordList.at(0));
+            person->setpatronymic(wordList.at(2));
+        }
+        student->setgroup(group);
+        student->setperson(person);
+        qx::dao::save_with_all_relation(student);
     }
+
     PassingPractice_ptr passingPractice;
     passingPractice.reset(new PassingPractice);
     qx::QxSqlQuery queryPassingPractice("WHERE t_Passing_practice.practice_id=:practice_id AND t_Passing_practice.Student_id=:student_id");
@@ -199,15 +198,15 @@ QVariant AbstractStudentsModel::data(const QModelIndex &index, int role) const
         {
 
 
-           QString title;
-           QString firstname;
-           QString lastname;
-           QString patronymic;
-           firstname=m_listStudent.getByIndex(index.row())->getperson()->getfirstname();
-           lastname=m_listStudent.getByIndex(index.row())->getperson()->getlastname();
-           patronymic=m_listStudent.getByIndex(index.row())->getperson()->getpatronymic();
-           title=lastname+" "+firstname+" "+patronymic;
-           return title;
+            QString title;
+            QString firstname;
+            QString lastname;
+            QString patronymic;
+            firstname=m_listStudent.getByIndex(index.row())->getperson()->getfirstname();
+            lastname=m_listStudent.getByIndex(index.row())->getperson()->getlastname();
+            patronymic=m_listStudent.getByIndex(index.row())->getperson()->getpatronymic();
+            title=lastname+" "+firstname+" "+patronymic;
+            return title;
         }
 
     }
