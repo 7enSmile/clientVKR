@@ -44,6 +44,8 @@ void EducationalProgramWindow::onTableEducationProgramClicked()
     if(w->exec()==QDialog::Accepted){
         m_modelEducationProgram->saveEducationalProgram(w->getEducationalProgram());
     }
+    ui->tableViewEducationalPrograms->clearSelection();
+    ui->tableViewEducationalPrograms->clearFocus();
 
 
 }

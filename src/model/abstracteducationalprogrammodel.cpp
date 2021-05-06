@@ -3,6 +3,7 @@
 AbstractEducationalProgramModel::AbstractEducationalProgramModel()
 {
     loadList();
+    m_listEducationalProgram.sortByKey();
 
 }
 

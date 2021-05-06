@@ -61,6 +61,8 @@ void ResultDisciplineWindow::onTableResultClicked()
         //m_modelResult->saveResultEducation(w->getResultDiscipline());
 
     }
+    ui->tableViewResult->clearSelection();
+    ui->tableViewResult->clearFocus();
 
 }
 
