@@ -178,3 +178,10 @@ void MainWindow::onReportPracticeClicked()
     w->exec();
 
 }
+
+void MainWindow::onEducationProgramClicked()
+{
+    EducationalProgramWindow *w=new EducationalProgramWindow();
+    w->exec();
+
+}

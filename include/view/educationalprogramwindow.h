@@ -2,7 +2,8 @@
 #define EDUCATIONALPROGRAMWINDOW_H
 
 #include <QDialog>
-
+#include "model/abstracteducationalprogrammodel.h"
+#include "view/inserteducationalprogram.h"
 namespace Ui {
 class EducationalProgramWindow;
 }
@@ -15,8 +16,23 @@ public:
     explicit EducationalProgramWindow(QWidget *parent = nullptr);
     ~EducationalProgramWindow();
 
+
 private:
+
     Ui::EducationalProgramWindow *ui;
+
+    AbstractEducationalProgramModel *m_modelEducationProgram;
+
+private slots:
+
+    void onDeleteClicket();
+
+    void onInsertClicket();
+
+    void onTableEducationProgramClicket();
+
+    void onOkCliced();
+
 };
 
 #endif // EDUCATIONALPROGRAMWINDOW_H

@@ -15,6 +15,7 @@ public:
     explicit InsertDiscipline(QWidget *parent = nullptr);
     ~InsertDiscipline();
 
+
 private:
     Ui::InsertDiscipline *ui;
 };

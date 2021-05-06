@@ -80,6 +80,16 @@ SOURCES += $$PWD/src/view/inserteducationalprogram.cpp
 SOURCES += $$PWD/src/view/insertadditionaleducationalprogram.cpp
 SOURCES += $$PWD/src/view/insertresultdiscipline.cpp
 SOURCES += $$PWD/src/view/insertdiscipline.cpp
+SOURCES += $$PWD/src/model/abstracteducationalprogrammodel.cpp
+SOURCES += $$PWD/src/model/abstractresultdisciplinemodel.cpp
+
+
+
+
+
+
+
+
 
 
 HEADERS += $$PWD/include/view/studentswindow.h
@@ -132,8 +142,8 @@ HEADERS += $$PWD/include/view/inserteducationalprogram.h
 HEADERS += $$PWD/include/view/insertadditionaleducationalprogram.h
 HEADERS += $$PWD/include/view/insertresultdiscipline.h
 HEADERS += $$PWD/include/view/insertdiscipline.h
-
-
+HEADERS += $$PWD/include/model/abstracteducationalprogrammodel.h
+HEADERS += $$PWD/include/model/abstractresultdisciplinemodel.h
 
 FORMS +=$$PWD/ui/studentswindow.ui
 FORMS +=$$PWD/ui/insertstudent.ui

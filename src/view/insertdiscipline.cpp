@@ -1,4 +1,4 @@
-#include "insertdiscipline.h"
+#include "view/insertdiscipline.h"
 #include "ui_insertdiscipline.h"
 
 InsertDiscipline::InsertDiscipline(QWidget *parent) :

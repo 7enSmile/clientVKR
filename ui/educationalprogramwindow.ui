@@ -121,16 +121,9 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButtonAction">
-       <property name="text">
-        <string>Добавить</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="pushButtonOk">
        <property name="text">
-        <string>Отмена</string>
+        <string>Ок</string>
        </property>
       </widget>
      </item>
