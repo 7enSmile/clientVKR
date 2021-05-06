@@ -76,7 +76,10 @@ void AbstractEmployerModel::loadList()
     ListOfHeadEmployer listHeadEmployer;
     ListOfContactEmployer listContactEmployer;
     beginInsertRows(QModelIndex(),0,0);
-    qx::dao::fetch_all_with_all_relation(m_listEmployer);
+    QStringList relation;
+    relation.append("list_of_head_employer");
+    relation.append("list_of_contact_employer");
+    qx::dao::fetch_all_with_relation(relation,m_listEmployer);
     for(int i=0;i<m_listEmployer.count();i++){
         listHeadEmployer=m_listEmployer.getByIndex(i)->getlist_of_head_employer();
         listContactEmployer=m_listEmployer.getByIndex(i)->getlist_of_contact_employer();
@@ -91,6 +94,7 @@ void AbstractEmployerModel::loadList()
         m_listEmployer.getByIndex(i)->setlist_of_head_employer(listHeadEmployer);
         m_listEmployer.getByIndex(i)->setlist_of_contact_employer(listContactEmployer);
     }
+
     m_listEmployer.sortByKey();
     endInsertRows();
     layoutChanged();
