@@ -45,6 +45,13 @@ void AbstractEducationalProgramModel::deleteEducationalProgram(int index)
 
 void AbstractEducationalProgramModel::saveEducationalProgram(EducationalProgram_ptr educationProgram)
 {
+    ListOfResultEducation list;
+    list=educationProgram->getlist_of_result_education();
+    for(int i=0;i<list.count();i++){
+
+        list.getByIndex(i)->seteducational_program(educationProgram);
+    }
+    educationProgram->setlist_of_result_education(list);
     qx::dao::save_with_all_relation(educationProgram);
     loadList();
 

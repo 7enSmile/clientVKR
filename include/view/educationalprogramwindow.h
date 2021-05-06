@@ -25,11 +25,11 @@ private:
 
 private slots:
 
-    void onDeleteClicket();
+    void onDeleteClicked();
 
-    void onInsertClicket();
+    void onInsertClicked();
 
-    void onTableEducationProgramClicket();
+    void onTableEducationProgramClicked();
 
     void onOkCliced();
 

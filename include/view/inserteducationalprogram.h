@@ -4,7 +4,8 @@
 #include <QDialog>
 #include "Educational_program.h"
 #include "view/insertadditionaleducationalprogram.h"
-#include "view/insertresultdiscipline.h"
+#include "view/resultdisciplinewindow.h"
+
 
 namespace Ui {
 class InsertEducationalProgram;
@@ -32,7 +33,7 @@ private slots:
     void onActionClicked();
     void onOKCliced();
     void onResultClicked();
-    void onAdditionalClicket();
+    void onAdditionalClicked();
 
 };
 

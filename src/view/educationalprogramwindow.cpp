@@ -10,8 +10,9 @@ EducationalProgramWindow::EducationalProgramWindow(QWidget *parent) :
     ui->tableViewEducationalPrograms->setModel(m_modelEducationProgram);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     this->setWindowTitle("Образовательные программы");
-    connect(ui->tableViewEducationalPrograms,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableEducationProgramClicket()));
-    connect(ui->pushButtonInsert,SIGNAL(clicked()),this,SLOT(onInsertClicket()));
+    connect(ui->tableViewEducationalPrograms,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableEducationProgramClicked()));
+    connect(ui->pushButtonInsert,SIGNAL(clicked()),this,SLOT(onInsertClicked()));
+    connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkCliced()));
 }
 
 EducationalProgramWindow::~EducationalProgramWindow()
@@ -19,13 +20,13 @@ EducationalProgramWindow::~EducationalProgramWindow()
     delete ui;
 }
 
-void EducationalProgramWindow::onDeleteClicket()
+void EducationalProgramWindow::onDeleteClicked()
 
 {
 
 }
 
-void EducationalProgramWindow::onInsertClicket()
+void EducationalProgramWindow::onInsertClicked()
 
 {
     InsertEducationalProgram *w=new InsertEducationalProgram();
@@ -36,7 +37,7 @@ void EducationalProgramWindow::onInsertClicket()
 
 }
 
-void EducationalProgramWindow::onTableEducationProgramClicket()
+void EducationalProgramWindow::onTableEducationProgramClicked()
 {
     QModelIndexList index = ui->tableViewEducationalPrograms->selectionModel()->selectedRows();
     InsertEducationalProgram *w=new InsertEducationalProgram(m_modelEducationProgram->getEducationalProgram(index[0].row()));

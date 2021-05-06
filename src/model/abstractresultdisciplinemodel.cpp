@@ -34,7 +34,7 @@ QVariant AbstractResultDisciplineModel::data(const QModelIndex &index, int role)
 
 }
 
-ListOfResultEducation &AbstractResultDisciplineModel::getListReports()
+ListOfResultEducation &AbstractResultDisciplineModel::getListResult()
 {
     return m_listResultEducation;
 
@@ -49,6 +49,7 @@ void AbstractResultDisciplineModel::saveResultEducation(ResultEducation_ptr resu
 
          m_listResultEducation.insert(1,result);
     }
+    layoutChanged();
 
 
 }
@@ -56,5 +57,17 @@ void AbstractResultDisciplineModel::saveResultEducation(ResultEducation_ptr resu
 ResultEducation_ptr AbstractResultDisciplineModel::getResultEducation(int index)
 {
     return m_listResultEducation.getByIndex(index);
+
+}
+
+void AbstractResultDisciplineModel::deleteResultEducation(int index)
+
+{
+    if(m_listResultEducation.getByIndex(index)->getResult_discipline_id()!=0){
+
+        qx::dao::delete_by_id(m_listResultEducation.getByIndex(index));
+    }
+    m_listResultEducation.removeByIndex(index);
+    layoutChanged();
 
 }

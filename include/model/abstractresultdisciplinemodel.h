@@ -15,11 +15,14 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
-    ListOfResultEducation& getListReports();
+    ListOfResultEducation& getListResult();
 
     void saveResultEducation(ResultEducation_ptr);
 
     ResultEducation_ptr getResultEducation(int);
+
+    void deleteResultEducation(int);
+
 private:
     ListOfResultEducation m_listResultEducation;
 };

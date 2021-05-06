@@ -22,8 +22,8 @@ private:
     Ui::InsertResultDiscipline *ui;
     ResultEducation_ptr m_resultDiscipline;
 private slots:
-    void onOkClicket();
-    void onActionClicket();
+    void onOkClicked();
+    void onActionClicked();
 };
 
 #endif // INSERTRESULTDISCIPLINE_H
