@@ -75,9 +75,10 @@ SOURCES += $$PWD/src/model/abstractusersmodel.cpp
 SOURCES += $$PWD/src/model/checkauthorizationmodel.cpp
 SOURCES += $$PWD/src/model/abstracteventsmodel.cpp
 SOURCES += $$PWD/src/view/reporteventswindow.cpp
-
-
-
+SOURCES += $$PWD/src/view/educationalprogramwindow.cpp
+SOURCES += $$PWD/src/view/inserteducationalprogram.cpp
+SOURCES += $$PWD/src/view/insertadditionaleducationalprogram.cpp
+SOURCES += $$PWD/src/view/insertresultdiscipline.cpp
 
 
 
@@ -126,8 +127,10 @@ HEADERS += $$PWD/include/model/abstractusersmodel.h
 HEADERS += $$PWD/include/model/checkauthorizationmodel.h
 HEADERS += $$PWD/include/model/abstracteventsmodel.h
 HEADERS += $$PWD/include/view/reporteventswindow.h
-
-
+HEADERS += $$PWD/include/view/educationalprogramwindow.h
+HEADERS += $$PWD/include/view/inserteducationalprogram.h
+HEADERS += $$PWD/include/view/insertadditionaleducationalprogram.h
+HEADERS += $$PWD/include/view/insertresultdiscipline.h
 
 
 
@@ -157,7 +160,10 @@ FORMS +=$$PWD/ui/authorizationwindow.ui
 FORMS +=$$PWD/ui/adminwindow.ui
 FORMS +=$$PWD/ui/insertuser.ui
 FORMS +=$$PWD/ui/reporteventswindow.ui
-
+FORMS +=$$PWD/ui/educationalprogramwindow.ui
+FORMS +=$$PWD/ui/inserteducationalprogram.ui
+FORMS +=$$PWD/ui/insertadditionaleducationalprogram.ui
+FORMS +=$$PWD/ui/insertresultdiscipline.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
