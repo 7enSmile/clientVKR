@@ -79,7 +79,7 @@ SOURCES += $$PWD/src/view/educationalprogramwindow.cpp
 SOURCES += $$PWD/src/view/inserteducationalprogram.cpp
 SOURCES += $$PWD/src/view/insertadditionaleducationalprogram.cpp
 SOURCES += $$PWD/src/view/insertresultdiscipline.cpp
-
+SOURCES += $$PWD/src/view/insertdiscipline.cpp
 
 
 HEADERS += $$PWD/include/view/studentswindow.h
@@ -131,6 +131,7 @@ HEADERS += $$PWD/include/view/educationalprogramwindow.h
 HEADERS += $$PWD/include/view/inserteducationalprogram.h
 HEADERS += $$PWD/include/view/insertadditionaleducationalprogram.h
 HEADERS += $$PWD/include/view/insertresultdiscipline.h
+HEADERS += $$PWD/include/view/insertdiscipline.h
 
 
 
@@ -164,6 +165,8 @@ FORMS +=$$PWD/ui/educationalprogramwindow.ui
 FORMS +=$$PWD/ui/inserteducationalprogram.ui
 FORMS +=$$PWD/ui/insertadditionaleducationalprogram.ui
 FORMS +=$$PWD/ui/insertresultdiscipline.ui
+FORMS +=$$PWD/ui/insertdiscipline.ui
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
