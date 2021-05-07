@@ -81,6 +81,7 @@ void PracticeWindow::iniconnection()
     connect(ui->pushButtonDeletePassingPractice,SIGNAL(clicked()),this,SLOT(onDeletePassingPractice()));
     connect(ui->pushButtonDeleteTest,SIGNAL(clicked()),this,SLOT(onDeleteTestClicked()));
     connect(ui->pushButtonGenCustomId,SIGNAL(clicked()),this,SLOT(onGenClicked()));
+    connect(ui->pushButtonCopy,SIGNAL(clicked()),this,SLOT(onCopyClicked()));
 
 
 }
@@ -285,6 +286,12 @@ void PracticeWindow::onGenClicked()
     ui->lineEditCustomId->setText(genCustomId());
 
 
+
+}
+
+void PracticeWindow::onCopyClicked()
+{
+    QApplication::clipboard()->setText(ui->lineEditCustomId->text());
 
 }
 

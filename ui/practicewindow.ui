@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>506</width>
-    <height>576</height>
+    <height>624</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -71,6 +71,13 @@
          </item>
          <item>
           <widget class="QLineEdit" name="lineEditCustomId"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonCopy">
+           <property name="text">
+            <string>Скопировать</string>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonGenCustomId">

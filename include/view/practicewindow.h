@@ -2,6 +2,7 @@
 #define PRACTICEWINDOW_H
 
 #include <QDialog>
+#include <QClipboard>
 #include "Practice.h"
 #include "Employer.h"
 #include "model/abstractpassingpracticemodel.h"
@@ -40,6 +41,7 @@ private slots:
     void onGetTestClicked();
     void onDeleteTestClicked();
     void onGenClicked();
+    void onCopyClicked();
 
 };
 
