@@ -22,17 +22,17 @@ int AbstractEducationalProgramModel::columnCount(const QModelIndex &parent) cons
 QVariant AbstractEducationalProgramModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
-            {
+    {
 
-                if (index.column() == 0)
-                {
-                   return m_listEducationalProgram.getByIndex(index.row())->getname();
-                }
+        if (index.column() == 0)
+        {
+            return m_listEducationalProgram.getByIndex(index.row())->getname();
+        }
 
-            }
+    }
 
 
-            return QVariant();
+    return QVariant();
 
 }
 
@@ -47,9 +47,14 @@ void AbstractEducationalProgramModel::deleteEducationalProgram(int index)
 void AbstractEducationalProgramModel::saveEducationalProgram(EducationalProgram_ptr educationProgram)
 {
     ListOfResultEducation list;
+    ListOfResultEducation listResultEducation;
     list=educationProgram->getlist_of_result_education();
     ListOfDiscipline listDiscipline;
     listDiscipline=educationProgram->getlist_of_discipline();
+    if(educationProgram->geteducational_program_id()==0){
+
+        qx::dao::save_with_all_relation(educationProgram);
+    }
     for(int i=0;i<list.count();i++){
 
         list.getByIndex(i)->seteducational_program(educationProgram);
@@ -57,17 +62,20 @@ void AbstractEducationalProgramModel::saveEducationalProgram(EducationalProgram_
     for(int i=0;i<listDiscipline.count();i++){
 
         listDiscipline.getByIndex(i)->seteducational_program(educationProgram);
-        list=listDiscipline.getByIndex(i)->getlist_of_result_educational();
-        for(int j=0;j<list.count();j++){
+        listResultEducation=listDiscipline.getByIndex(i)->getlist_of_result_educational();
+        for(int j=0;j<listResultEducation.count();j++){
 
-            list.getByIndex(j)->setdiscipline(listDiscipline.getByIndex(i));
+            listResultEducation.getByIndex(j)->setdiscipline(listDiscipline.getByIndex(i));
 
         }
+        if(listDiscipline.getByIndex(i)->getdiscipline_id()==0){
+            qx::dao::save(listDiscipline.getByIndex(i));
+        }
+        qx::dao::save(listResultEducation);
 
 
     }
 
-    qx::dao::save_with_all_relation(educationProgram);
     educationProgram->setlist_of_result_education(list);
     educationProgram->setlist_of_discipline(listDiscipline);
     qx::dao::save_with_all_relation(educationProgram);
