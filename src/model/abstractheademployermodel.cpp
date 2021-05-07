@@ -119,7 +119,10 @@ void AbstractHeadEmployerModel::loadListGlobal()
 {
     qx::dao::fetch_all(m_listEmployers);
     beginInsertRows(QModelIndex(),0,0);
-    qx::dao::fetch_all_with_all_relation(m_listHeadEmployer);
+    QStringList relation;
+    relation.append("person_id");
+    relation.append("employer");
+    qx::dao::fetch_all_with_relation(relation,m_listHeadEmployer);
     m_listHeadEmployer.sortByKey();
     endInsertRows();
     layoutChanged();
