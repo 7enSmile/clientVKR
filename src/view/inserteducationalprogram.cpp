@@ -45,6 +45,7 @@ void InsertEducationalProgram::initconnection()
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOKCliced()));
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect(ui->pushButtonResult,SIGNAL(clicked()),this,SLOT(onResultClicked()));
+    connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(onAdditionalClicked()));
 }
 
 void InsertEducationalProgram::onActionClicked()
@@ -75,5 +76,12 @@ void InsertEducationalProgram::onResultClicked()
 
 void InsertEducationalProgram::onAdditionalClicked()
 {
+    InsertAdditionalEducationalProgram *w=new InsertAdditionalEducationalProgram(m_educationalProgram->getlist_of_discipline(),
+                                                                                 m_educationalProgram->getlist_of_Practice(),
+                                                                                 m_educationalProgram->getlist_of_Student());
+    if(w->exec()==QDialog::Accepted){
+
+        m_educationalProgram->setlist_of_discipline(w->getListDiscipline());
+    }
 
 }

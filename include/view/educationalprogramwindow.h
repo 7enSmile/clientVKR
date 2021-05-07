@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "model/abstracteducationalprogrammodel.h"
 #include "view/inserteducationalprogram.h"
+
 namespace Ui {
 class EducationalProgramWindow;
 }

@@ -5,7 +5,7 @@
 #include "Educational_program.h"
 #include "view/insertadditionaleducationalprogram.h"
 #include "view/resultdisciplinewindow.h"
-
+#include "view/insertadditionaleducationalprogram.h"
 
 namespace Ui {
 class InsertEducationalProgram;

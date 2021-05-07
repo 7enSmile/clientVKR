@@ -3,7 +3,7 @@
 AbstractEducationalProgramModel::AbstractEducationalProgramModel()
 {
     loadList();
-    m_listEducationalProgram.sortByKey();
+
 
 }
 
@@ -48,11 +48,28 @@ void AbstractEducationalProgramModel::saveEducationalProgram(EducationalProgram_
 {
     ListOfResultEducation list;
     list=educationProgram->getlist_of_result_education();
+    ListOfDiscipline listDiscipline;
+    listDiscipline=educationProgram->getlist_of_discipline();
     for(int i=0;i<list.count();i++){
 
         list.getByIndex(i)->seteducational_program(educationProgram);
     }
+    for(int i=0;i<listDiscipline.count();i++){
+
+        listDiscipline.getByIndex(i)->seteducational_program(educationProgram);
+        list=listDiscipline.getByIndex(i)->getlist_of_result_educational();
+        for(int j=0;j<list.count();j++){
+
+            list.getByIndex(j)->setdiscipline(listDiscipline.getByIndex(i));
+
+        }
+
+
+    }
+
+    qx::dao::save_with_all_relation(educationProgram);
     educationProgram->setlist_of_result_education(list);
+    educationProgram->setlist_of_discipline(listDiscipline);
     qx::dao::save_with_all_relation(educationProgram);
     loadList();
 
@@ -68,6 +85,13 @@ void AbstractEducationalProgramModel::loadList()
 {
     beginInsertRows(QModelIndex(),0,0);
     qx::dao::fetch_all_with_all_relation(m_listEducationalProgram);
+    ListOfDiscipline list;
+    for(int i=0;i<m_listEducationalProgram.count();i++){
+        list = m_listEducationalProgram.getByIndex(i)->getlist_of_discipline();
+        qx::dao::fetch_by_id_with_all_relation(list);
+        m_listEducationalProgram.getByIndex(i)->setlist_of_discipline(list);
+    }
+    m_listEducationalProgram.sortByKey();
     endInsertRows();
     layoutChanged();
 }

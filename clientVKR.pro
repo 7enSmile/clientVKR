@@ -83,8 +83,7 @@ SOURCES += $$PWD/src/view/insertdiscipline.cpp
 SOURCES += $$PWD/src/model/abstracteducationalprogrammodel.cpp
 SOURCES += $$PWD/src/model/abstractresultdisciplinemodel.cpp
 SOURCES += $$PWD/src/view/resultdisciplinewindow.cpp
-
-
+SOURCES += $$PWD/src/model/abstractdisciplinemodel.cpp
 
 
 
@@ -145,6 +144,16 @@ HEADERS += $$PWD/include/view/insertdiscipline.h
 HEADERS += $$PWD/include/model/abstracteducationalprogrammodel.h
 HEADERS += $$PWD/include/model/abstractresultdisciplinemodel.h
 HEADERS += $$PWD/include/view/resultdisciplinewindow.h
+HEADERS += $$PWD/include/model/abstractdisciplinemodel.h
+
+
+
+
+
+
+
+
+
 
 FORMS +=$$PWD/ui/studentswindow.ui
 FORMS +=$$PWD/ui/insertstudent.ui
