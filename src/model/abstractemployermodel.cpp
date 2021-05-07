@@ -79,6 +79,7 @@ void AbstractEmployerModel::loadList()
     QStringList relation;
     relation.append("list_of_head_employer");
     relation.append("list_of_contact_employer");
+    relation.append("list_of_result_education");
     qx::dao::fetch_all_with_relation(relation,m_listEmployer);
     for(int i=0;i<m_listEmployer.count();i++){
         listHeadEmployer=m_listEmployer.getByIndex(i)->getlist_of_head_employer();

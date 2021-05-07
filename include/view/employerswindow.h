@@ -7,6 +7,7 @@
 #include "model/abstractheademployermodel.h"
 #include "view/insertstaffemployer.h"
 #include "view/additionalwindow.h"
+#include "model/abstractselectresultdisciplinemodel.h"
 namespace Ui {
 class EmployersWindow;
 }
@@ -26,6 +27,7 @@ private:
     Employer_ptr m_employer;
     AbstractContactEmployerModel *m_modelContactemployer;
     AbstractHeadEmployerModel *m_modelHeadEmployerModel;
+    AbstractSelectResultDisciplineModel *m_modelSelectResultDiscipline;
     void initConnection();
 private slots:
     void onInsertHeadEmployerClicked();
@@ -37,6 +39,7 @@ private slots:
     void onDeleteContactClicked();
     void onAdditionalClicked();
     void onOkClicket();
+    void onResultDisciplineClicked();
 
 
 

@@ -16,6 +16,8 @@ EmployersWindow::EmployersWindow(QWidget *parent) :
     ui->lineEditName->setText(m_employer->getname());
     ui->pushButtonAction->setText("Добавить");
     ui->pushButtonOk->setText("Отмена");
+    m_modelSelectResultDiscipline=new AbstractSelectResultDisciplineModel(m_employer->getlist_of_result_education());
+    ui->tableViewEducationResult->setModel(m_modelSelectResultDiscipline);
 
 }
 
@@ -34,6 +36,8 @@ EmployersWindow::EmployersWindow(Employer_ptr employer,QWidget *parent) :
     ui->tableViewHeadEmployer->setModel(m_modelHeadEmployerModel);
     ui->tableViewContactEmployer->setModel(m_modelContactemployer);
     ui->lineEditName->setText(m_employer->getname());
+    m_modelSelectResultDiscipline=new AbstractSelectResultDisciplineModel(m_employer->getlist_of_result_education());
+    ui->tableViewEducationResult->setModel(m_modelSelectResultDiscipline);
 
 
 }
@@ -63,6 +67,7 @@ void EmployersWindow::initConnection()
     connect(ui->tableViewContactEmployer,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableContactClicked()));
     connect(ui->pushButtonAdditional,SIGNAL(clicked()),this,SLOT(onAdditionalClicked()));
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicket()));
+    connect(ui->tableViewEducationResult,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onResultDisciplineClicked()));
 
 
 }
@@ -148,6 +153,17 @@ void EmployersWindow::onAdditionalClicked()
 void EmployersWindow::onOkClicket()
 {
     QDialog::close();
+
+}
+
+void EmployersWindow::onResultDisciplineClicked()
+{
+
+    QModelIndexList index = ui->tableViewEducationResult->selectionModel()->selectedRows();
+    m_modelSelectResultDiscipline->action(index[0].row());
+    m_employer->setlist_of_result_education(m_modelSelectResultDiscipline->getList());
+    ui->tableViewEducationResult->clearSelection();
+    ui->tableViewEducationResult->clearFocus();
 
 }
 
