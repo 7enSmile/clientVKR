@@ -134,8 +134,8 @@ void StudentsWindow::onloadListClicked()
     qDialog.setOptions(QInputDialog::UseListViewForComboBoxItems);
     qDialog.setComboBoxItems(items);
     qDialog.setWindowFlags(qDialog.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    qDialog.setLabelText("Выбирите разделитель");
-    qDialog.setWindowTitle("Раздителель");
+    qDialog.setLabelText("Выбирите формат");
+    qDialog.setWindowTitle("Формат");
 
     if(qDialog.exec()==QDialog::Accepted){
 
