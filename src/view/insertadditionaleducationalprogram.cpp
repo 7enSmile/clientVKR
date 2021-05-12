@@ -11,6 +11,8 @@ InsertAdditionalEducationalProgram::InsertAdditionalEducationalProgram(ListOfDis
     ui->tableViewDiscipline->setModel(m_modelDescipline);
     ui->tableViewPractice->setModel(m_modelPractice);
     ui->tableViewPractice->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableViewPractice->setColumnWidth(0,150);
+    ui->tableViewPractice->setColumnWidth(1,150);
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect(ui->tableViewDiscipline,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableDisciplineClicked()));

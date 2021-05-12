@@ -13,7 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableViewPractice->setModel(m_modelPractice);
     ui->tableViewEmployers->setModel(m_modelEmployer);
     ui->tableViewPractice->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableViewPractice->setColumnWidth(0,200);
+    ui->tableViewPractice->setColumnWidth(0,400);
+    ui->tableViewPractice->setColumnWidth(1,150);
+
     connect(ui->tableViewEmployers,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onEmployersTableClicked()));
     connect(ui->pushButtonInsertEmployer,SIGNAL(clicked()),this,SLOT(onInsertEmployerClicked()));
     connect(ui->tableViewPractice,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onPracticeTableClicked()));

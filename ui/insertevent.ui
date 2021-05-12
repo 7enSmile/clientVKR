@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>283</width>
-    <height>340</height>
+    <height>399</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,135 +21,100 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
+          <widget class="QGroupBox" name="groupBox">
+           <property name="title">
             <string>Наименование</string>
            </property>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <widget class="QLineEdit" name="lineEditName"/>
+            </item>
+           </layout>
           </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditName"/>
          </item>
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Описание</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QTextEdit" name="textEditDescription"/>
-         </item>
-        </layout>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Описание</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_10">
+          <item>
+           <widget class="QTextEdit" name="textEditDescription"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2"/>
        </item>
       </layout>
      </item>
      <item>
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="title">
+        <string>Работодатель</string>
        </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>10</height>
-        </size>
-       </property>
-      </spacer>
+       <layout class="QVBoxLayout" name="verticalLayout_11">
+        <item>
+         <widget class="QComboBox" name="comboBox">
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Работодатель</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="comboBox">
-         <property name="maximumSize">
-          <size>
-           <width>100</width>
-           <height>16777215</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <layout class="QVBoxLayout" name="verticalLayout_4"/>
      </item>
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="title">
+      <string/>
      </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>10</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout_6">
-       <item>
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Начало</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QDateEdit" name="dateEditBegin"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout_7">
-       <item>
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Конец</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QDateEdit" name="dateEditEnding"/>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <spacer name="verticalSpacer_3">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>10</height>
-      </size>
-     </property>
-    </spacer>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Начало</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDateEdit" name="dateEditBegin"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Конец</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDateEdit" name="dateEditEnding"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
