@@ -3,6 +3,7 @@
 #include "Person.h"
 #include "model/abstractstudentsmodel.h"
 #include <QDebug>
+
 StudentsWindow::StudentsWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::StudentsWindow)
@@ -124,10 +125,27 @@ void StudentsWindow::onOkClicked()
 void StudentsWindow::onloadListClicked()
 {
     int count;
-    QString fileName = QFileDialog::getOpenFileName(this, "Зазгрузить", QStandardPaths::writableLocation(QStandardPaths::HomeLocation), QFileDialog::tr(" (*.csv)"));
-    count=m_modelStudents->creatFromFile(fileName);
-    QMessageBox::information(this,"Инормация","Было импортировано "+QString::number(count)+" записей");
-    m_modelGroups->loadList();
+    QInputDialog qDialog (this);
+
+    QStringList items;
+    items<<QString(";");
+    items<<QString(",");
+
+    qDialog.setOptions(QInputDialog::UseListViewForComboBoxItems);
+    qDialog.setComboBoxItems(items);
+    qDialog.setWindowFlags(qDialog.windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    qDialog.setLabelText("Выбирите разделитель");
+    qDialog.setWindowTitle("Раздителель");
+
+    if(qDialog.exec()==QDialog::Accepted){
+
+        QString fileName = QFileDialog::getOpenFileName(this, "Зазгрузить", QStandardPaths::writableLocation(QStandardPaths::HomeLocation), QFileDialog::tr(" (*.csv)"));
+        count=m_modelStudents->creatFromFile(fileName,qDialog.textValue());
+        QMessageBox::information(this,"Инормация","Было импортировано "+QString::number(count)+" записей");
+        m_modelGroups->loadList();
+
+    }
+
 
 }
 

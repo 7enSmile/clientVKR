@@ -40,7 +40,7 @@ public:
 
     void search(QString,QString,QString);
 
-    int creatFromFile(QString);
+    int creatFromFile(QString,QString);
 
 };
 

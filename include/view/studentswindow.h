@@ -9,6 +9,7 @@
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QMessageBox>
+#include <QInputDialog>
 namespace Ui {
 class StudentsWindow;
 }

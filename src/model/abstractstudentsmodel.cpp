@@ -66,30 +66,37 @@ void AbstractStudentsModel::search(QString searchName, QString searchLastname, Q
 
 }
 
-int AbstractStudentsModel::creatFromFile(QString filename)
+int AbstractStudentsModel::creatFromFile(QString filename,QString parser)
 {
     QFile file(filename);
+
     if (!file.open(QIODevice::ReadOnly)) {
+
 
         return 0;
     }
     int count=0;
-    QRegExp reg("(^\\D[^;0-9]{1,});(\\D[^;0-9]{1,});(\\D[^;0-9]{1,});(\\S[^;]{1,});(\\S[^;]{1,})$");
+
+    QRegExp reg("(^\\D[^"+parser+"0-9]{1,})"+parser+"(\\D[^"+parser+"0-9]{1,})"+parser+"(\\D[^"+parser+"0-9]{1,})"+parser+"(\\S[^"+parser+"]{1,})"+parser+"(\\S[^"+parser+"]{1,})$");
     QStringList wordList;
     QString word;
     while (!file.atEnd()) {
         QByteArray line = file.readLine();
         if(reg.exactMatch(QString::fromLocal8Bit(line))){
-            word=QString::fromLocal8Bit(line.split(';').at(0));
+            word=QString::fromLocal8Bit(line.split(parser.toStdString().c_str()[0]).at(0));
             wordList.append(word);
-            word=QString::fromLocal8Bit(line.split(';').at(1));
+
+
+            word=QString::fromLocal8Bit(line.split(parser.toStdString().c_str()[0]).at(1));
             wordList.append(word);
-            word=QString::fromLocal8Bit(line.split(';').at(2));
+            word=QString::fromLocal8Bit(line.split(parser.toStdString().c_str()[0]).at(2));
             wordList.append(word);
-            word=QString::fromLocal8Bit(line.split(';').at(3));
+            word=QString::fromLocal8Bit(line.split(parser.toStdString().c_str()[0]).at(3));
             wordList.append(word);
-            word=QString::fromLocal8Bit(line.split(';').at(4));
-            word.remove(word.size()-2,2);
+            word=QString::fromLocal8Bit(line.split(parser.toStdString().c_str()[0]).at(4));
+            if(word.count()>=2){
+                word.remove(word.size()-2,2);
+            }
             wordList.append(word);
             if(generateStudent(wordList))
                 count++;
@@ -100,6 +107,7 @@ int AbstractStudentsModel::creatFromFile(QString filename)
     }
     loadListGlobal();
     layoutChanged();
+    file.close();
     return count;
 
 
