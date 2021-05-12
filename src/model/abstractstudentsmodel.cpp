@@ -66,13 +66,14 @@ void AbstractStudentsModel::search(QString searchName, QString searchLastname, Q
 
 }
 
-void AbstractStudentsModel::creatFromFile(QString filename)
+int AbstractStudentsModel::creatFromFile(QString filename)
 {
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly)) {
 
-        return;
+        return 0;
     }
+    int count=0;
     QRegExp reg("(^\\D[^;0-9]{1,});(\\D[^;0-9]{1,});(\\D[^;0-9]{1,});(\\S[^;]{1,});(\\S[^;]{1,})$");
     QStringList wordList;
     QString word;
@@ -90,7 +91,8 @@ void AbstractStudentsModel::creatFromFile(QString filename)
             word=QString::fromLocal8Bit(line.split(';').at(4));
             word.remove(word.size()-2,2);
             wordList.append(word);
-            generateStudent(wordList);
+            if(generateStudent(wordList))
+                count++;
             wordList.clear();
         }
 
@@ -98,13 +100,14 @@ void AbstractStudentsModel::creatFromFile(QString filename)
     }
     loadListGlobal();
     layoutChanged();
+    return count;
 
 
 }
 
 
 
-void AbstractStudentsModel::generateStudent(QStringList wordList)
+bool AbstractStudentsModel::generateStudent(QStringList wordList)
 {
 
     qx::QxSqlQuery queryPerson("WHERE t_Person.fistname=:name AND t_Person.lastname=:lastname AND t_Person.patronymic=:patronymic");
@@ -119,7 +122,7 @@ void AbstractStudentsModel::generateStudent(QStringList wordList)
     practice.reset(new Practice());
     qx::dao::fetch_by_query(queryPractice, practice);
     if(practice->getPractice_id()==0)
-        return;
+        return false;
     Group_ptr group;
     group.reset(new Group());
     qx::dao::fetch_by_query(queryGroup, group);
@@ -168,6 +171,10 @@ void AbstractStudentsModel::generateStudent(QStringList wordList)
         passingPractice->setstuden(student);
         passingPractice->setemployer(practice->getemployer());
         qx::dao::save(passingPractice);
+        return true;
+    }else{
+
+        return false;
     }
 
 

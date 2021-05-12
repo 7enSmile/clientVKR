@@ -8,7 +8,7 @@ class AbstractStudentsModel:public QAbstractTableModel
 {
 private:
     ListOfStudent m_listStudent;
-    void generateStudent(QStringList);
+    bool generateStudent(QStringList);
 
 
 public:
@@ -40,7 +40,7 @@ public:
 
     void search(QString,QString,QString);
 
-    void creatFromFile(QString);
+    int creatFromFile(QString);
 
 };
 

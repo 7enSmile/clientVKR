@@ -8,6 +8,7 @@
 #include "model/abstractgroupsmodel.h"
 #include <QFileDialog>
 #include <QStandardPaths>
+#include <QMessageBox>
 namespace Ui {
 class StudentsWindow;
 }

@@ -123,8 +123,10 @@ void StudentsWindow::onOkClicked()
 
 void StudentsWindow::onloadListClicked()
 {
+    int count;
     QString fileName = QFileDialog::getOpenFileName(this, "Зазгрузить", QStandardPaths::writableLocation(QStandardPaths::HomeLocation), QFileDialog::tr(" (*.csv)"));
-    m_modelStudents->creatFromFile(fileName);
+    count=m_modelStudents->creatFromFile(fileName);
+    QMessageBox::information(this,"Инормация","Было импортировано "+QString::number(count)+" записей");
     m_modelGroups->loadList();
 
 }
