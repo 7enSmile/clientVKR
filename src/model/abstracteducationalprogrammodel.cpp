@@ -50,6 +50,8 @@ void AbstractEducationalProgramModel::saveEducationalProgram(EducationalProgram_
     ListOfResultEducation listResultEducation;
     list=educationProgram->getlist_of_result_education();
     ListOfDiscipline listDiscipline;
+    ListOfPractice listPractice;
+    listPractice=educationProgram->getlist_of_Practice();
     listDiscipline=educationProgram->getlist_of_discipline();
     if(educationProgram->geteducational_program_id()==0){
 
@@ -75,9 +77,14 @@ void AbstractEducationalProgramModel::saveEducationalProgram(EducationalProgram_
 
 
     }
+    for(int i=0;i<listPractice.count();i++){
+
+        listPractice.getByIndex(i)->seteducation_program(educationProgram);
+    }
 
     educationProgram->setlist_of_result_education(list);
     educationProgram->setlist_of_discipline(listDiscipline);
+    educationProgram->setlist_of_Practice(listPractice);
     qx::dao::save_with_all_relation(educationProgram);
     loadList();
 
@@ -89,14 +96,36 @@ EducationalProgram_ptr AbstractEducationalProgramModel::getEducationalProgram(in
 
 }
 
+QVariant AbstractEducationalProgramModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        switch (section) {
+        case 0:
+            return QString("Образовательная программа");
+
+        }
+    }
+
+    if (role == Qt::DisplayRole && orientation == Qt::Vertical) {
+
+        return section+1;
+    }
+    return QVariant();
+
+}
+
 void AbstractEducationalProgramModel::loadList()
 {
     beginInsertRows(QModelIndex(),0,0);
     qx::dao::fetch_all_with_all_relation(m_listEducationalProgram);
     ListOfDiscipline list;
+    ListOfPractice listPractice;
     for(int i=0;i<m_listEducationalProgram.count();i++){
         list = m_listEducationalProgram.getByIndex(i)->getlist_of_discipline();
+        listPractice=m_listEducationalProgram.getByIndex(i)->getlist_of_Practice();
         qx::dao::fetch_by_id_with_all_relation(list);
+        qx::dao::fetch_by_id_with_relation("employer",listPractice);
+        m_listEducationalProgram.getByIndex(i)->setlist_of_Practice(listPractice);
         m_listEducationalProgram.getByIndex(i)->setlist_of_discipline(list);
     }
     m_listEducationalProgram.sortByKey();

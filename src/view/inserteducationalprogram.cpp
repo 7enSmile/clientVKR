@@ -82,6 +82,7 @@ void InsertEducationalProgram::onAdditionalClicked()
     if(w->exec()==QDialog::Accepted){
 
         m_educationalProgram->setlist_of_discipline(w->getListDiscipline());
+        m_educationalProgram->setlist_of_Practice(w->getListPractice());
     }
 
 }

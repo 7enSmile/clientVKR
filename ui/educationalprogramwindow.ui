@@ -28,10 +28,13 @@
        <item>
         <widget class="QTableView" name="tableViewEducationalPrograms">
          <attribute name="horizontalHeaderVisible">
-          <bool>false</bool>
+          <bool>true</bool>
          </attribute>
          <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>1000</number>
+          <number>100</number>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
          </attribute>
         </widget>
        </item>

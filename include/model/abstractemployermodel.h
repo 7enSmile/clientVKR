@@ -29,6 +29,8 @@ public:
 
     void loadList();
 
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+
 };
 
 

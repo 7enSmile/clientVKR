@@ -12,9 +12,22 @@ private:
     ListOfEmployer m_listEmployer;
 
 public:
+
     AbstractPracticeModel();
 
+    AbstractPracticeModel(ListOfPractice);
+
+
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+
+    void search(ListOfPractice,QString,QDate,QDate);
+
+    ListOfPractice& getList();
+
+    void savePracticeLocal(Practice_ptr);
+
+    void deleteEducationProgram(int);
 
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
@@ -30,6 +43,8 @@ public:
     ListOfEmployer getListEmployer();
 
     void loadList();
+
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
 
 
 

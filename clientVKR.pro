@@ -85,7 +85,7 @@ SOURCES += $$PWD/src/model/abstractresultdisciplinemodel.cpp
 SOURCES += $$PWD/src/view/resultdisciplinewindow.cpp
 SOURCES += $$PWD/src/model/abstractdisciplinemodel.cpp
 SOURCES += $$PWD/src/model/abstractselectresultdisciplinemodel.cpp
-
+SOURCES += $$PWD/src/view/searchpractice.cpp
 
 
 
@@ -146,8 +146,7 @@ HEADERS += $$PWD/include/model/abstractresultdisciplinemodel.h
 HEADERS += $$PWD/include/view/resultdisciplinewindow.h
 HEADERS += $$PWD/include/model/abstractdisciplinemodel.h
 HEADERS += $$PWD/include/model/abstractselectresultdisciplinemodel.h
-
-
+HEADERS += $$PWD/include/view/searchpractice.h
 
 
 
@@ -187,6 +186,20 @@ FORMS +=$$PWD/ui/insertadditionaleducationalprogram.ui
 FORMS +=$$PWD/ui/insertresultdiscipline.ui
 FORMS +=$$PWD/ui/insertdiscipline.ui
 FORMS +=$$PWD/ui/resultdisciplinewindow.ui
+FORMS +=$$PWD/ui/searchpractice.ui
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
