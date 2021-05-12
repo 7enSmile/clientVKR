@@ -60,6 +60,15 @@ void AbstractPracticeModel::deleteEducationProgram(int index)
 
 }
 
+void AbstractPracticeModel::setSemester(int index, int semester)
+{
+
+    m_listPractice.getByIndex(index)-> setsemester(semester);
+
+
+
+}
+
 int AbstractPracticeModel::columnCount(const QModelIndex &parent) const
 {
     return !parent.isValid() ? 3 : 0;

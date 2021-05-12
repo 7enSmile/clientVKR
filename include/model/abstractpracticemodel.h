@@ -29,6 +29,8 @@ public:
 
     void deleteEducationProgram(int);
 
+    void setSemester(int,int);
+
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 

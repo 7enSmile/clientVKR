@@ -18,6 +18,7 @@ InsertAdditionalEducationalProgram::InsertAdditionalEducationalProgram(ListOfDis
     connect(ui->pushButtonInsertPractice,SIGNAL(clicked()),this,SLOT(onInsertPracticeClicked()));
     connect(ui->pushButtonDeleteDiscipline,SIGNAL(clicked()),this,SLOT(onDeleteDisciplineClicked()));
     connect(ui->pushButtonDeletePractice,SIGNAL(clicked()),this,SLOT(onDeletePracticeClicked()));
+    connect(ui->tableViewPractice,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTablePracticeClicked()));
     this->setWindowTitle("Дополнительно");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 }
@@ -108,5 +109,29 @@ void InsertAdditionalEducationalProgram::onDeletePracticeClicked()
     }
     ui->tableViewPractice->clearSelection();
     ui->tableViewPractice->clearFocus();
+
+}
+
+void InsertAdditionalEducationalProgram::onTablePracticeClicked()
+{
+    QModelIndexList index = ui->tableViewPractice->selectionModel()->selectedRows();
+    QInputDialog qDialog (this);
+
+    QStringList items;
+    for(int i=1;i<=10;i++){
+        items<<QString::number(i);
+    }
+
+    qDialog.setOptions(QInputDialog::UseListViewForComboBoxItems);
+    qDialog.setComboBoxItems(items);
+    qDialog.setWindowFlags(qDialog.windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    qDialog.setLabelText("Выбирите семестр");
+    qDialog.setTextValue(QString::number(m_modelPractice->getPractice(index[0].row())->getsemester()));
+    qDialog.setWindowTitle("Семестр");
+
+    if(qDialog.exec()==QDialog::Accepted){
+
+        m_modelPractice->setSemester(index[0].row(),qDialog.textValue().toInt());
+    }
 
 }

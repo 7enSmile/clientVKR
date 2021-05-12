@@ -7,7 +7,7 @@
 #include "model/abstractdisciplinemodel.h"
 #include "view/insertdiscipline.h"
 #include "view/searchpractice.h"
-
+#include "QInputDialog"
 
 namespace Ui {
 class InsertAdditionalEducationalProgram;
@@ -36,6 +36,7 @@ private slots:
     void onTableDisciplineClicked();
     void onInsertPracticeClicked();
     void onDeletePracticeClicked();
+    void onTablePracticeClicked();
 };
 
 #endif // INSERTADDITIONALEDUCATIONALPROGRAM_H
