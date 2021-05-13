@@ -8,6 +8,7 @@
 #include "model/abstractpassingpracticemodel.h"
 #include "view/passingpracticewindow.h"
 #include "model/abstactsubclassmodel.h"
+#include "view/insertmanypassingpractice.h"
 namespace Ui {
 class PracticeWindow;
 }
@@ -42,6 +43,7 @@ private slots:
     void onDeleteTestClicked();
     void onGenClicked();
     void onCopyClicked();
+    void onInsertManyPassingPracticeClicked();
 
 };
 

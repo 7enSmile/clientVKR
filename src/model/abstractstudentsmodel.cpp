@@ -114,6 +114,24 @@ int AbstractStudentsModel::creatFromFile(QString filename,QString parser)
 
 }
 
+QVariant AbstractStudentsModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        switch (section) {
+        case 0:
+            return QString("Студенты");
+
+        }
+    }
+
+    if (role == Qt::DisplayRole && orientation == Qt::Vertical) {
+
+        return section+1;
+    }
+    return QVariant();
+
+}
+
 
 
 bool AbstractStudentsModel::generateStudent(QStringList wordList)

@@ -151,6 +151,7 @@ void MainWindow::onPracticeTableClicked()
 
 
     }
+    m_modelPractice->loadList();
 
 
     ui->tableViewPractice->clearSelection();
@@ -164,9 +165,8 @@ void MainWindow::onInsertPracticeClicked()
     if(w->exec()==QDialog::Accepted){
         m_modelPractice->savePractice(w->getPractice());
         m_modelPractice->loadList();
-
-
     }
+
 
 
     ui->tableViewPractice->clearSelection();

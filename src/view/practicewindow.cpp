@@ -82,6 +82,7 @@ void PracticeWindow::iniconnection()
     connect(ui->pushButtonDeleteTest,SIGNAL(clicked()),this,SLOT(onDeleteTestClicked()));
     connect(ui->pushButtonGenCustomId,SIGNAL(clicked()),this,SLOT(onGenClicked()));
     connect(ui->pushButtonCopy,SIGNAL(clicked()),this,SLOT(onCopyClicked()));
+    connect(ui->pushButtonInserManyPassingPractice,SIGNAL(clicked()),this,SLOT(onInsertManyPassingPracticeClicked()));
 
 
 }
@@ -292,6 +293,20 @@ void PracticeWindow::onGenClicked()
 void PracticeWindow::onCopyClicked()
 {
     QApplication::clipboard()->setText(ui->lineEditCustomId->text());
+
+}
+
+void PracticeWindow::onInsertManyPassingPracticeClicked()
+{
+    InsertManyPassingPractice *w=new InsertManyPassingPractice(m_practice->getemployer(),m_practice);
+    if(w->exec()==QDialog::Accepted){
+
+        ListOfPassingPractice list=w->getList();
+        for(int i=0;i<list.count();i++){
+        m_modelPassingPractice->save(list.getByIndex(i));
+        }
+        m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
+    }
 
 }
 

@@ -42,6 +42,8 @@ public:
 
     int creatFromFile(QString,QString);
 
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
+
 };
 
 #endif // ABSTRACTSTUDENTSMODEL_H
