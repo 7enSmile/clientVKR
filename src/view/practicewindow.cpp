@@ -48,6 +48,7 @@ PracticeWindow::PracticeWindow(ListOfEmployer listEmployers, QWidget *parent) :
     //ui->pushButtonInserPassingPractice->setEnabled(false);
     //ui->pushButtonDeletePassingPractice->setEnabled(false);
     connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
+    ui->pushButtonInserManyPassingPractice->setDisabled(true);
 }
 
 PracticeWindow::~PracticeWindow()

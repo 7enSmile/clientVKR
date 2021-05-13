@@ -46,7 +46,10 @@ void AbstractStudentsModel::search(QString searchName, QString searchLastname, Q
 {
     ListOfStudent list;
     m_listStudent._clear();
-    qx::dao::fetch_all_with_all_relation(list);
+    QStringList relation;
+    relation.append("person_id");
+    relation.append("group");
+    qx::dao::fetch_all_with_relation(relation,list);
     QRegExp regName("^"+searchName);
     QRegExp reglastname("^"+searchLastname);
     QRegExp reggroup("^"+searchGroup);
