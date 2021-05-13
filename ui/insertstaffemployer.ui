@@ -120,7 +120,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
-          <string/>
+          <string> </string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_11">
           <item>
@@ -215,14 +215,14 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="pushButtonAction">
          <property name="text">
           <string/>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButtonAction">
+        <widget class="QPushButton" name="pushButton">
          <property name="text">
           <string/>
          </property>

@@ -14,6 +14,7 @@ InsertStudent::InsertStudent(ListOfGroup &list,QWidget *parent) :
     ui->pushButtonAction->setText("Добавить");
     ui->pushButton->setText("Отмена");
     m_listGroups=list;
+    m_modelEducationalProgram =new AbstractEducationalProgramModel();
     fillComboBox();
 
 
@@ -55,9 +56,13 @@ void InsertStudent::onActionClicked()
     person->setphone_number(ui->lineEditPhone->text());
     person->setemail(ui->lineEditEmail->text());
     m_student->setperson(person);
+    if(ui->comboBoxEducationProgram->currentIndex()!=-1){
+
+        m_student->seteducation_program(m_modelEducationalProgram->getEducationalProgram(ui->comboBoxEducationProgram->currentIndex()));
+    }
     if(ui->comboBoxGrops->currentIndex()!=-1){
 
-    m_student->setgroup(m_listGroups.getByIndex(ui->comboBoxGrops->currentIndex()));
+        m_student->setgroup(m_listGroups.getByIndex(ui->comboBoxGrops->currentIndex()));
 
     }
 
@@ -80,6 +85,13 @@ void InsertStudent::onOkClicked()
 void InsertStudent::fillComboBox()
 {
 
+    ListOfEducationalProgram listEducationProgram;
+    listEducationProgram=m_modelEducationalProgram->getList();
+
+    for(int i=0;i<listEducationProgram.count();i++){
+        ui->comboBoxEducationProgram->addItem(listEducationProgram.getByIndex(i)->getname());
+    }
+
 
     for(int i=0;i<m_listGroups.count();i++){
         ui->comboBoxGrops->addItem(m_listGroups.getByIndex(i)->getnumber());
@@ -101,5 +113,15 @@ void InsertStudent::initInsert()
 
     }else{
         ui->comboBoxGrops->setCurrentIndex(-1);
+    }
+
+    if(m_student->geteducation_program()!=nullptr){
+
+        ui->comboBoxEducationProgram->setCurrentText(m_student->geteducation_program()->getname());
+
+
+    }else{
+
+        ui->comboBoxEducationProgram->setCurrentIndex(-1);
     }
 }

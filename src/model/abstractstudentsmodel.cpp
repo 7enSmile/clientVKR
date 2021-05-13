@@ -4,6 +4,7 @@ void AbstractStudentsModel::loadListGlobal()
 {
     beginInsertRows(QModelIndex(),0,0);
     QStringList relation;
+    relation.append("Education_program");
     relation.append("person_id");
     relation.append("group");
     qx::dao::fetch_all_with_relation(relation,m_listStudent);

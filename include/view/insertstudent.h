@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "Student.h"
 #include "QMessageBox"
+#include "model/abstracteducationalprogrammodel.h"
 
 namespace Ui {
 class InsertStudent;
@@ -31,6 +32,7 @@ private:
     Ui::InsertStudent *ui;
     Student_ptr m_student;
     ListOfGroup m_listGroups;
+    AbstractEducationalProgramModel *m_modelEducationalProgram;
     void fillComboBox();
     void initInsert();
 

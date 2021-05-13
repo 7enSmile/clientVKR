@@ -90,6 +90,12 @@ void AbstractEducationalProgramModel::saveEducationalProgram(EducationalProgram_
 
 }
 
+ListOfEducationalProgram &AbstractEducationalProgramModel::getList()
+{
+    return m_listEducationalProgram;
+
+}
+
 EducationalProgram_ptr AbstractEducationalProgramModel::getEducationalProgram(int index)
 {
     return m_listEducationalProgram.getByIndex(index);
