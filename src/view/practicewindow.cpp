@@ -58,6 +58,8 @@ PracticeWindow::~PracticeWindow()
 Practice_ptr PracticeWindow::getPractice()
 {
 
+    m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
+    m_practice->setlist_of_TestPractice(m_listTestPractice);
     m_practice->setemployer(m_listEmployers.getByIndex(ui->comboBox->currentIndex()));
     m_practice->setbeginning(ui->dateEditbegining->date());
     m_practice->setending(ui->dateEditEnding->date());
@@ -181,6 +183,7 @@ void PracticeWindow::onOkClicked()
 void PracticeWindow::onActionClicked()
 {
 
+
     QDialog::accept();
 
 }
@@ -193,7 +196,7 @@ void PracticeWindow::onTablePassingPracticeclicked()
     if(w->exec()==QDialog::Accepted){
 
 
-        m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
+        //m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
 
     }
 
@@ -206,7 +209,7 @@ void PracticeWindow::onInsertPassingPracticeClicked()
     PassingPracticeWindow *w=new PassingPracticeWindow(m_practice->getemployer(),m_practice);
     if(w->exec()==QDialog::Accepted){
         m_modelPassingPractice->save(w->getPassingPractice());
-        m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
+       // m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
     }
 }
 
@@ -237,9 +240,7 @@ void PracticeWindow::onInsertTestClicked()
         testpractice->setname(nameTest);
         testpractice->setpractice(m_practice);
         testpractice->setemployer(m_practice->getemployer());
-        listOfTestPractice list;
-        list.insert(0,testpractice);
-        m_practice->setlist_of_TestPractice(list);
+        m_listTestPractice.insert(0,testpractice);
         file.close();
         disconnect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onInsertTestClicked()));
         connect(ui->pushButtonTest,SIGNAL(clicked()),this,SLOT(onGetTestClicked()));
@@ -305,7 +306,7 @@ void PracticeWindow::onInsertManyPassingPracticeClicked()
         for(int i=0;i<list.count();i++){
         m_modelPassingPractice->save(list.getByIndex(i));
         }
-        m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
+
     }
 
 }

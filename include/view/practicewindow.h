@@ -27,6 +27,7 @@ private:
     Ui::PracticeWindow *ui;
     Practice_ptr m_practice;
     ListOfEmployer m_listEmployers;
+    listOfTestPractice m_listTestPractice;
     AbstractPassingPracticeModel *m_modelPassingPractice;
     void iniconnection();
     void initElementsChange();
