@@ -27,7 +27,7 @@ InsertManyPassingPractice::InsertManyPassingPractice(Employer_ptr employer,Pract
     connect(ui->lineEditLastNameHeadUniversity, &QLineEdit::textChanged, this, &InsertManyPassingPractice::changeHeadUniversity);
     connect(ui->comboBoxDepartmen, SIGNAL(activated(QString)), this, SLOT(changeHeadUniversity()));
     connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(onActionClicked()));
-    changeHeadEmployer();
+    changeStudents();
     changeHeadUniversity();
     changeHeadEmployer();
 }
