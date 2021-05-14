@@ -83,11 +83,12 @@ void InsertManyPassingPractice::onActionClicked()
 
          PassingPractice_ptr passing;
          passing.reset(new PassingPractice());
-         passing->setstuden(m_modelStudent->getStudent(i));
+         passing->setstuden(m_modelStudent->getStudent(indexStudent[i].row()));
          passing->sethead_employer(m_modelHeadEmployer->getHeadEmployer(indexHeadEmployer[0].row()));
          passing->sethead_university(m_modelHeadUniversity->getStaffUniversity(indexHeadUniversity[0].row()));
          passing->setpractice(m_practice);
          m_listPassingPractice.insert(i,passing);
+         qDebug()<<indexStudent.count();
      }
      QDialog::accept();
 
