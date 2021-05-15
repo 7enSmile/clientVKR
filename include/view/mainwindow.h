@@ -14,6 +14,7 @@
 #include "view/reportpracticewindow.h"
 #include "view/eventswindow.h"
 #include "view/educationalprogramwindow.h"
+#include "view/aboutwindow.h"
 namespace Ui {
 class MainWindow;
 }
@@ -44,6 +45,7 @@ private slots:
     void onInsertPracticeClicked();
     void onReportPracticeClicked();
     void onEducationProgramClicked();
+    void onAboutClicked();
 
 
 

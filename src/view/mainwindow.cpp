@@ -55,11 +55,18 @@ void MainWindow::addSubMenu()
     actionStaffUniversity->setText("Работники университета");
     ui->menubar->addAction(actionStaffUniversity);
     connect(actionStaffUniversity,SIGNAL(triggered()),this,SLOT(onStaffUniversityClicked()));
+    QAction *actionAbout = new QAction(this);
+    actionAbout->setObjectName("actioAbout");
+    actionAbout->setText("О программе");
+    ui->menubar->addAction(actionAbout);
+    connect(actionAbout,SIGNAL(triggered()),this,SLOT(onAboutClicked()));
     QAction *actionExit = new QAction(this);
     actionExit->setObjectName("actioExit");
     actionExit->setText("Выход");
     ui->menubar->addAction(actionExit);
     connect(actionExit,SIGNAL(triggered()),this,SLOT(onExitClicked()));
+
+
 
 
 }
@@ -184,6 +191,13 @@ void MainWindow::onReportPracticeClicked()
 void MainWindow::onEducationProgramClicked()
 {
     EducationalProgramWindow *w=new EducationalProgramWindow();
+    w->exec();
+
+}
+
+void MainWindow::onAboutClicked()
+{
+    AboutWindow *w=new AboutWindow();
     w->exec();
 
 }

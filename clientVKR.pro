@@ -87,7 +87,7 @@ SOURCES += $$PWD/src/model/abstractdisciplinemodel.cpp
 SOURCES += $$PWD/src/model/abstractselectresultdisciplinemodel.cpp
 SOURCES += $$PWD/src/view/searchpractice.cpp
 SOURCES += $$PWD/src/view/insertmanypassingpractice.cpp
-
+SOURCES += $$PWD/src/view/aboutwindow.cpp
 
 
 
@@ -148,7 +148,7 @@ HEADERS += $$PWD/include/model/abstractdisciplinemodel.h
 HEADERS += $$PWD/include/model/abstractselectresultdisciplinemodel.h
 HEADERS += $$PWD/include/view/searchpractice.h
 HEADERS += $$PWD/include/view/insertmanypassingpractice.h
-
+HEADERS += $$PWD/include/view/aboutwindow.h
 
 
 
@@ -188,7 +188,7 @@ FORMS +=$$PWD/ui/insertdiscipline.ui
 FORMS +=$$PWD/ui/resultdisciplinewindow.ui
 FORMS +=$$PWD/ui/searchpractice.ui
 FORMS +=$$PWD/ui/insertmanypassingpractice.ui
-
+FORMS +=$$PWD/ui/aboutwindow.ui
 
 
 
