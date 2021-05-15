@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>593</width>
+    <width>664</width>
     <height>384</height>
    </rect>
   </property>
@@ -26,11 +26,17 @@
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
            <widget class="QTableView" name="tableViewEvents">
+            <property name="selectionMode">
+             <enum>QAbstractItemView::SingleSelection</enum>
+            </property>
             <attribute name="horizontalHeaderVisible">
-             <bool>false</bool>
+             <bool>true</bool>
             </attribute>
             <attribute name="horizontalHeaderDefaultSectionSize">
-             <number>1000</number>
+             <number>100</number>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
             </attribute>
            </widget>
           </item>

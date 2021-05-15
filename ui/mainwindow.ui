@@ -36,6 +36,9 @@
              <property name="showDropIndicator" stdset="0">
               <bool>true</bool>
              </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
              <property name="showGrid">
               <bool>false</bool>
              </property>
@@ -43,7 +46,7 @@
               <bool>true</bool>
              </attribute>
              <attribute name="horizontalHeaderCascadingSectionResizes">
-              <bool>true</bool>
+              <bool>false</bool>
              </attribute>
              <attribute name="horizontalHeaderDefaultSectionSize">
               <number>100</number>
@@ -140,11 +143,14 @@
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
             <widget class="QTableView" name="tableViewPractice">
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
              <attribute name="horizontalHeaderVisible">
               <bool>true</bool>
              </attribute>
              <attribute name="horizontalHeaderCascadingSectionResizes">
-              <bool>true</bool>
+              <bool>false</bool>
              </attribute>
              <attribute name="horizontalHeaderDefaultSectionSize">
               <number>100</number>

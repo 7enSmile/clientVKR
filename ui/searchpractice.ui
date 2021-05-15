@@ -100,6 +100,9 @@
    </item>
    <item>
     <widget class="QTableView" name="tableViewPractice">
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
      <attribute name="horizontalHeaderStretchLastSection">
       <bool>true</bool>
      </attribute>

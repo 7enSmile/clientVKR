@@ -39,6 +39,8 @@ public:
 
     ListOfEmployer m_listEmployers;
 
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
+
 };
 
 #endif // ABSTRACTCONTACTEMPLOYERMODEL_H

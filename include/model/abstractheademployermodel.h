@@ -39,6 +39,8 @@ public:
 
     void loadListGlobal();
 
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
+
 
 
     void search(QString,QString,long);

@@ -114,6 +114,7 @@ HEADERS += $$PWD/include/view/additionalwindow.h
 HEADERS += $$PWD/include/model/abstractactivitymodel.h
 HEADERS += $$PWD/include/model/abstracttasksmodel.h
 HEADERS += $$PWD/include/model/abstractcollaborationmodel.h
+HEADERS += $$PWD/include/model/abstracttaskspracticemodel.h
 HEADERS += $$PWD/include/view/insertadditional.h
 HEADERS += $$PWD/include/view/insertevent.h
 HEADERS += $$PWD/include/view/eventswindow.h

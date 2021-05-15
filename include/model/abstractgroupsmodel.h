@@ -29,6 +29,9 @@ public:
 
     Group_ptr getGroup(int);
 
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
+
+
     void loadList();
 
 };

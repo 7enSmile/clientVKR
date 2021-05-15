@@ -74,3 +74,20 @@ Group_ptr AbstractGroupsModel::getGroup(int index)
     group=m_listGroup.getByIndex(index);
     return group;
 }
+
+QVariant AbstractGroupsModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        switch (section) {
+        case 0:
+            return QString("Группа");
+
+        }
+    }
+
+    if (role == Qt::DisplayRole && orientation == Qt::Vertical) {
+
+        return section+1;
+    }
+    return QVariant();
+}

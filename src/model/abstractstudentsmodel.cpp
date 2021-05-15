@@ -122,7 +122,7 @@ QVariant AbstractStudentsModel::headerData(int section, Qt::Orientation orientat
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
         switch (section) {
         case 0:
-            return QString("Студенты");
+            return QString("Студент");
 
         }
     }

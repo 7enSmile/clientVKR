@@ -26,6 +26,8 @@ private:
 
     ListOfPassingPractice m_listPassingPractice;
 
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
+
 
 
 

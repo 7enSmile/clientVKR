@@ -47,12 +47,12 @@ void MainWindow::addSubMenu()
     connect(actionStudents,SIGNAL(triggered()),this,SLOT(onStudentsClicked()));
     QAction *actionStaffEmployer = new QAction(this);
     actionStaffEmployer->setObjectName("actioStaffEmployer");
-    actionStaffEmployer->setText("Работники предприятия");
+    actionStaffEmployer->setText("Сотрудники предприятия");
     ui->menubar->addAction(actionStaffEmployer);
     connect(actionStaffEmployer,SIGNAL(triggered()),this,SLOT(onStaffEmployerClicked()));
     QAction *actionStaffUniversity = new QAction(this);
     actionStaffUniversity->setObjectName("actioStaffUniversity");
-    actionStaffUniversity->setText("Работники университета");
+    actionStaffUniversity->setText("Сотрудники университета");
     ui->menubar->addAction(actionStaffUniversity);
     connect(actionStaffUniversity,SIGNAL(triggered()),this,SLOT(onStaffUniversityClicked()));
     QAction *actionAbout = new QAction(this);

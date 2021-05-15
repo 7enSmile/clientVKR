@@ -21,6 +21,8 @@ public:
 
     Events_ptr getEvent(int);
 
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
+
 private:
     ListOfEvent m_listEvent;
     void loadList();

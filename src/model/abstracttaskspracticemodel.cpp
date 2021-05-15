@@ -81,6 +81,24 @@ QVariant AbstractTasksPracticeModel::data(const QModelIndex &index, int role) co
 
 }
 
+QVariant AbstractTasksPracticeModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        switch (section) {
+        case 0:
+            return QString("Задание");
+
+        }
+    }
+
+    if (role == Qt::DisplayRole && orientation == Qt::Vertical) {
+
+        return section+1;
+    }
+    return QVariant();
+
+}
+
 void AbstractTasksPracticeModel::loadList()
 {
     qx::dao::fetch_all_with_all_relation(m_listTasksPractice);

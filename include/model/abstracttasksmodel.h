@@ -22,6 +22,8 @@ public:
 
     void action(int);
 
+
+
     ListOfTask getTask();
 private:
     ListOfTask  m_listGlobalTask ;

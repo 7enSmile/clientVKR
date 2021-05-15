@@ -59,13 +59,35 @@ QVariant AbstractPassingPracticeModel::data(const QModelIndex &index, int role) 
                 lastname=m_listPassingPractice.getByIndex(index.row())->getstuden()->getperson()->getlastname();
                 patronymic=m_listPassingPractice.getByIndex(index.row())->getstuden()->getperson()->getpatronymic();
                 group=m_listPassingPractice.getByIndex(index.row())->getstuden()->getgroup()->getnumber();
-                title=lastname+" "+firstname+" "+patronymic+" "+group;
+                title=lastname+" "+firstname+" "+patronymic;
             }
             return title;
         }
 
     }
 
+    return QVariant();
+
+}
+
+QVariant AbstractPassingPracticeModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+
+
+
+
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        switch (section) {
+        case 0:
+            return QString("Студент");
+
+        }
+    }
+
+    if (role == Qt::DisplayRole && orientation == Qt::Vertical) {
+
+        return section+1;
+    }
     return QVariant();
 
 }

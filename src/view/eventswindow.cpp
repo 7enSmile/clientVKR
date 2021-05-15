@@ -16,6 +16,9 @@ EventsWindow::EventsWindow(ListOfEmployer list,QWidget *parent) :
     ui->tableViewEvents->setModel(m_modelEvents);
     this->setWindowTitle("Мероприятия");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    ui->tableViewEvents->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableViewEvents->setColumnWidth(0,150);
+    ui->tableViewEvents->setColumnWidth(1,130);
 
 }
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>584</width>
-    <height>364</height>
+    <height>424</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,6 +26,9 @@
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
            <widget class="QTableView" name="tableViewStaff">
+            <property name="selectionMode">
+             <enum>QAbstractItemView::SingleSelection</enum>
+            </property>
             <property name="showGrid">
              <bool>true</bool>
             </property>
@@ -36,9 +39,12 @@
              <number>100</number>
             </attribute>
             <attribute name="horizontalHeaderDefaultSectionSize">
-             <number>1000</number>
+             <number>100</number>
             </attribute>
             <attribute name="horizontalHeaderHighlightSections">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
              <bool>true</bool>
             </attribute>
             <attribute name="verticalHeaderVisible">
@@ -139,11 +145,17 @@
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QTableView" name="tableViewDepatment">
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
           <attribute name="horizontalHeaderVisible">
            <bool>false</bool>
           </attribute>
           <attribute name="horizontalHeaderDefaultSectionSize">
-           <number>1000</number>
+           <number>100</number>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
           </attribute>
          </widget>
         </item>

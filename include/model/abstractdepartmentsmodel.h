@@ -27,6 +27,9 @@ public:
     Department_ptr getDepartment(int);
 
     ListOfDepartment& getList();
+
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
+
 };
 
 #endif

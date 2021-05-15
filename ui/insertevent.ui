@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>283</width>
-    <height>399</height>
+    <width>315</width>
+    <height>539</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -56,16 +56,29 @@
        <property name="title">
         <string>Работодатель</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_11">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
          <widget class="QComboBox" name="comboBox">
           <property name="maximumSize">
            <size>
-            <width>100</width>
+            <width>16777215</width>
             <height>16777215</height>
            </size>
           </property>
          </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>150</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>

@@ -71,3 +71,23 @@ ListOfDepartment &AbstractDepartmentsModel::getList()
 {
     return m_listDepartment;
 }
+
+QVariant AbstractDepartmentsModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+
+
+
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        switch (section) {
+        case 0:
+            return QString("Кафедра");
+
+        }
+    }
+
+    if (role == Qt::DisplayRole && orientation == Qt::Vertical) {
+
+        return section+1;
+    }
+    return QVariant();
+}
