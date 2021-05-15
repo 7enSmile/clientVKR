@@ -25,6 +25,9 @@ public:
     void action(int);
 
     ListOfActivity getActivity();
+
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
+
 private:
     ListOfActivity m_listGlobalActivity;
     ListOfActivity m_listLocalActivity;

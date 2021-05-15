@@ -84,6 +84,24 @@ void AbstractCollaborationModel::action(int index)
 
 }
 
+QVariant AbstractCollaborationModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        switch (section) {
+        case 0:
+            return QString("Направление сотрудничества");
+
+        }
+    }
+
+    if (role == Qt::DisplayRole && orientation == Qt::Vertical) {
+
+        return section+1;
+    }
+    return QVariant();
+
+}
+
 ListOfCollaboration AbstractCollaborationModel::getCollaboration()
 {
      return m_listLocalCollaboration;

@@ -21,6 +21,8 @@ public:
 
     void action(int);
 
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
+
     ListOfCollaboration getCollaboration();
 private:
     ListOfCollaboration m_listGlobalCollaboration;
