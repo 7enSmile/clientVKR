@@ -1,6 +1,3 @@
-#################################################################################################
-## File created by QxEntityEditor 1.2.6 (2021/03/24 12:12) : please, do NOT modify this file ! ##
-#################################################################################################
 
 !contains(DEFINES, _QX_NO_PRECOMPILED_HEADER) {
 PRECOMPILED_HEADER += $$PWD/include/department_precompiled_header.h
