@@ -1,2 +1,5 @@
 /QxOrm
 *.dll
+*.exp
+*.lib
+*.ilk
