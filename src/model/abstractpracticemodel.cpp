@@ -21,17 +21,16 @@ int AbstractPracticeModel::rowCount(const QModelIndex &parent) const
 
 void AbstractPracticeModel::search(ListOfPractice list,QString employer, QDate beginning, QDate ending)
 {
-    ListOfPractice globalList;
-    qx::dao::fetch_all_with_relation("employer",globalList);
-    m_listPractice.clear();
-    for(int i=0;i<globalList.count();i++){
 
-        if(globalList.getByIndex(i)->geteducation_program()==nullptr &&
-                globalList.getByIndex(i)->getemployer()->getname()==employer &&
-                !list.contains(globalList.getKeyByIndex(i)) &&
-                globalList.getByIndex(i)->getbeginning()>=beginning &&
-                globalList.getByIndex(i)->getending()<=ending)
-            m_listPractice.insert(globalList.getByIndex(i)->getPractice_id(),globalList.getByIndex(i));
+    m_listPractice.clear();
+    for(int i=0;i<m_GlobalistPractice.count();i++){
+
+        if(m_GlobalistPractice.getByIndex(i)->geteducation_program()==nullptr &&
+                m_GlobalistPractice.getByIndex(i)->getemployer()->getname()==employer &&
+                !list.contains(m_GlobalistPractice.getKeyByIndex(i)) &&
+                m_GlobalistPractice.getByIndex(i)->getbeginning()>=beginning &&
+                m_GlobalistPractice.getByIndex(i)->getending()<=ending)
+            m_listPractice.insert(m_GlobalistPractice.getByIndex(i)->getPractice_id(),m_GlobalistPractice.getByIndex(i));
     }
     layoutChanged();
 
@@ -206,6 +205,7 @@ void AbstractPracticeModel::loadList()
     m_listPractice.sortByKey();
     endInsertRows();
     layoutChanged();
+    m_GlobalistPractice=m_listPractice;
 
 }
 

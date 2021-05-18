@@ -83,6 +83,14 @@ void InsertEducationalProgram::onAdditionalClicked()
 
         m_educationalProgram->setlist_of_discipline(w->getListDiscipline());
         m_educationalProgram->setlist_of_Practice(w->getListPractice());
+    }else{
+
+        if(w->statusDelete){
+
+            m_educationalProgram->setlist_of_discipline(w->getListDiscipline());
+            m_educationalProgram->setlist_of_Practice(w->getListPractice());
+
+        }
     }
 
 }

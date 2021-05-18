@@ -77,6 +77,9 @@ void AbstractEmployerModel::loadList()
     ListOfContactEmployer listContactEmployer;
     beginInsertRows(QModelIndex(),0,0);
     QStringList relation;
+    relation.append("list_of_activity");
+    relation.append("list_of_collaboration");
+    relation.append("list_of_task");
     relation.append("list_of_head_employer");
     relation.append("list_of_contact_employer");
     relation.append("list_of_result_education");

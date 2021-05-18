@@ -1,13 +1,13 @@
-include(C:/Qt/QxOrm/QxOrm.pri)
+include(./QxOrm/QxOrm.pri)
 QT+=widgets
 TEMPLATE = app
 DEFINES += _BUILDING_QX_BLOG_EXEC
 
-INCLUDEPATH += C:/Qt/QxOrm/include/
-INCLUDEPATH += D:/prodjects/entityVKR/include/
+INCLUDEPATH += $$PWD/QxOrm/include/
+INCLUDEPATH += $$PWD/entityVKR/include/
 
-LIBS += -L"C:/Qt/QxOrm/lib"
-LIBS += -L"D:/prodjects/entityVKR/bin"
+LIBS += -L"$$PWD/QxOrm/lib"
+LIBS += -L"$$PWD/entityVKR/bin"
 
 CONFIG(debug, debug|release) {
 TARGET = department

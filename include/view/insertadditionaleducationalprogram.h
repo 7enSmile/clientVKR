@@ -22,6 +22,7 @@ public:
     ~InsertAdditionalEducationalProgram();
      ListOfDiscipline& getListDiscipline();
      ListOfPractice& getListPractice();
+     bool statusDelete=false;
 
 private:
     Ui::InsertAdditionalEducationalProgram *ui;

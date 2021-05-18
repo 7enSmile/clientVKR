@@ -9,6 +9,9 @@ class AbstractPracticeModel:public QAbstractTableModel
 private:
 
     ListOfPractice m_listPractice;
+
+    ListOfPractice m_GlobalistPractice;
+
     ListOfEmployer m_listEmployer;
 
 public:

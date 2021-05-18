@@ -72,6 +72,7 @@ void InsertAdditionalEducationalProgram::onDeleteDisciplineClicked()
     QModelIndexList index = ui->tableViewDiscipline->selectionModel()->selectedRows();
     if(index.count()>0){
         m_modelDescipline->deleteDiscipline(index[0].row());
+        statusDelete=true;
     }
     ui->tableViewDiscipline->clearSelection();
     ui->tableViewDiscipline->clearFocus();
@@ -109,6 +110,8 @@ void InsertAdditionalEducationalProgram::onDeletePracticeClicked()
     if(index.count()>0){
 
         m_modelPractice->deleteEducationProgram(index[0].row());
+        statusDelete=true;
+
     }
     ui->tableViewPractice->clearSelection();
     ui->tableViewPractice->clearFocus();
