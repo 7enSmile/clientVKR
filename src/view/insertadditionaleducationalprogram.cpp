@@ -131,7 +131,7 @@ void InsertAdditionalEducationalProgram::onTablePracticeClicked()
     qDialog.setOptions(QInputDialog::UseListViewForComboBoxItems);
     qDialog.setComboBoxItems(items);
     qDialog.setWindowFlags(qDialog.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    qDialog.setLabelText("Выбирите семестр");
+    qDialog.setLabelText("Выберите семестр");
     qDialog.setTextValue(QString::number(m_modelPractice->getPractice(index[0].row())->getsemester()));
     qDialog.setWindowTitle("Семестр");
 
