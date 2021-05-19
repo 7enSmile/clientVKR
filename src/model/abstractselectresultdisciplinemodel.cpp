@@ -38,7 +38,7 @@ int AbstractSelectResultDisciplineModel::rowCount(const QModelIndex &parent) con
 
 int AbstractSelectResultDisciplineModel::columnCount(const QModelIndex &parent) const
 {
-    return !parent.isValid() ? 1 : 0;
+    return !parent.isValid() ? 2 : 0;
 
 }
 
@@ -49,6 +49,19 @@ QVariant AbstractSelectResultDisciplineModel::data(const QModelIndex &index, int
         if (index.column() == 0){
 
             return m_listGlobalResultDiscipline.getByIndex(index.row())->getacquired_skills();
+        }
+
+        if (index.column() == 1){
+
+            if(m_listGlobalResultDiscipline.getByIndex(index.row())->getdiscipline()!=nullptr){
+
+                return m_listGlobalResultDiscipline.getByIndex(index.row())->getdiscipline()->getname();
+
+            }else{
+
+                return m_listGlobalResultDiscipline.getByIndex(index.row())->geteducational_program()->getname();
+
+            }
         }
 
     }
@@ -71,6 +84,8 @@ QVariant AbstractSelectResultDisciplineModel::headerData(int section, Qt::Orient
         switch (section) {
         case 0:
             return QString("Образовательный результат");
+        case 1:
+            return QString("Источник");
 
         }
     }

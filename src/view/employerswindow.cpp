@@ -18,6 +18,9 @@ EmployersWindow::EmployersWindow(QWidget *parent) :
     ui->pushButtonOk->setText("Отмена");
     m_modelSelectResultDiscipline=new AbstractSelectResultDisciplineModel(m_employer->getlist_of_result_education());
     ui->tableViewEducationResult->setModel(m_modelSelectResultDiscipline);
+    ui->tableViewEducationResult->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableViewEducationResult->setColumnWidth(0,300);
+
 
 }
 
@@ -38,6 +41,9 @@ EmployersWindow::EmployersWindow(Employer_ptr employer,QWidget *parent) :
     ui->lineEditName->setText(m_employer->getname());
     m_modelSelectResultDiscipline=new AbstractSelectResultDisciplineModel(m_employer->getlist_of_result_education());
     ui->tableViewEducationResult->setModel(m_modelSelectResultDiscipline);
+    ui->tableViewEducationResult->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableViewEducationResult->setColumnWidth(0,300);
+
 
 
 }
