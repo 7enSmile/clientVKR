@@ -10,6 +10,7 @@ InsertResultDiscipline::InsertResultDiscipline(QWidget *parent) :
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     this->setWindowTitle("Добавить");
+    ui->pushButtonAction->setText("Добавить");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 }
 
