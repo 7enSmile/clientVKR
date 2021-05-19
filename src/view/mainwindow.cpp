@@ -127,7 +127,7 @@ void MainWindow::onEmployersTableClicked()
 
 
     }
-
+      m_modelEmployer->loadList();
       ui->tableViewEmployers->clearSelection();
       ui->tableViewEmployers->clearFocus();
 }
@@ -141,7 +141,7 @@ void MainWindow::onInsertEmployerClicked()
 
 
     }
-
+     m_modelEmployer->loadList();
      ui->tableViewEmployers->clearSelection();
      ui->tableViewEmployers->clearFocus();
 

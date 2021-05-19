@@ -192,6 +192,7 @@ void InsertStaffEmployer::initInsertContactEmployer()
     ui->pushButton->setText("Ок");
     ui->comboBoxRole->setHidden(false);
     ui->label_2->setHidden(false);
+    ui->comboBoxRole->setHidden(false);
     ui->comboBoxRole->setCurrentIndex(1);
     ui->comboBoxRole->setEnabled(false);
     if(m_contactEmployer->getemployer()!=nullptr){

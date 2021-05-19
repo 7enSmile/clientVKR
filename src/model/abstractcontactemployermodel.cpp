@@ -116,6 +116,7 @@ ListOfContactEmployer &AbstractContactEmployerModel::getListContactEmployer()
 
 void AbstractContactEmployerModel::loadListGlobal()
 {
+    qx::dao::fetch_all(m_listEmployers);
     beginInsertRows(QModelIndex(),0,0);
     QStringList relation;
     relation.append("person");
