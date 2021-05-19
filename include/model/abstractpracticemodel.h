@@ -34,6 +34,8 @@ public:
 
     void setSemester(int,int);
 
+    void search(QRegExp,QDate,QDate);
+
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 

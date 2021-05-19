@@ -21,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->tableViewPractice,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onPracticeTableClicked()));
     connect(ui->pushButtonInserPractice,SIGNAL(clicked()),this,SLOT(onInsertPracticeClicked()));
     connect(ui->pushButtonReport,SIGNAL(clicked()),this,SLOT(onReportPracticeClicked()));
+    connect(ui->dateEditBegin, &QDateEdit::dateChanged, this, &MainWindow::search);
+    connect(ui->dateEditEnd, &QDateEdit::dateChanged, this, &MainWindow::search);
+    connect(ui->lineEditNameEmployer, &QLineEdit::textChanged, this, &MainWindow::search);
 }
 
 MainWindow::~MainWindow()
@@ -89,6 +92,7 @@ void MainWindow::onStudentsClicked()
     StudentsWindow *w=new StudentsWindow();
     w->exec();
     m_modelPractice->loadList();
+    search();
 
 
 
@@ -124,6 +128,7 @@ void MainWindow::onEmployersTableClicked()
     if(w->exec()==QDialog::Accepted){
         m_modelEmployer->saveEmployer(w->getEmployer());
         m_modelPractice->loadList();
+        search();
 
 
     }
@@ -155,6 +160,7 @@ void MainWindow::onPracticeTableClicked()
     if(w->exec()==QDialog::Accepted){
         m_modelPractice->savePractice(w->getPractice());
         m_modelPractice->loadList();
+        search();
 
 
     }
@@ -172,6 +178,7 @@ void MainWindow::onInsertPracticeClicked()
     if(w->exec()==QDialog::Accepted){
         m_modelPractice->savePractice(w->getPractice());
         m_modelPractice->loadList();
+        search();
     }
 
 
@@ -199,5 +206,12 @@ void MainWindow::onAboutClicked()
 {
     AboutWindow *w=new AboutWindow();
     w->exec();
+
+}
+
+void MainWindow::search()
+{
+    QRegExp employer("^"+ui->lineEditNameEmployer->text());
+    m_modelPractice->search(employer,ui->dateEditBegin->date(),ui->dateEditEnd->date());
 
 }

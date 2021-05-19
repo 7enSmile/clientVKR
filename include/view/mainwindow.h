@@ -46,6 +46,7 @@ private slots:
     void onReportPracticeClicked();
     void onEducationProgramClicked();
     void onAboutClicked();
+    void search();
 
 
 

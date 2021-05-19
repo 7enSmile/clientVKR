@@ -68,6 +68,21 @@ void AbstractPracticeModel::setSemester(int index, int semester)
 
 }
 
+void AbstractPracticeModel::search(QRegExp employer, QDate beginning, QDate ending)
+{
+    m_listPractice.clear();
+    for(int i=0;i<m_GlobalistPractice.count();i++){
+
+        if( m_GlobalistPractice.getByIndex(i)->getemployer()->getname().contains(employer) &&
+            m_GlobalistPractice.getByIndex(i)->getbeginning()>=beginning &&
+            m_GlobalistPractice.getByIndex(i)->getending()<=ending)
+            m_listPractice.insert(m_GlobalistPractice.getByIndex(i)->getPractice_id(),m_GlobalistPractice.getByIndex(i));
+    }
+    layoutChanged();
+
+
+}
+
 int AbstractPracticeModel::columnCount(const QModelIndex &parent) const
 {
     return !parent.isValid() ? 3 : 0;
