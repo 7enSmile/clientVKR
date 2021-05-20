@@ -98,11 +98,11 @@ void AbstractPassingPracticeModel::save(PassingPractice_ptr passingpractice)
 
 
     if(!m_listPassingPractice.empty()){
-    m_listPassingPractice.insert(m_listPassingPractice.getKeyByIndex(m_listPassingPractice.count()-1)+1,passingpractice);
+        m_listPassingPractice.insert(m_listPassingPractice.getKeyByIndex(m_listPassingPractice.count()-1)+1,passingpractice);
     }
     else{
 
-         m_listPassingPractice.insert(1,passingpractice);
+        m_listPassingPractice.insert(1,passingpractice);
 
     }
 
@@ -115,8 +115,6 @@ void AbstractPassingPracticeModel::save(PassingPractice_ptr passingpractice)
 void AbstractPassingPracticeModel::deletePassingPractice(int index)
 {
     if(m_listPassingPractice.getByIndex(index)->getPassingPractice_id()!=0){
-        Person_ptr person;
-        person.reset(new Person());
 
         qx::dao::delete_by_id(m_listPassingPractice.getByIndex(index));
     }

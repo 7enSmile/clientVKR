@@ -24,26 +24,26 @@ int AbstractStaffUniversityModel::columnCount(const QModelIndex &parent) const
 QVariant AbstractStaffUniversityModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
+    {
+
+        if (index.column() == 0)
         {
 
-            if (index.column() == 0)
-            {
 
-
-               QString title;
-               QString firstname;
-               QString lastname;
-               QString patronymic;
-               firstname=m_listStaffUniversity.getByIndex(index.row())->getperson()->getfirstname();
-               lastname=m_listStaffUniversity.getByIndex(index.row())->getperson()->getlastname();
-               patronymic=m_listStaffUniversity.getByIndex(index.row())->getperson()->getpatronymic();
-               title=lastname+" "+firstname+" "+patronymic;
-               return title;
-            }
-
+            QString title;
+            QString firstname;
+            QString lastname;
+            QString patronymic;
+            firstname=m_listStaffUniversity.getByIndex(index.row())->getperson()->getfirstname();
+            lastname=m_listStaffUniversity.getByIndex(index.row())->getperson()->getlastname();
+            patronymic=m_listStaffUniversity.getByIndex(index.row())->getperson()->getpatronymic();
+            title=lastname+" "+firstname+" "+patronymic;
+            return title;
         }
 
-        return QVariant();
+    }
+
+    return QVariant();
 
 }
 
@@ -113,9 +113,11 @@ void AbstractStaffUniversityModel::search(QString searchName, QString searchLast
     for(int i=0;i<list.count();i++){
         name=list.getByIndex(i)->getperson()->getfirstname();
         lastname=list.getByIndex(i)->getperson()->getlastname();
-        department=list.getByIndex(i)->getdepartment()->getname();
-        if(name.contains(regName)&&lastname.contains(reglastname)&&department.contains(regdepartment)){
-            m_listStaffUniversity.insert(list.getByIndex(i)->getHeadUniversity_id(),list.getByIndex(i));
+        if(list.getByIndex(i)->getdepartment()!=nullptr){
+            department=list.getByIndex(i)->getdepartment()->getname();
+            if(name.contains(regName)&&lastname.contains(reglastname)&&department.contains(regdepartment)){
+                m_listStaffUniversity.insert(list.getByIndex(i)->getHeadUniversity_id(),list.getByIndex(i));
+            }
         }
     }
     layoutChanged();

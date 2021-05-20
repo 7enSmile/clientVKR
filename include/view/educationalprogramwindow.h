@@ -34,6 +34,8 @@ private slots:
 
     void onOkCliced();
 
+    void onDeleteEducationProgramClicked();
+
 };
 
 #endif // EDUCATIONALPROGRAMWINDOW_H

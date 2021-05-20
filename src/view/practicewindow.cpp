@@ -125,53 +125,53 @@ void PracticeWindow::initElementInsert()
 QString PracticeWindow::genCustomId()
 {
     QString res;
-        static QMap<QString, QString> toTranslit;
-        toTranslit["а"] = 'a';
-        toTranslit["б"] = 'b';
-        toTranslit["в"] = 'v';
-        toTranslit["г"] = 'g';
-        toTranslit["д"] = 'd';
-        toTranslit["е"] = 'e';
-        toTranslit["ё"] = "jo";
-        toTranslit["ж"] = "zh";
-        toTranslit["з"] = 'z';
-        toTranslit["и"] = 'i';
-        toTranslit["й"] = 'j';
-        toTranslit["к"] = 'k';
-        toTranslit["л"] = 'l';
-        toTranslit["м"] = 'm';
-        toTranslit["н"] = 'n';
-        toTranslit["о"] = 'o';
-        toTranslit["п"] = 'p';
-        toTranslit["р"] = 'r';
-        toTranslit["с"] = 's';
-        toTranslit["т"] = 't';
-        toTranslit["у"] = 'u';
-        toTranslit["ф"] = 'f';
-        toTranslit["х"] = 'h';
-        toTranslit["ц"] = 'c';
-        toTranslit["ч"] = "ch";
-        toTranslit["ш"] = "sh";
-        toTranslit["щ"] = 'w';
-        toTranslit["ъ"] = '#';
-        toTranslit["ы"] = 'y';
-        toTranslit["ь"] = '\'';
-        toTranslit["э"] = "e";
-        toTranslit["ю"] = "ju";
-        toTranslit["я"] = "ja";
-        toTranslit[" "] = "_";
-        QString name=ui->comboBox->currentText();
-        for (int i = 0; i < name.length(); i++) {
-            const QString ch = name.at(i);
-            const QString lowerCh = ch.toLower();
-            if (toTranslit.contains(lowerCh)) {
-                QString tmp = ch == lowerCh ? toTranslit[lowerCh] : toTranslit[lowerCh].toUpper();
-                res += tmp;
-            } else
-                res += ch;
-        }
-        res+=ui->dateEditbegining->date().toString("yy");
-        return res;
+    static QMap<QString, QString> toTranslit;
+    toTranslit["а"] = 'a';
+    toTranslit["б"] = 'b';
+    toTranslit["в"] = 'v';
+    toTranslit["г"] = 'g';
+    toTranslit["д"] = 'd';
+    toTranslit["е"] = 'e';
+    toTranslit["ё"] = "jo";
+    toTranslit["ж"] = "zh";
+    toTranslit["з"] = 'z';
+    toTranslit["и"] = 'i';
+    toTranslit["й"] = 'j';
+    toTranslit["к"] = 'k';
+    toTranslit["л"] = 'l';
+    toTranslit["м"] = 'm';
+    toTranslit["н"] = 'n';
+    toTranslit["о"] = 'o';
+    toTranslit["п"] = 'p';
+    toTranslit["р"] = 'r';
+    toTranslit["с"] = 's';
+    toTranslit["т"] = 't';
+    toTranslit["у"] = 'u';
+    toTranslit["ф"] = 'f';
+    toTranslit["х"] = 'h';
+    toTranslit["ц"] = 'c';
+    toTranslit["ч"] = "ch";
+    toTranslit["ш"] = "sh";
+    toTranslit["щ"] = 'w';
+    toTranslit["ъ"] = '#';
+    toTranslit["ы"] = 'y';
+    toTranslit["ь"] = '\'';
+    toTranslit["э"] = "e";
+    toTranslit["ю"] = "ju";
+    toTranslit["я"] = "ja";
+    toTranslit[" "] = "_";
+    QString name=ui->comboBox->currentText();
+    for (int i = 0; i < name.length(); i++) {
+        const QString ch = name.at(i);
+        const QString lowerCh = ch.toLower();
+        if (toTranslit.contains(lowerCh)) {
+            QString tmp = ch == lowerCh ? toTranslit[lowerCh] : toTranslit[lowerCh].toUpper();
+            res += tmp;
+        } else
+            res += ch;
+    }
+    res+=ui->dateEditbegining->date().toString("yy");
+    return res;
 
 }
 
@@ -210,15 +210,17 @@ void PracticeWindow::onInsertPassingPracticeClicked()
     PassingPracticeWindow *w=new PassingPracticeWindow(m_practice->getemployer(),m_practice);
     if(w->exec()==QDialog::Accepted){
         m_modelPassingPractice->save(w->getPassingPractice());
-       // m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
+        // m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
     }
 }
 
 void PracticeWindow::onDeletePassingPractice()
 {
     QModelIndexList index = ui->tableViewPassingPractice->selectionModel()->selectedRows();
-    m_modelPassingPractice->deletePassingPractice(index[0].row());
-    m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
+    if(index.count()!=0){
+        m_modelPassingPractice->deletePassingPractice(index[0].row());
+        m_practice->setlist_of_passing_practice(m_modelPassingPractice->getListPassingpractice());
+    }
     ui->tableViewPassingPractice->clearSelection();
     ui->tableViewPassingPractice->clearFocus();
 
@@ -305,7 +307,7 @@ void PracticeWindow::onInsertManyPassingPracticeClicked()
 
         ListOfPassingPractice list=w->getList();
         for(int i=0;i<list.count();i++){
-        m_modelPassingPractice->save(list.getByIndex(i));
+            m_modelPassingPractice->save(list.getByIndex(i));
         }
 
     }

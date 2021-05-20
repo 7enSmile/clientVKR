@@ -25,24 +25,24 @@ int AbstractHeadEmployerModel::columnCount(const QModelIndex &parent) const
 QVariant AbstractHeadEmployerModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
+    {
+
+        if (index.column() == 0)
         {
 
-            if (index.column() == 0)
-            {
 
-
-               QString title;
-               QString firstname;
-               QString lastname;
-               QString patronymic;
-               firstname=m_listHeadEmployer.getByIndex(index.row())->getperson()->getfirstname();
-               lastname=m_listHeadEmployer.getByIndex(index.row())->getperson()->getlastname();
-               patronymic=m_listHeadEmployer.getByIndex(index.row())->getperson()->getpatronymic();
-               title=lastname+" "+firstname+" "+patronymic;
-               return title;
-            }
-
+            QString title;
+            QString firstname;
+            QString lastname;
+            QString patronymic;
+            firstname=m_listHeadEmployer.getByIndex(index.row())->getperson()->getfirstname();
+            lastname=m_listHeadEmployer.getByIndex(index.row())->getperson()->getlastname();
+            patronymic=m_listHeadEmployer.getByIndex(index.row())->getperson()->getpatronymic();
+            title=lastname+" "+firstname+" "+patronymic;
+            return title;
         }
+
+    }
 
     return QVariant();
 }
@@ -164,9 +164,11 @@ void AbstractHeadEmployerModel::search(QString searchName, QString searchLastnam
     for(int i=0;i<list.count();i++){
         name=list.getByIndex(i)->getperson()->getfirstname();
         lastname=list.getByIndex(i)->getperson()->getlastname();
+        if(list.getByIndex(i)->getemployer()!=nullptr){
 
-        if(name.contains(regName)&&lastname.contains(reglastname)&&list.getByIndex(i)->getemployer()->getemployer_id()==key){
-            m_listHeadEmployer.insert(list.getByIndex(i)->getHeadEmployer(),list.getByIndex(i));
+            if(name.contains(regName)&&lastname.contains(reglastname)&&list.getByIndex(i)->getemployer()->getemployer_id()==key){
+                m_listHeadEmployer.insert(list.getByIndex(i)->getHeadEmployer(),list.getByIndex(i));
+            }
         }
     }
     layoutChanged();

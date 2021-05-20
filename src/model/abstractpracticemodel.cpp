@@ -142,6 +142,9 @@ QVariant AbstractPracticeModel::data(const QModelIndex &index, int role) const
 
 void AbstractPracticeModel::deletePractice(int index)
 {
+    qx::dao::delete_by_id(m_listPractice.getByIndex(index));
+    loadList();
+    layoutChanged();
 
 }
 

@@ -35,8 +35,11 @@ QVariant AbstractEmployerModel::data(const QModelIndex &index, int role) const
 
 }
 
-void AbstractEmployerModel::deleteEmployer(int)
+void AbstractEmployerModel::deleteEmployer(int index)
 {
+
+    qx::dao::delete_by_id(m_listEmployer.getByIndex(index));
+    loadList();
 
 }
 

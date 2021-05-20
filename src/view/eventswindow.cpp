@@ -13,6 +13,7 @@ EventsWindow::EventsWindow(ListOfEmployer list,QWidget *parent) :
     connect(ui->pushButtonDeleteEvent,SIGNAL(clicked()),this,SLOT(onDeleteClicked()));
     connect(ui->tableViewEvents,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableEventsClicked()));
     connect(ui->pushButtonReport,SIGNAL(clicked()),this,SLOT(onReportClicked()));
+    connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     ui->tableViewEvents->setModel(m_modelEvents);
     this->setWindowTitle("Мероприятия");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -69,5 +70,11 @@ void EventsWindow::onReportClicked()
 {
     ReportEventsWindow *w=new ReportEventsWindow();
     w->exec();
+
+}
+
+void EventsWindow::onOkClicked()
+{
+    QDialog::close();
 
 }

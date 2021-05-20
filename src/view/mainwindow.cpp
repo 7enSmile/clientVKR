@@ -26,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->dateEditEnd, &QDateEdit::dateChanged, this, &MainWindow::search);
     connect(ui->lineEditNameEmployer, &QLineEdit::textChanged, this, &MainWindow::search);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
+    connect(ui->pushButtonDeleteEmployer,SIGNAL(clicked()),this,SLOT(onDeleteEmployerClicked()));
+    connect(ui->pushButtonDeletePractice,SIGNAL(clicked()),this,SLOT(onDeletePracticeClicked()));
     m_timer->start();
 }
 
@@ -225,6 +227,32 @@ void MainWindow::update()
     m_modelEmployer->loadList();
     search();
     qDebug()<<"UPDATED";
+
+
+}
+
+void MainWindow::onDeleteEmployerClicked()
+{
+    QModelIndexList index = ui->tableViewEmployers->selectionModel()->selectedRows();
+    if(index.count()!=0){
+
+        m_modelEmployer->deleteEmployer(index[0].row());
+        m_modelPractice->loadList();
+    }
+
+
+}
+
+void MainWindow::onDeletePracticeClicked()
+{
+     QModelIndexList index = ui->tableViewPractice->selectionModel()->selectedRows();
+     if(index.count()!=0){
+
+        m_modelPractice->deletePractice(index[0].row());
+
+     }
+     ui->tableViewPractice->clearSelection();
+     ui->tableViewPractice->clearFocus();
 
 
 }

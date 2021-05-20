@@ -74,6 +74,7 @@ void PassingPracticeWindow::initconnect()
     connect(ui->pushButtonDeleteTask,SIGNAL(clicked()),this,SLOT(onDeleteTaskClicked()));
     connect(ui->tableViewReports,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableReportClicked()));
     connect(ui->pushButtonInsertReport,SIGNAL(clicked()),this,SLOT(onInsertReportClicked()));
+    connect(ui->pushButtonDeleteReport,SIGNAL(clicked()),this,SLOT(onDeleteReportClicked()));
 
 }
 
@@ -168,6 +169,21 @@ void PassingPracticeWindow::onInsertReportClicked()
         m_modelReports->saveReport(w->getReport());
         m_passingPractice->setlist_of_reports(m_modelReports->getListReports());
     }
+
+}
+
+void PassingPracticeWindow::onDeleteReportClicked()
+{
+    QModelIndexList index = ui->tableViewReports->selectionModel()->selectedRows();
+    if(index.count()!=0){
+
+        m_modelReports->deleteReport(index[0].row());
+        m_passingPractice->setlist_of_reports(m_modelReports->getListReports());
+
+    }
+    ui->tableViewReports->clearSelection();
+    ui->tableViewReports->clearFocus();
+
 
 }
 

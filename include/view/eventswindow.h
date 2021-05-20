@@ -28,6 +28,7 @@ private slots:
     void onInsertClicked();
     void onTableEventsClicked();
     void onReportClicked();
+    void onOkClicked();
 };
 
 #endif // EVENTSWINDOW_H

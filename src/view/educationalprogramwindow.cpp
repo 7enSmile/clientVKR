@@ -13,6 +13,7 @@ EducationalProgramWindow::EducationalProgramWindow(QWidget *parent) :
     connect(ui->tableViewEducationalPrograms,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableEducationProgramClicked()));
     connect(ui->pushButtonInsert,SIGNAL(clicked()),this,SLOT(onInsertClicked()));
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkCliced()));
+    connect(ui->pushButtonDeleteEducationProgram,SIGNAL(clicked()),this,SLOT(onDeleteEducationProgramClicked()));
 }
 
 EducationalProgramWindow::~EducationalProgramWindow()
@@ -53,5 +54,17 @@ void EducationalProgramWindow::onTableEducationProgramClicked()
 void EducationalProgramWindow::onOkCliced()
 {
     QDialog::close();
+
+}
+
+void EducationalProgramWindow::onDeleteEducationProgramClicked()
+{
+    QModelIndexList index = ui->tableViewEducationalPrograms->selectionModel()->selectedRows();
+    if(index.count()!=0){
+
+        m_modelEducationProgram->deleteEducationalProgram(index[0].row());
+
+    }
+
 
 }

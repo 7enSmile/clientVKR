@@ -93,6 +93,20 @@ Report_ptr AbstractReportsModel::getReport(int index)
 
 }
 
+void AbstractReportsModel::deleteReport(int index)
+
+{
+    if(m_listReports.getByIndex(index)->getReport_id()!=0){
+
+        qx::dao::delete_by_id(m_listReports.getByIndex(index));
+    }
+
+    m_listReports.removeByIndex(index);
+    layoutChanged();
+
+
+}
+
 QVariant AbstractReportsModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
 

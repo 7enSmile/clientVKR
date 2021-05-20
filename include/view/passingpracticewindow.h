@@ -50,6 +50,7 @@ private slots:
     void onDeleteTaskClicked();
     void onTableReportClicked();
     void onInsertReportClicked();
+    void onDeleteReportClicked();
 
 };
 

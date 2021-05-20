@@ -52,6 +52,8 @@ private slots:
     void onAboutClicked();
     void search();
     void update();
+    void onDeleteEmployerClicked();
+    void onDeletePracticeClicked();
 
 
 

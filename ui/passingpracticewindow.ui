@@ -131,7 +131,7 @@
            <enum>QAbstractItemView::SingleSelection</enum>
           </property>
           <attribute name="horizontalHeaderVisible">
-           <bool>true</bool>
+           <bool>false</bool>
           </attribute>
           <attribute name="horizontalHeaderDefaultSectionSize">
            <number>100</number>
@@ -198,7 +198,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="pushButtonDeleteReport">
           <property name="text">
            <string>Удалить</string>
           </property>
@@ -252,7 +252,7 @@
            <enum>QAbstractItemView::SingleSelection</enum>
           </property>
           <attribute name="horizontalHeaderVisible">
-           <bool>true</bool>
+           <bool>false</bool>
           </attribute>
           <attribute name="horizontalHeaderDefaultSectionSize">
            <number>100</number>
