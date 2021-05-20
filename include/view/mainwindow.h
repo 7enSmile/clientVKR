@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QAction>
 #include <QDebug>
+#include <QTime>
+#include <QTimer>
 #include "view/studentswindow.h"
 #include "view/staffuniversitywindow.h"
 #include "view/staffemployerwindow.h"
@@ -15,6 +17,7 @@
 #include "view/eventswindow.h"
 #include "view/educationalprogramwindow.h"
 #include "view/aboutwindow.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -32,6 +35,7 @@ private:
     void addSubMenu();
     AbstractEmployerModel *m_modelEmployer;
     AbstractPracticeModel *m_modelPractice;
+    QTimer *m_timer;
 private slots:
     void onEventsClicked();
     void onEducationProgramsClicked();
@@ -47,6 +51,7 @@ private slots:
     void onEducationProgramClicked();
     void onAboutClicked();
     void search();
+    void update();
 
 
 
