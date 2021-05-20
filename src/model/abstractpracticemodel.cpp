@@ -194,6 +194,11 @@ void AbstractPracticeModel::savePractice(Practice_ptr practic)
 
 Practice_ptr AbstractPracticeModel::getPractice(int index)
 {
+    Practice_ptr practice;
+    practice.reset(new Practice());
+    practice->setpractice_id(m_listPractice.getByIndex(index)->getPractice_id());
+    qx::dao::fetch_by_id_with_relation("list_of_TestPractice",practice);
+    m_listPractice.getByIndex(index)->setlist_of_TestPractice(practice->getlist_of_TestPractice());
     return m_listPractice.getByIndex(index);
 
 }
@@ -208,13 +213,23 @@ ListOfEmployer AbstractPracticeModel::getListEmployer()
 void AbstractPracticeModel::loadList()
 {
     beginInsertRows(QModelIndex(),0,0);
+    QStringList relation;
+    relation.append("employer");
+    relation.append("list_of_passing_practice");
+    relation.append("Education_program");
 
-    qx::dao::fetch_all_with_all_relation(m_listPractice);
+    qx::dao::fetch_all_with_relation(relation,m_listPractice);
     ListOfPassingPractice listPassing;
+    relation.clear();
+    relation.append("head_employer_id");
+    relation.append("head_university_id");
+    relation.append("studen");
+    relation.append("task");
+    relation.append("list_of_reports");
 
     for(int i=0;i<m_listPractice.count();i++){
         listPassing=m_listPractice.getByIndex(i)->getlist_of_passing_practice();
-        qx::dao::fetch_by_id_with_all_relation(listPassing);
+        qx::dao::fetch_by_id_with_relation(relation,listPassing);
         m_listPractice.getByIndex(i)->setlist_of_passing_practice(listPassing);
     }
     m_listPractice.sortByKey();

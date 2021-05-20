@@ -148,7 +148,10 @@ QVariant AbstractStaffUniversityModel::headerData(int section, Qt::Orientation o
 void AbstractStaffUniversityModel::loadListGlobal()
 {
     beginInsertRows(QModelIndex(),0,0);
-    qx::dao::fetch_all_with_all_relation(m_listStaffUniversity);
+    QStringList relation;
+    relation.append("person");
+    relation.append("department_id");
+    qx::dao::fetch_all_with_relation(relation,m_listStaffUniversity);
     m_listStaffUniversity.sortByKey();
     endInsertRows();
     layoutChanged();
