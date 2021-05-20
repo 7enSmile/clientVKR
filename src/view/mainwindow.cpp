@@ -168,14 +168,14 @@ void MainWindow::onPracticeTableClicked()
     PracticeWindow *w=new PracticeWindow(m_modelPractice->getListEmployer(),m_modelPractice->getPractice(index[0].row()));
     if(w->exec()==QDialog::Accepted){
         m_modelPractice->savePractice(w->getPractice());
-        m_modelPractice->loadList();
-        search();
+
 
 
     }
 
 
-
+    m_modelPractice->loadList();
+    search();
     ui->tableViewPractice->clearSelection();
     ui->tableViewPractice->clearFocus();
 
@@ -223,6 +223,7 @@ void MainWindow::search()
     QRegExp employer("^"+ui->lineEditNameEmployer->text());
     m_modelPractice->search(employer,ui->dateEditBegin->date(),ui->dateEditEnd->date());
 
+
 }
 
 void MainWindow::update()
@@ -231,6 +232,10 @@ void MainWindow::update()
     m_modelEmployer->loadList();
     search();
     qDebug()<<"UPDATED";
+    ui->tableViewEmployers->clearSelection();
+    ui->tableViewEmployers->clearFocus();
+    ui->tableViewPractice->clearSelection();
+    ui->tableViewPractice->clearFocus();
 
 
 }

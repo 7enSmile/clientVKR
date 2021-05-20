@@ -17,10 +17,12 @@ void AbstractReportsModel::loadList()
     PracticeResult_ptr result;
     result.reset(new PracticeResult());
     for(int i=0;i<m_listReports.count();i++){
-      if(m_listReports.getByIndex(i)->getpractice_result()!=nullptr){
-        result=m_listReports.getByIndex(i)->getpractice_result();
-        qx::dao::fetch_by_id(result);
-        m_listReports.getByIndex(i)->setpractice_result(result);
+        if(m_listReports.getByIndex(i)->getpractice_result()!=nullptr){
+            if(m_listReports.getByIndex(i)->getpractice_result()->getestimate_employer().isEmpty()){
+                result=m_listReports.getByIndex(i)->getpractice_result();
+                qx::dao::fetch_by_id(result);
+                m_listReports.getByIndex(i)->setpractice_result(result);
+            }
         }
     }
 
@@ -47,20 +49,20 @@ int AbstractReportsModel::columnCount(const QModelIndex &parent) const
 QVariant AbstractReportsModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
+    {
+
+        if (index.column() == 0)
         {
 
-            if (index.column() == 0)
-            {
 
+            QString title="Отчет "+QString::number(index.row()+1);
 
-               QString title="Отчет "+QString::number(index.row()+1);
-
-               return title;
-            }
-
+            return title;
         }
 
-        return QVariant();
+    }
+
+    return QVariant();
 
 }
 
@@ -74,11 +76,11 @@ void AbstractReportsModel::saveReport(Report_ptr report)
 {
 
     if(!m_listReports.empty()){
-    m_listReports.insert(m_listReports.getKeyByIndex(m_listReports.count()-1)+1,report);
+        m_listReports.insert(m_listReports.getKeyByIndex(m_listReports.count()-1)+1,report);
     }
     else{
 
-         m_listReports.insert(1,report);
+        m_listReports.insert(1,report);
 
     }
     layoutChanged();
