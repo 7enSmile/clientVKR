@@ -108,6 +108,8 @@ void MainWindow::onStaffEmployerClicked()
     StaffEmployerWindow *w=new StaffEmployerWindow();
     w->exec();
     m_modelEmployer->loadList();
+    m_modelPractice->loadList();
+    search();
 
 }
 
@@ -115,6 +117,8 @@ void MainWindow::onStaffUniversityClicked()
 {
     StaffUniversityWindow *w=new StaffUniversityWindow();
     w->exec();
+    m_modelPractice->loadList();
+    search();
 
 
 }
