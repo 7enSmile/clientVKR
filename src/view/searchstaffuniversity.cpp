@@ -21,6 +21,7 @@ SearchStaffUniversity::SearchStaffUniversity(QWidget *parent) :
     connect(ui->comboBox, SIGNAL(activated(QString)), this, SLOT(textChanged()));
     connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableStaffUniversityClicked()));
     m_staff.reset(new HeadUniversity());
+    textChanged();
 }
 
 SearchStaffUniversity::~SearchStaffUniversity()

@@ -21,6 +21,7 @@ SearchStudents::SearchStudents(QWidget *parent) :
     connect(ui->comboBox, SIGNAL(activated(QString)), this, SLOT(textChanged()));
     connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onTableStudentsClicked()));
     m_student.reset(new Student());
+    textChanged();
 
 }
 
