@@ -1,7 +1,7 @@
 #ifndef ABSTRACTUSERSMODEL_H
 #define ABSTRACTUSERSMODEL_H
 #include <QAbstractTableModel>
-#include <QList>
+
 
 class AbstractUsersModel:public QAbstractTableModel
 {
