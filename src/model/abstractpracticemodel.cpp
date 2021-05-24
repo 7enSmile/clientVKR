@@ -176,21 +176,23 @@ void AbstractPracticeModel::savePractice(Practice_ptr practic)
     ListOfReport listReport;
     PracticeResult_ptr practiceresult;
     practiceresult.reset(new PracticeResult());
+
     for(int i=0;i<listPassing.count();i++){
         listReport=listPassing.getByIndex(i)->getlist_of_reports();
-
-        qx::dao::save_with_all_relation(listReport);
-        qx::dao::save_with_all_relation(listPassing.getByIndex(i));
         for(int j=0;j<listReport.count();j++){
-            if(listReport.getByIndex(j)->getpractice_result()->getestimate_employer()!=""){
-                practiceresult=listReport.getByIndex(j)->getpractice_result();
-                qx::dao::save(practiceresult);
-            }
+
+            if(!listReport.getByIndex(j)->getpractice_result()->getestimate_employer().isEmpty())
+                    qx::dao::save_with_all_relation(listReport.getByIndex(j));
         }
+
+        qx::dao::save_with_all_relation(listPassing.getByIndex(i));
+
     }
 
-
     qx::dao::save_with_all_relation(practic);
+
+
+
 
 
 }

@@ -106,7 +106,7 @@ void AbstractStaffUniversityModel::search(QString searchName, QString searchLast
     qx::dao::fetch_all_with_relation(relation,list);
     QRegExp regName("^"+searchName);
     QRegExp reglastname("^"+searchLastname);
-    QRegExp regdepartment("^"+searchDepartment);
+    QRegExp regdepartment("^"+searchDepartment+"$");
     QString name;
     QString lastname;
     QString department;
