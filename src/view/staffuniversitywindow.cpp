@@ -6,7 +6,7 @@ StaffUniversityWindow::StaffUniversityWindow(QWidget *parent) :
     ui(new Ui::StaffUniversityWindow)
 {
     ui->setupUi(this);
-    this->setWindowTitle("Работники университета");
+    this->setWindowTitle("Сотрудники университета");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     m_staffUniversityModel=new AbstractStaffUniversityModel();
     ui->tableViewStaff->setModel(m_staffUniversityModel);

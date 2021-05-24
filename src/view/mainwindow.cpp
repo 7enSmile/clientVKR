@@ -55,7 +55,7 @@ void MainWindow::addSubMenu()
     connect(actionStudents,SIGNAL(triggered()),this,SLOT(onStudentsClicked()));
     QAction *actionStaffEmployer = new QAction(this);
     actionStaffEmployer->setObjectName("actioStaffEmployer");
-    actionStaffEmployer->setText("Сотрудники предприятия");
+    actionStaffEmployer->setText("Работники предприятия");
     ui->menubar->addAction(actionStaffEmployer);
     connect(actionStaffEmployer,SIGNAL(triggered()),this,SLOT(onStaffEmployerClicked()));
     QAction *actionStaffUniversity = new QAction(this);
