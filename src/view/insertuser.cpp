@@ -9,7 +9,7 @@ InsertUser::InsertUser(QWidget *parent) :
     connect(ui->pushButtonCancel,SIGNAL(clicked()),this,SLOT(onCancelCkicked()));
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Добавить");
+    this->setWindowTitle("Пользователь");
 }
 
 InsertUser::~InsertUser()

@@ -7,7 +7,7 @@ InsertDiscipline::InsertDiscipline(QWidget *parent) :
 {
     ui->setupUi(this);
     m_discipline.reset(new Discipline());
-    this->setWindowTitle("Добавить");
+    this->setWindowTitle("Дисциплина");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     initconnection();
 }
@@ -19,7 +19,7 @@ InsertDiscipline::InsertDiscipline(Discipline_ptr discipline,QWidget *parent) :
     ui->setupUi(this);
     m_discipline.reset(new Discipline());
     m_discipline=discipline;
-    this->setWindowTitle("Изменить");
+    this->setWindowTitle("Дисциплина");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     ui->pushButtonOk->setText("Отмена");
     ui->pushButtonAction->setText("Изменить");

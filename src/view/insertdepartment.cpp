@@ -7,7 +7,7 @@ InsertDepartment::InsertDepartment(QWidget *parent) :
 {
     ui->setupUi(this);
     m_department.reset(new Department());
-    this->setWindowTitle("Добавить");
+    this->setWindowTitle("Кафедра");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
 }
@@ -31,7 +31,7 @@ Department_ptr &InsertDepartment::getDepartment()
 
 void InsertDepartment::initInser()
 {
-    this->setWindowTitle("Изменить");
+    this->setWindowTitle("Кафедра");
     ui->lineEdit->setText(m_department->getname());
 
 }

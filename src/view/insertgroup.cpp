@@ -7,7 +7,7 @@ InsertGroup::InsertGroup(QWidget *parent) :
 {
     ui->setupUi(this);
     m_group.reset(new Group);
-    this->setWindowTitle("Добавить");
+    this->setWindowTitle("Группа");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
 }
@@ -33,7 +33,7 @@ Group_ptr &InsertGroup::getGroup()
 
 void InsertGroup::initInser()
 {
-    this->setWindowTitle("Изменить");
+    this->setWindowTitle("Группа");
     ui->lineEditNumber->setText(m_group->getnumber());
 
 }

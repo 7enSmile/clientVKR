@@ -10,7 +10,7 @@ SearchStudents::SearchStudents(QWidget *parent) :
     ui->tableView->setModel(m_modelStudents);
     m_modelGroups=new AbstractGroupsModel();
     ListOfGroup list=m_modelGroups->getList();
-    this->setWindowTitle("Поиск");
+    this->setWindowTitle("Поиск студента");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     for(int i=0;i<list.count();i++){
         ui->comboBox->addItem(list.getByIndex(i)->getnumber());

@@ -14,7 +14,7 @@ EmployersWindow::EmployersWindow(QWidget *parent) :
     ui->tableViewHeadEmployer->setModel(m_modelHeadEmployerModel);
     ui->tableViewContactEmployer->setModel(m_modelContactemployer);
     ui->lineEditName->setText(m_employer->getname());
-    ui->pushButtonAction->setText("Добавить");
+    ui->pushButtonAction->setText("Работодатель");
     ui->pushButtonOk->setText("Отмена");
     m_modelSelectResultDiscipline=new AbstractSelectResultDisciplineModel(m_employer->getlist_of_result_education());
     ui->tableViewEducationResult->setModel(m_modelSelectResultDiscipline);

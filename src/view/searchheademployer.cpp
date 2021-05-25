@@ -9,7 +9,7 @@ SearchHeadEmployer::SearchHeadEmployer(Employer_ptr employer,QWidget *parent) :
     m_modelHeadEmployer=new AbstractHeadEmployerModel();
     ui->tableView->setModel(m_modelHeadEmployer);
 
-    this->setWindowTitle("Поиск");
+    this->setWindowTitle("Поиск руководителя от предприятия");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     m_employer.reset(new Employer());
     m_employer=employer;

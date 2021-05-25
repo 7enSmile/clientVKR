@@ -10,7 +10,7 @@ InsertStudent::InsertStudent(ListOfGroup &list,QWidget *parent) :
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Создать студена");
+    this->setWindowTitle("Студент");
     ui->pushButtonAction->setText("Добавить");
     ui->pushButton->setText("Отмена");
     m_listGroups=list;
@@ -105,7 +105,7 @@ void InsertStudent::initInsert()
     ui->lineEditPatronymic->setText(m_student->getperson()->getpatronymic());
     ui->lineEditEmail->setText(m_student->getperson()->getemail());
     ui->lineEditPhone->setText(m_student->getperson()->getphone_number());
-    this->setWindowTitle("Изменить студента");
+    this->setWindowTitle("Студент");
     ui->pushButtonAction->setText("Изменить");
     ui->pushButton->setText("Ок");
     if(m_student->getgroup()!=nullptr){

@@ -10,7 +10,7 @@ InsertTaskPractice::InsertTaskPractice(QWidget *parent) :
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect(ui->pushButtonCancel,SIGNAL(clicked()),this,SLOT(onCancelClicked()));
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Добавить");
+    this->setWindowTitle("Задание");
 
 
 }

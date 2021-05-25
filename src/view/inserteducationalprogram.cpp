@@ -8,7 +8,7 @@ InsertEducationalProgram::InsertEducationalProgram(QWidget *parent) :
     ui->setupUi(this);
     m_educationalProgram.reset(new EducationalProgram());
     initconnection();
-    this->setWindowTitle("Добавить");
+    this->setWindowTitle("Образовательная программа");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 }
 
@@ -26,7 +26,7 @@ InsertEducationalProgram::InsertEducationalProgram(EducationalProgram_ptr educat
     initconnection();
     ui->pushButtonAction->setText("Изменить");
     ui->pushButtonOk->setText("Ок");
-    this->setWindowTitle("Изменить");
+    this->setWindowTitle("Образовательная программа");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 }
 

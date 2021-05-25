@@ -10,7 +10,7 @@ InsertStaffUniversity::InsertStaffUniversity(ListOfDepartment &list,QWidget *par
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Создать сотрудника университета");
+    this->setWindowTitle("Сотрудник университета");
     ui->pushButtonAction->setText("Добавить");
     ui->pushButton->setText("Отмена");
     m_listDepartmens=list;
@@ -91,7 +91,7 @@ void InsertStaffUniversity::initInsert()
     ui->lineEditPatronymic->setText(m_staff->getperson()->getpatronymic());
     ui->lineEditEmail->setText(m_staff->getperson()->getemail());
     ui->lineEditPhone->setText(m_staff->getperson()->getphone_number());
-    this->setWindowTitle("Изменить студента");
+    this->setWindowTitle("Сотрудник университета");
     ui->pushButtonAction->setText("Изменить");
     ui->pushButton->setText("Ок");
     if(m_staff->getdepartment()!=nullptr){

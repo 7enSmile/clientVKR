@@ -11,7 +11,7 @@ InsertEvent::InsertEvent(ListOfEmployer list,QWidget *parent) :
     init();
 
 
-    this->setWindowTitle("Добавить");
+    this->setWindowTitle("Мероприятие");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 }
 
@@ -32,7 +32,7 @@ InsertEvent::InsertEvent(ListOfEmployer list,Events_ptr event,QWidget *parent) :
     ui->textEditDescription->setText(m_event->getdescription());
     ui->dateEditBegin->setDate(m_event->getbegin());
     ui->dateEditEnding->setDate(m_event->getending());
-    this->setWindowTitle("Изменить");
+    this->setWindowTitle("Мероприятие");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
 

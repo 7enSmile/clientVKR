@@ -24,7 +24,7 @@ PassingPracticeWindow::PassingPracticeWindow(PassingPractice_ptr passingPractice
     }
     initconnect();
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Изменить");
+    this->setWindowTitle("Прохождение практики");
     ui->pushButtonOk->setText("Ок");
     ui->pushButtonAction->setText("Изменить");
 
@@ -47,7 +47,7 @@ PassingPracticeWindow::PassingPracticeWindow(Employer_ptr employer,Practice_ptr 
     ui->tableViewReports->setModel(m_modelReports);
     initconnect();
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Добавить");
+    this->setWindowTitle("Прохождение практики");
     if(m_passingPractice->getemployer()==nullptr)
         ui->pushButtonHeadEmployer->setDisabled(true);
 

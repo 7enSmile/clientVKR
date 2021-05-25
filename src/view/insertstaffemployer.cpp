@@ -9,7 +9,7 @@ InsertStaffEmployer::InsertStaffEmployer(TypeInsert typeInsert,ListOfEmployer li
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Создать работника предприятия");
+    this->setWindowTitle("Работник предприятия");
     ui->pushButtonAction->setText("Добавить");
     ui->pushButton->setText("Отмена");
     m_headEmployer.reset(new HeadEmployer());
@@ -35,7 +35,7 @@ InsertStaffEmployer::InsertStaffEmployer(TypeInsert typeInsert, Employer_ptr emp
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
     connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Создать работника предприятия");
+    this->setWindowTitle("Работник предприятия");
     ui->pushButtonAction->setText("Добавить");
     ui->pushButton->setText("Отмена");
     m_headEmployer.reset(new HeadEmployer());
@@ -162,7 +162,7 @@ void InsertStaffEmployer::initInsertHeadEmployer()
     ui->lineEditPatronymic->setText(m_headEmployer->getperson()->getpatronymic());
     ui->lineEditEmail->setText(m_headEmployer->getperson()->getemail());
     ui->lineEditPhone->setText(m_headEmployer->getperson()->getphone_number());
-    this->setWindowTitle("Изменить работника предприятия");
+    this->setWindowTitle("Работник предприятия");
     ui->pushButtonAction->setText("Изменить");
     ui->pushButton->setText("Ок");
     ui->comboBoxRole->setHidden(false);
@@ -187,7 +187,7 @@ void InsertStaffEmployer::initInsertContactEmployer()
     ui->lineEditPatronymic->setText(m_contactEmployer->getperson()->getpatronymic());
     ui->lineEditEmail->setText(m_contactEmployer->getperson()->getemail());
     ui->lineEditPhone->setText(m_contactEmployer->getperson()->getphone_number());
-    this->setWindowTitle("Изменить работника предприятия");
+    this->setWindowTitle("Работник предприятия");
     ui->pushButtonAction->setText("Изменить");
     ui->pushButton->setText("Ок");
     ui->comboBoxRole->setHidden(false);

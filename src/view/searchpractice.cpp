@@ -17,7 +17,7 @@ SearchPractice::SearchPractice(ListOfPractice list,QWidget *parent) :
     ListOfEmployer listEmployer;
     listEmployer=m_modelPractice->getListEmployer();
     ui->tableViewPractice->setSelectionBehavior(QAbstractItemView::SelectRows);
-    this->setWindowTitle("Поиск");
+    this->setWindowTitle("Поиск практики");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
 

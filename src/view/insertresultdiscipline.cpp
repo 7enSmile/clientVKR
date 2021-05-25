@@ -9,7 +9,7 @@ InsertResultDiscipline::InsertResultDiscipline(QWidget *parent) :
     m_resultDiscipline.reset(new ResultEducation());
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
-    this->setWindowTitle("Добавить");
+    this->setWindowTitle("Результат");
     ui->pushButtonAction->setText("Добавить");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 }
@@ -25,7 +25,7 @@ InsertResultDiscipline::InsertResultDiscipline(ResultEducation_ptr result,QWidge
     ui->textEdit->setText(m_resultDiscipline->getdescription());
     connect(ui->pushButtonOk,SIGNAL(clicked()),this,SLOT(onOkClicked()));
     connect(ui->pushButtonAction,SIGNAL(clicked()),this,SLOT(onActionClicked()));
-    this->setWindowTitle("Изменить");
+    this->setWindowTitle("Результат");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
 }

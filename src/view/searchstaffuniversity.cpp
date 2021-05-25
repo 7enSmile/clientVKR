@@ -10,7 +10,7 @@ SearchStaffUniversity::SearchStaffUniversity(QWidget *parent) :
     ui->tableView->setModel(m_modelStaffUniversity);
     m_modelDepartment=new AbstractDepartmentsModel();
     ListOfDepartment list=m_modelDepartment->getList();
-    this->setWindowTitle("Поиск");
+    this->setWindowTitle("Поиск сотрудника университета");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     for(int i=0;i<list.count();i++){
         ui->comboBox->addItem(list.getByIndex(i)->getname());

@@ -12,7 +12,7 @@ ReportWindow::ReportWindow(PassingPractice_ptr passingPractice,QWidget *parent) 
     connect( ui->pushButtonReport,SIGNAL(clicked()),this,SLOT(onInputReportClicked()));
     m_report->setpassing_practice(passingPractice);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Добавить");
+    this->setWindowTitle("Отчет");
 
 }
 
@@ -28,7 +28,7 @@ ReportWindow::ReportWindow(Report_ptr report, QWidget *parent):
     ui->plainTextEditHEadEmployer->setPlainText(m_report->getfeedback_employer());
     ui->plainTextEditHeadUniversity->setPlainText(m_report->getfeedback_university());
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    this->setWindowTitle("Изменить");
+    this->setWindowTitle("Отчет");
 
 
 
