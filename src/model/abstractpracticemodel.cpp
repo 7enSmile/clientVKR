@@ -74,8 +74,8 @@ void AbstractPracticeModel::search(QRegExp employer, QDate beginning, QDate endi
     for(int i=0;i<m_GlobalistPractice.count();i++){
 
         if( m_GlobalistPractice.getByIndex(i)->getemployer()->getname().contains(employer) &&
-            m_GlobalistPractice.getByIndex(i)->getbeginning()>=beginning &&
-            m_GlobalistPractice.getByIndex(i)->getending()<=ending)
+                m_GlobalistPractice.getByIndex(i)->getbeginning()>=beginning &&
+                m_GlobalistPractice.getByIndex(i)->getending()<=ending)
             m_listPractice.insert(m_GlobalistPractice.getByIndex(i)->getPractice_id(),m_GlobalistPractice.getByIndex(i));
     }
     layoutChanged();
@@ -163,7 +163,7 @@ void AbstractPracticeModel::savePractice(Practice_ptr practic)
     }
     for(int i=0;i<listPassing.count();i++){
         for(int j=0;j<listPassing.getByIndex(i)->list_of_reports().count();j++){
-
+            qDebug()<<listPassing.getByIndex(i)->list_of_reports().count();
             listPassing.getByIndex(i)->list_of_reports().getByIndex(j)->sethead_employer(listPassing.getByIndex(i)->gethead_employer());
             listPassing.getByIndex(i)->list_of_reports().getByIndex(j)->sethead_university(listPassing.getByIndex(i)->gethead_university());
             listPassing.getByIndex(i)->list_of_reports().getByIndex(j)->setstudent(listPassing.getByIndex(i)->getstuden());
@@ -178,14 +178,27 @@ void AbstractPracticeModel::savePractice(Practice_ptr practic)
     practiceresult.reset(new PracticeResult());
 
     for(int i=0;i<listPassing.count();i++){
+        if(listPassing.getByIndex(i)->getPassingPractice_id()==0){
+
+            qx::dao::save(listPassing.getByIndex(i));
+
+        }else
+        {
+            qx::dao::save_with_all_relation(listPassing.getByIndex(i));
+
+        }
+
+        qDebug()<<listPassing.getByIndex(i)->getPassingPractice_id();
         listReport=listPassing.getByIndex(i)->getlist_of_reports();
         for(int j=0;j<listReport.count();j++){
 
-            if(!listReport.getByIndex(j)->getpractice_result()->getestimate_employer().isEmpty())
-                    qx::dao::save_with_all_relation(listReport.getByIndex(j));
+            if(!listReport.getByIndex(j)->getpractice_result()->getestimate_employer().isEmpty()){
+                qx::dao::save_with_all_relation(listReport.getByIndex(j));
+            }
         }
 
-        qx::dao::save_with_all_relation(listPassing.getByIndex(i));
+
+
 
     }
 
