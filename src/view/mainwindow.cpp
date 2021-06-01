@@ -83,12 +83,19 @@ void MainWindow::addSubMenu()
 
 void MainWindow::initComboBox()
 {
+    QString currentText;
+    currentText=ui->comboBoxName->currentText();
     ui->comboBoxName->clear();
     ui->comboBoxName->addItem("Все");
     for(int i=0;i<m_modelPractice->getNames().count();i++){
         ui->comboBoxName->addItem(m_modelPractice->getNames().at(i));
     }
+    if(currentText.isEmpty()||currentText=="Все")
     ui->comboBoxName->setCurrentIndex(0);
+    else{
+        ui->comboBoxName->setCurrentText(currentText);
+
+    }
 
 }
 
@@ -253,6 +260,7 @@ void MainWindow::update()
 {
     m_modelPractice->loadList();
     m_modelEmployer->loadList();
+    initComboBox();
     search();
     qDebug()<<"UPDATED";
     ui->tableViewEmployers->clearSelection();
