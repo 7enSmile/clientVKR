@@ -15,8 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableViewPractice->setModel(m_modelPractice);
     ui->tableViewEmployers->setModel(m_modelEmployer);
     ui->tableViewPractice->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableViewPractice->setColumnWidth(0,400);
-    ui->tableViewPractice->setColumnWidth(1,150);
+    ui->tableViewPractice->setColumnWidth(0,350);
+    ui->tableViewPractice->setColumnWidth(1,250);
     connect(ui->tableViewEmployers,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onEmployersTableClicked()));
     connect(ui->pushButtonInsertEmployer,SIGNAL(clicked()),this,SLOT(onInsertEmployerClicked()));
     connect(ui->tableViewPractice,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onPracticeTableClicked()));
@@ -28,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
     connect(ui->pushButtonDeleteEmployer,SIGNAL(clicked()),this,SLOT(onDeleteEmployerClicked()));
     connect(ui->pushButtonDeletePractice,SIGNAL(clicked()),this,SLOT(onDeletePracticeClicked()));
+    connect(ui->comboBoxName, &QComboBox::currentTextChanged, this, &MainWindow::search);
+    initComboBox();
     m_timer->start();
 }
 
@@ -79,11 +81,22 @@ void MainWindow::addSubMenu()
 
 }
 
+void MainWindow::initComboBox()
+{
+    ui->comboBoxName->clear();
+    ui->comboBoxName->addItem("Все");
+    for(int i=0;i<m_modelPractice->getNames().count();i++){
+        ui->comboBoxName->addItem(m_modelPractice->getNames().at(i));
+    }
+    ui->comboBoxName->setCurrentIndex(0);
+
+}
+
 void MainWindow::onEventsClicked()
 {
     EventsWindow *w=new EventsWindow(m_modelEmployer->getList());
     w->exec();
-   \
+    \
 
 }
 
@@ -141,9 +154,9 @@ void MainWindow::onEmployersTableClicked()
 
 
     }
-      m_modelEmployer->loadList();
-      ui->tableViewEmployers->clearSelection();
-      ui->tableViewEmployers->clearFocus();
+    m_modelEmployer->loadList();
+    ui->tableViewEmployers->clearSelection();
+    ui->tableViewEmployers->clearFocus();
 }
 
 void MainWindow::onInsertEmployerClicked()
@@ -155,9 +168,9 @@ void MainWindow::onInsertEmployerClicked()
 
 
     }
-     m_modelEmployer->loadList();
-     ui->tableViewEmployers->clearSelection();
-     ui->tableViewEmployers->clearFocus();
+    m_modelEmployer->loadList();
+    ui->tableViewEmployers->clearSelection();
+    ui->tableViewEmployers->clearFocus();
 
 
 }
@@ -165,7 +178,7 @@ void MainWindow::onInsertEmployerClicked()
 void MainWindow::onPracticeTableClicked()
 {
     QModelIndexList index = ui->tableViewPractice->selectionModel()->selectedRows();
-    PracticeWindow *w=new PracticeWindow(m_modelPractice->getListEmployer(),m_modelPractice->getPractice(index[0].row()));
+    PracticeWindow *w=new PracticeWindow(m_modelPractice->getNames(),m_modelPractice->getListEmployer(),m_modelPractice->getPractice(index[0].row()));
     if(w->exec()==QDialog::Accepted){
         m_modelPractice->savePractice(w->getPractice());
 
@@ -175,6 +188,7 @@ void MainWindow::onPracticeTableClicked()
 
 
     m_modelPractice->loadList();
+    initComboBox();
     search();
     ui->tableViewPractice->clearSelection();
     ui->tableViewPractice->clearFocus();
@@ -183,10 +197,11 @@ void MainWindow::onPracticeTableClicked()
 
 void MainWindow::onInsertPracticeClicked()
 {
-    PracticeWindow *w=new PracticeWindow(m_modelPractice->getListEmployer());
+    PracticeWindow *w=new PracticeWindow(m_modelPractice->getNames(),m_modelPractice->getListEmployer());
     if(w->exec()==QDialog::Accepted){
         m_modelPractice->savePractice(w->getPractice());
         m_modelPractice->loadList();
+        initComboBox();
         search();
     }
 
@@ -221,7 +236,15 @@ void MainWindow::onAboutClicked()
 void MainWindow::search()
 {
     QRegExp employer("^"+ui->lineEditNameEmployer->text());
-    m_modelPractice->search(employer,ui->dateEditBegin->date(),ui->dateEditEnd->date());
+    if(ui->comboBoxName->currentText()!="Все"){
+        QRegExp name("^"+ui->comboBoxName->currentText()+"$");
+        m_modelPractice->search(name,employer,ui->dateEditBegin->date(),ui->dateEditEnd->date());
+    }else{
+
+        QRegExp name("^");
+        m_modelPractice->search(name,employer,ui->dateEditBegin->date(),ui->dateEditEnd->date());
+
+    }
 
 
 }
@@ -254,14 +277,14 @@ void MainWindow::onDeleteEmployerClicked()
 
 void MainWindow::onDeletePracticeClicked()
 {
-     QModelIndexList index = ui->tableViewPractice->selectionModel()->selectedRows();
-     if(index.count()!=0){
+    QModelIndexList index = ui->tableViewPractice->selectionModel()->selectedRows();
+    if(index.count()!=0){
 
         m_modelPractice->deletePractice(index[0].row());
 
-     }
-     ui->tableViewPractice->clearSelection();
-     ui->tableViewPractice->clearFocus();
+    }
+    ui->tableViewPractice->clearSelection();
+    ui->tableViewPractice->clearFocus();
 
 
 }

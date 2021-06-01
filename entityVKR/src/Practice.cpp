@@ -26,6 +26,8 @@ void register_class(QxClass<Practice> & t)
 
    pData = t.data(& Practice::m_customid, "customid", 0, true, true);
 
+   pData=t.data(&Practice::m_name,"name",0,true, true);
+
    pData = t.id(& Practice::m_Practice_id, "Practice_id", 0);
    pData = t.data(& Practice::m_beginning, "beginning", 0, true, true);
    pData = t.data(& Practice::m_ending, "ending", 0, true, true);
@@ -60,6 +62,8 @@ int Practice::getsemester() const { return m_semester; }
 
 QString Practice::getcustomid() const { return m_customid; }
 
+QString Practice::getname() const { return m_name; }
+
 Practice::Employer_ptr Practice::getemployer() const { return m_employer; }
 
 
@@ -87,6 +91,7 @@ void Practice::setending(const QDate & val) { m_ending = val; }
 
 void Practice::setcustomid(const QString & val) { m_customid = val; }
 
+void Practice::setname(const QString & val) { m_name = val; }
 
 void Practice::setlist_of_passing_practice(const Practice::ListOfPassingPractice & val) { m_list_of_passing_practice = val; }
 

@@ -29,6 +29,7 @@ protected:
    QDate m_beginning;
    QDate m_ending;
    QString m_customid;
+   QString m_name;
    Employer_ptr m_employer;
    ListOfTestPractice m_list_of_TestPractice;
 
@@ -41,6 +42,7 @@ public:
 
    long getPractice_id() const;
    QString getcustomid() const;
+   QString getname() const;
 
 
    ListOfPassingPractice getlist_of_passing_practice() const;
@@ -60,6 +62,8 @@ public:
    void setpractice_id(const long & val);
 
    void setcustomid(const QString & val);
+
+   void setname(const QString & val);
 
 
 
@@ -101,7 +105,10 @@ public:
 
    static QString column_customid(bool key = false) { Q_UNUSED(key); return "customid"; }
 
+   static QString column_name(bool key = false) { Q_UNUSED(key); return "name"; }
+
    static QString column_begin(bool key = false) { Q_UNUSED(key); return "begin"; }
+
    static QString column_end(bool key = false) { Q_UNUSED(key); return "end"; }
 
 public:

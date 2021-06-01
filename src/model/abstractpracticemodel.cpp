@@ -19,7 +19,7 @@ int AbstractPracticeModel::rowCount(const QModelIndex &parent) const
 
 }
 
-void AbstractPracticeModel::search(ListOfPractice list,QString employer, QDate beginning, QDate ending)
+void AbstractPracticeModel::search(QRegExp name,ListOfPractice list,QString employer, QDate beginning, QDate ending)
 {
 
     m_listPractice.clear();
@@ -29,7 +29,8 @@ void AbstractPracticeModel::search(ListOfPractice list,QString employer, QDate b
                 m_GlobalistPractice.getByIndex(i)->getemployer()->getname()==employer &&
                 !list.contains(m_GlobalistPractice.getKeyByIndex(i)) &&
                 m_GlobalistPractice.getByIndex(i)->getbeginning()>=beginning &&
-                m_GlobalistPractice.getByIndex(i)->getending()<=ending)
+                m_GlobalistPractice.getByIndex(i)->getending()<=ending&&
+                m_GlobalistPractice.getByIndex(i)->getname().contains(name))
             m_listPractice.insert(m_GlobalistPractice.getByIndex(i)->getPractice_id(),m_GlobalistPractice.getByIndex(i));
     }
     layoutChanged();
@@ -68,14 +69,15 @@ void AbstractPracticeModel::setSemester(int index, int semester)
 
 }
 
-void AbstractPracticeModel::search(QRegExp employer, QDate beginning, QDate ending)
+void AbstractPracticeModel::search(QRegExp name,QRegExp employer, QDate beginning, QDate ending)
 {
     m_listPractice.clear();
     for(int i=0;i<m_GlobalistPractice.count();i++){
 
         if( m_GlobalistPractice.getByIndex(i)->getemployer()->getname().contains(employer) &&
                 m_GlobalistPractice.getByIndex(i)->getbeginning()>=beginning &&
-                m_GlobalistPractice.getByIndex(i)->getending()<=ending)
+                m_GlobalistPractice.getByIndex(i)->getending()<=ending&&
+                m_GlobalistPractice.getByIndex(i)->getname().contains(name))
             m_listPractice.insert(m_GlobalistPractice.getByIndex(i)->getPractice_id(),m_GlobalistPractice.getByIndex(i));
     }
     layoutChanged();
@@ -85,7 +87,7 @@ void AbstractPracticeModel::search(QRegExp employer, QDate beginning, QDate endi
 
 int AbstractPracticeModel::columnCount(const QModelIndex &parent) const
 {
-    return !parent.isValid() ? 3 : 0;
+    return !parent.isValid() ? 4 : 0;
 
 }
 
@@ -93,8 +95,21 @@ QVariant AbstractPracticeModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-
         if (index.column() == 0)
+        {
+
+
+            QString title;
+            QString employer;
+
+            employer=m_listPractice.getByIndex(index.row())->getname();
+
+
+            title=employer;
+            return title;
+        }
+
+        if (index.column() == 1)
         {
 
 
@@ -107,7 +122,7 @@ QVariant AbstractPracticeModel::data(const QModelIndex &index, int role) const
             title=employer;
             return title;
         }
-        if (index.column() == 1){
+        if (index.column() == 2){
 
             QString databegin;
             databegin=m_listPractice.getByIndex(index.row())->getbeginning().toString("dd.MM.yy");
@@ -115,7 +130,7 @@ QVariant AbstractPracticeModel::data(const QModelIndex &index, int role) const
 
 
         }
-        if (index.column() == 2){
+        if (index.column() == 3){
 
             QString dataending;
             dataending=m_listPractice.getByIndex(index.row())->getending().toString("dd.MM.yy");
@@ -129,7 +144,7 @@ QVariant AbstractPracticeModel::data(const QModelIndex &index, int role) const
 
     }
 
-    if(role==Qt::TextAlignmentRole&&index.column()!=0){
+    if(role==Qt::TextAlignmentRole&&index.column()!=0&&index.column()!=1){
 
         return Qt::AlignCenter;
     }
@@ -230,6 +245,7 @@ ListOfEmployer AbstractPracticeModel::getListEmployer()
 
 void AbstractPracticeModel::loadList()
 {
+    m_names.clear();
     beginInsertRows(QModelIndex(),0,0);
     QStringList relation;
     relation.append("employer");
@@ -246,6 +262,10 @@ void AbstractPracticeModel::loadList()
     relation.append("list_of_reports");
 
     for(int i=0;i<m_listPractice.count();i++){
+        if(!m_names.contains(m_listPractice.getByIndex(i)->getname())){
+
+            m_names.append(m_listPractice.getByIndex(i)->getname());
+        }
         listPassing=m_listPractice.getByIndex(i)->getlist_of_passing_practice();
         qx::dao::fetch_by_id_with_relation(relation,listPassing);
         m_listPractice.getByIndex(i)->setlist_of_passing_practice(listPassing);
@@ -262,10 +282,12 @@ QVariant AbstractPracticeModel::headerData(int section, Qt::Orientation orientat
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
         switch (section) {
         case 0:
-            return QString("Работодатель");
+            return QString("Наименование");
         case 1:
-            return QString("Начало");
+            return QString("Работодатель");
         case 2:
+            return QString("Начало");
+        case 3:
             return QString("Конец");
         }
     }
@@ -275,5 +297,11 @@ QVariant AbstractPracticeModel::headerData(int section, Qt::Orientation orientat
         return section+1;
     }
     return QVariant();
+
+}
+
+QStringList AbstractPracticeModel::getNames()
+{
+    return m_names;
 
 }

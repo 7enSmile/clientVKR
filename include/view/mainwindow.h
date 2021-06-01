@@ -36,6 +36,7 @@ private:
     AbstractEmployerModel *m_modelEmployer;
     AbstractPracticeModel *m_modelPractice;
     QTimer *m_timer;
+    void initComboBox();
 private slots:
     void onEventsClicked();
     void onEducationProgramsClicked();

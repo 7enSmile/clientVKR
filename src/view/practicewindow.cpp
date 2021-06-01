@@ -1,12 +1,13 @@
 #include "view/practicewindow.h"
 #include "ui_practicewindow.h"
 
-PracticeWindow::PracticeWindow(ListOfEmployer listEmployers, Practice_ptr practice, QWidget *parent) :
+PracticeWindow::PracticeWindow(QStringList names,ListOfEmployer listEmployers, Practice_ptr practice, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PracticeWindow)
 {
     ui->setupUi(this);
     m_practice.reset(new Practice());
+    m_names=names;
     m_practice=practice;
     m_listEmployers=listEmployers;
     initElementsChange();
@@ -33,13 +34,14 @@ PracticeWindow::PracticeWindow(ListOfEmployer listEmployers, Practice_ptr practi
 
 }
 
-PracticeWindow::PracticeWindow(ListOfEmployer listEmployers, QWidget *parent) :
+PracticeWindow::PracticeWindow(QStringList names,ListOfEmployer listEmployers, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PracticeWindow)
 {
     ui->setupUi(this);
     m_practice.reset(new Practice());
     m_listEmployers=listEmployers;
+    m_names=names;
     initElementInsert();
     iniconnection();
     m_modelPassingPractice=new AbstractPassingPracticeModel(m_practice->getlist_of_passing_practice());
@@ -64,6 +66,7 @@ Practice_ptr PracticeWindow::getPractice()
     m_practice->setemployer(m_listEmployers.getByIndex(ui->comboBox->currentIndex()));
     m_practice->setbeginning(ui->dateEditbegining->date());
     m_practice->setending(ui->dateEditEnding->date());
+    m_practice->setname(ui->lineEditName->text());
     if(!ui->lineEditCustomId->text().isEmpty()){
         m_practice->setcustomid(ui->lineEditCustomId->text());
     }else{
@@ -86,6 +89,7 @@ void PracticeWindow::iniconnection()
     connect(ui->pushButtonGenCustomId,SIGNAL(clicked()),this,SLOT(onGenClicked()));
     connect(ui->pushButtonCopy,SIGNAL(clicked()),this,SLOT(onCopyClicked()));
     connect(ui->pushButtonInserManyPassingPractice,SIGNAL(clicked()),this,SLOT(onInsertManyPassingPracticeClicked()));
+    connect(ui->comboBoxName, &QComboBox::currentTextChanged, this, &PracticeWindow::comboBoxNameChanged);
 
 
 }
@@ -96,16 +100,20 @@ void PracticeWindow::initElementsChange()
     for(int i=0;i<m_listEmployers.count();i++){
         ui->comboBox->addItem(m_listEmployers.getByIndex(i)->getname());
     }
+    for(int i=0;i<m_names.count();i++){
+        ui->comboBoxName->addItem(m_names.at(i));
+    }
     if(m_practice->getemployer()!=nullptr){
         ui->comboBox->setCurrentText(m_practice->getemployer()->getname());
     }
-
+    ui->lineEditName->setText(m_practice->getname());
     ui->dateEditbegining->setDate(m_practice->getbeginning());
     ui->dateEditEnding->setDate(m_practice->getending());
     ui->pushButtonAction->setText("Изменить");
     ui->pushButtonOk->setText("Ок");
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     this->setWindowTitle("Практика");
+    ui->comboBoxName->setCurrentText(m_practice->getname());
 
 
 }
@@ -114,6 +122,9 @@ void PracticeWindow::initElementInsert()
 {
     for(int i=0;i<m_listEmployers.count();i++){
         ui->comboBox->addItem(m_listEmployers.getByIndex(i)->getname());
+    }
+    for(int i=0;i<m_names.count();i++){
+        ui->comboBoxName->addItem(m_names.at(i));
     }
     ui->pushButtonAction->setText("Создать");
     ui->pushButtonOk->setText("Отмена");
@@ -311,6 +322,12 @@ void PracticeWindow::onInsertManyPassingPracticeClicked()
         }
 
     }
+
+}
+
+void PracticeWindow::comboBoxNameChanged()
+{
+    ui->lineEditName->setText(ui->comboBoxName->currentText());
 
 }
 

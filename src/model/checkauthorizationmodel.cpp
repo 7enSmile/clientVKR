@@ -9,9 +9,11 @@ bool CheckAuthorizationModel::checkUser(QString login, QString password)
 {
     QSettings sett("conf.ini", QSettings::IniFormat);
     QString address = sett.value("server/address", "").toString();
+    QString port = sett.value("server/port", "").toString();
     qx::QxSqlDatabase::getSingleton()->setDriverName("QPSQL");
     qx::QxSqlDatabase::getSingleton()->setDatabaseName("department");
     qx::QxSqlDatabase::getSingleton()->setHostName(address);
+    qx::QxSqlDatabase::getSingleton()->setPort(port.toInt());
     qx::QxSqlDatabase::getSingleton()->setUserName(login);
     qx::QxSqlDatabase::getSingleton()->setPassword(password);
     qx::QxSqlDatabase::getSingleton()->setVerifyOffsetRelation(true);
@@ -33,9 +35,13 @@ bool CheckAuthorizationModel::checkUser(QString login, QString password)
 
 bool CheckAuthorizationModel::checkAdmin(QString password)
 {
+    QSettings sett("conf.ini", QSettings::IniFormat);
+    QString address = sett.value("server/address", "").toString();
+    QString port = sett.value("server/port", "").toString();
     qx::QxSqlDatabase::getSingleton()->setDriverName("QPSQL");
     qx::QxSqlDatabase::getSingleton()->setDatabaseName("department");
-    qx::QxSqlDatabase::getSingleton()->setHostName("localhost");
+    qx::QxSqlDatabase::getSingleton()->setHostName(address);
+    qx::QxSqlDatabase::getSingleton()->setPort(port.toInt());
     qx::QxSqlDatabase::getSingleton()->setUserName("postgres");
     qx::QxSqlDatabase::getSingleton()->setPassword(password);
     qx::QxSqlDatabase::getSingleton()->setVerifyOffsetRelation(true);

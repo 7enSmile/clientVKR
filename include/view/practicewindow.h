@@ -18,8 +18,8 @@ class PracticeWindow : public QDialog
     Q_OBJECT
 
 public:
-    PracticeWindow(ListOfEmployer,QWidget *parent = nullptr);
-    PracticeWindow(ListOfEmployer,Practice_ptr,QWidget *parent = nullptr);
+    PracticeWindow(QStringList,ListOfEmployer,QWidget *parent = nullptr);
+    PracticeWindow(QStringList,ListOfEmployer,Practice_ptr,QWidget *parent = nullptr);
     ~PracticeWindow();
     Practice_ptr getPractice();
 
@@ -29,6 +29,7 @@ private:
     ListOfEmployer m_listEmployers;
     listOfTestPractice m_listTestPractice;
     AbstractPassingPracticeModel *m_modelPassingPractice;
+    QStringList m_names;
     void iniconnection();
     void initElementsChange();
     void initElementInsert();
@@ -45,6 +46,7 @@ private slots:
     void onGenClicked();
     void onCopyClicked();
     void onInsertManyPassingPracticeClicked();
+    void comboBoxNameChanged();
 
 };
 

@@ -14,6 +14,8 @@ private:
 
     ListOfEmployer m_listEmployer;
 
+    QStringList m_names;
+
 public:
 
     AbstractPracticeModel();
@@ -24,7 +26,7 @@ public:
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
-    void search(ListOfPractice,QString,QDate,QDate);
+    void search(QRegExp,ListOfPractice,QString,QDate,QDate);
 
     ListOfPractice& getList();
 
@@ -34,8 +36,7 @@ public:
 
     void setSemester(int,int);
 
-    void search(QRegExp,QDate,QDate);
-
+    void search(QRegExp,QRegExp,QDate,QDate);
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
@@ -52,6 +53,8 @@ public:
     void loadList();
 
     QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
+
+    QStringList getNames();
 
 
 
