@@ -156,6 +156,20 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Работодатель</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEditNameEmployer"/>
+           </item>
+          </layout>
+         </item>
+         <item>
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
             <widget class="QLabel" name="label_4">
@@ -167,103 +181,60 @@
            <item>
             <widget class="QComboBox" name="comboBoxName"/>
            </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout_10"/>
-           </item>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_5">
+            <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
-              <widget class="QLabel" name="label">
+              <widget class="QLabel" name="label_2">
                <property name="text">
-                <string>Работодатель</string>
+                <string>Начало</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEditNameEmployer"/>
+              <widget class="QDateEdit" name="dateEditBegin"/>
              </item>
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_6">
-               <item>
-                <widget class="QLabel" name="label_2">
-                 <property name="text">
-                  <string>Начало</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QDateEdit" name="dateEditBegin"/>
-               </item>
-              </layout>
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Конец</string>
+               </property>
+              </widget>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_7">
-               <item>
-                <widget class="QLabel" name="label_3">
-                 <property name="text">
-                  <string>Конец</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QDateEdit" name="dateEditEnd">
-                 <property name="date">
-                  <date>
-                   <year>2030</year>
-                   <month>1</month>
-                   <day>1</day>
-                  </date>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+              <widget class="QDateEdit" name="dateEditEnd">
+               <property name="date">
+                <date>
+                 <year>2030</year>
+                 <month>1</month>
+                 <day>1</day>
+                </date>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
           </layout>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_5">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </item>
@@ -273,8 +244,17 @@
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
             <widget class="QTableView" name="tableViewPractice">
+             <property name="autoScroll">
+              <bool>true</bool>
+             </property>
+             <property name="autoScrollMargin">
+              <number>16</number>
+             </property>
              <property name="selectionMode">
               <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="sortingEnabled">
+              <bool>false</bool>
              </property>
              <attribute name="horizontalHeaderVisible">
               <bool>true</bool>
@@ -410,6 +390,19 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>pushButtonInsertEmployer</tabstop>
+  <tabstop>pushButtonDeleteEmployer</tabstop>
+  <tabstop>tableViewEmployers</tabstop>
+  <tabstop>comboBoxName</tabstop>
+  <tabstop>lineEditNameEmployer</tabstop>
+  <tabstop>dateEditBegin</tabstop>
+  <tabstop>dateEditEnd</tabstop>
+  <tabstop>tableViewPractice</tabstop>
+  <tabstop>pushButtonInserPractice</tabstop>
+  <tabstop>pushButtonDeletePractice</tabstop>
+  <tabstop>pushButtonReport</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
